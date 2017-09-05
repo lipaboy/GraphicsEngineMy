@@ -40,8 +40,9 @@ void MaterialLightReflect::SetMaterial()
 
     // Получили список всех источников света в сцене
     std::list<const Light *> lights = SceneUtils::GetLights();
-    //const size_t count = lights.size() < 3 ? lights.size() : 3;     //?????
-    const size_t count = lights.size();
+    const size_t MAX_LIGHT_COUNT = 3;
+    const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
+    //const size_t count = lights.size();
 
     SetMaterialBegin();
     {

@@ -95,7 +95,9 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderSand.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderSand.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.fs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.vs
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.vs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderSpecular.vs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderSpecular.fs
 
 HEADERS += \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \

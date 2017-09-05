@@ -8,14 +8,12 @@ struct Light
 	vec4	color;		// (цвет.r, цвет.g, цвет.b, интенсивность)
 };
 
-const int MAX_LIGHT_COUNT = 3;
-
 // Shader parameters
 uniform mat4 matWorldNormal;
 uniform mat4 matWorldT;
 uniform vec4 materialColor;
 uniform vec4 lightsCount;
-uniform Light lights[MAX_LIGHT_COUNT];
+uniform Light lights[3];
 
 varying vec3 localPosition;
 varying vec3 localNormal;
