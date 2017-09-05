@@ -93,9 +93,15 @@ void main()
                             - (SPOT_INNER_CONE - spotDiffAngle) / (SPOT_INNER_CONE - SPOT_OUTER_CONE)
                             , 0.0, 1.0);
 
+                    // Specular component
+                        vec3 halfWay = normalize(normalize(cameraPosition.xyz - vertexPos) + -lightDir);
+                        specular = pow(
+                            clamp(dot(vertexNormal, halfWay), 0.0, 1.0),
+                            1000 );
+
                 }
                 col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal) * intensity;
-                col += materialColor.rgb * specular;
+                col += materialColor.rgb * specular * intensity;
         }
 
         gl_FragColor = vec4(col, 1.0);
