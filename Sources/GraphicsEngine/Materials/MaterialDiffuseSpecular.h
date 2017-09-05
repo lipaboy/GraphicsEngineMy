@@ -3,10 +3,10 @@
 
 #include "MaterialLightReflect.h"
 
-class MaterialSpecular : public MaterialLightReflect
+class MaterialDiffuseSpecular : public MaterialLightReflect
 {
 public:
-    MaterialSpecular();
+    MaterialDiffuseSpecular();
 
     virtual void Init(Object * pObject) { MaterialLightReflect::Init(pObject); }
     virtual void Deinit() { MaterialLightReflect::Deinit(); }

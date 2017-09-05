@@ -48,7 +48,7 @@ SOURCES += \
     ../Sources/GraphicsEngine/Materials/Material.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialDiffuse.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialLightReflect.cpp \
-    ../Sources/GraphicsEngine/Materials/MaterialSpecular.cpp \
+    ../Sources/GraphicsEngine/Materials/MaterialDiffuseSpecular.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialSand.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.cpp \
@@ -96,8 +96,8 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderSand.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderSpecular.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderSpecular.fs
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.vs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.fs
 
 HEADERS += \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \
@@ -147,7 +147,7 @@ HEADERS += \
     ../Sources/GraphicsEngine/Materials/Material.h \
     ../Sources/GraphicsEngine/Materials/MaterialDiffuse.h \
     ../Sources/GraphicsEngine/Materials/MaterialLightReflect.h \
-    ../Sources/GraphicsEngine/Materials/MaterialSpecular.h \
+    ../Sources/GraphicsEngine/Materials/MaterialDiffuseSpecular.h \
     ../Sources/GraphicsEngine/Materials/MaterialSand.h \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.h \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.h \

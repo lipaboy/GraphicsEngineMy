@@ -40,6 +40,7 @@ void MaterialLightReflect::SetMaterial()
 
     // Получили список всех источников света в сцене
     std::list<const Light *> lights = SceneUtils::GetLights();
+    const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
     const size_t MAX_LIGHT_COUNT = 3;
     const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
     //const size_t count = lights.size();
@@ -55,6 +56,7 @@ void MaterialLightReflect::SetMaterial()
         SetPixelShaderMatrix4x4	("matWorldT",		matWorldT);
         SetPixelShaderVector4	("materialColor",	Vector4(1, 1, 1, 1));
         SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
+        SetPixelShaderVector4	("cameraPosition",		cameraPosition);
 
         // Передаём параметры каждого источника света
         int i = 0;
