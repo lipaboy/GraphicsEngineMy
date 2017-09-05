@@ -1,4 +1,4 @@
-#include "lightreflectmaterial.h"
+#include "LightReflectMaterial.h"
 
 LightReflectMaterial::LightReflectMaterial()
 {
