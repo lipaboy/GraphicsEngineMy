@@ -1,7 +1,3 @@
 **/*.autosave
 **/build*
-**/Data
 **/*.pro.user
-**/SDKs
-**/vs2010
-*.bat
