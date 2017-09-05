@@ -59,16 +59,27 @@ void main()
                 vec3 lightDir = vec3(0,0,0);
 
                 float intensity = 1.0;
+                float specular = 1.0;
 
                 // Directional light
                 if (abs(type - 1.0) < epsilon)
                 {
                         lightDir = normalize(lights[i].direction.xyz).xyz;
+                        // Specular component
+                        vec3 halfWay = normalize(normalize(cameraPosition.xyz - vertexPos) + -lightDir);
+                        specular = pow(
+                            clamp(dot(vertexNormal, halfWay), 0.0, 1.0),
+                            1000 );
                 }
                 // Point light
                 else if (abs(type - 2.0) < epsilon)
                 {
                         lightDir = normalize(vertexPos - lights[i].position.xyz).xyz;
+                        // Specular component
+                        vec3 halfWay = normalize(normalize(cameraPosition.xyz - vertexPos) + -lightDir);
+                        specular = pow(
+                            clamp(dot(vertexNormal, halfWay), 0.0, 1.0),
+                            1000 );
                 }
                 // Spot light
                 else if (abs(type - 3.0) < epsilon)
@@ -82,10 +93,9 @@ void main()
                             - (SPOT_INNER_CONE - spotDiffAngle) / (SPOT_INNER_CONE - SPOT_OUTER_CONE)
                             , 0.0, 1.0);
 
-                    // Specular component
-                       // vec3 halfWay = norm(norm(vertexPos -
                 }
                 col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal) * intensity;
+                col += materialColor.rgb * specular;
         }
 
         gl_FragColor = vec4(col, 1.0);
