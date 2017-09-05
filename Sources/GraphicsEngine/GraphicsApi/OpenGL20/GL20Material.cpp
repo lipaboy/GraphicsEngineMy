@@ -3,7 +3,10 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Convert.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Texture2D.h"
 #include "GraphicsEngine/File.h"
+
 #include <iostream>
+#include <stdlib.h>
+#include <limits.h>
 
 GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)
 {
@@ -21,7 +24,9 @@ GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragm
 	{
 		if (!File::Exists(m_vsPath))
 		{
-            LogErrorInLoadFile(m_vsPath);
+            char filepath[PATH_MAX];
+            realpath(File::GetFileName(m_vsPath.c_str()).c_str(), filepath);
+            LogErrorInLoadFile(m_vsPath + " " + filepath);
 			return;
 		}
 

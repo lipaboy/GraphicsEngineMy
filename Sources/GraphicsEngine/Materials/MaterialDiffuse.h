@@ -1,15 +1,17 @@
 ﻿#pragma once
-#include "GraphicsEngine/Materials/Material.h"
+#include "GraphicsEngine/Materials/MaterialLightReflect.h"
 
 
 // Рассчитывает только компоненту diffuse от всех источников света
-class MaterialDiffuse : public Material
+class MaterialDiffuse : public MaterialLightReflect
 {
 public:
-	MaterialDiffuse();
+    MaterialDiffuse();
+
+   // virtual void setShaderFilename();
 
 	virtual void Init(Object * pObject);
 	virtual void Deinit();
 	
-	virtual void SetMaterial();
+    //virtual void SetMaterial() {
 };

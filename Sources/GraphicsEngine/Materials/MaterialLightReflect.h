@@ -1,11 +1,22 @@
-#ifndef LIGHTREFLECTMATERIAL_H
-#define LIGHTREFLECTMATERIAL_H
+#ifndef MATERIALLIGHTREFLECT_H
+#define MATERIALLIGHTREFLECT_H
 
+#include "GraphicsEngine/Materials/Material.h"
 
-class MaterialLightReflect
+//TODO: make it abstract class
+
+// It is commonality of classes Material that calculate components from each light sources
+class MaterialLightReflect : public Material
 {
 public:
-    MaterialLightReflect();
+//    MaterialLightReflect();
+
+//    virtual void setShaderFilename() = 0;
+
+    virtual void Init(Object * pObject);
+    virtual void Deinit();
+
+    virtual void SetMaterial();
 };
 
-#endif // LIGHTREFLECTMATERIAL_H
+#endif // MATERIALLIGHTREFLECT_H

@@ -48,6 +48,7 @@ SOURCES += \
     ../Sources/GraphicsEngine/Materials/Material.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialDiffuse.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialLightReflect.cpp \
+    ../Sources/GraphicsEngine/Materials/MaterialSpecular.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialSand.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.cpp \
@@ -76,7 +77,7 @@ SOURCES += \
     ../Sources/GraphicsEngine/Transform.cpp \
     ../Sources/GraphicsEngine/Vector3.cpp \
     ../Sources/main.cpp \
-    ../Sources/GraphicsEngine/Materials/lightreflectmaterial.cpp
+
 
 DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/DX9/ShaderDiffuse.ps \
@@ -144,6 +145,7 @@ HEADERS += \
     ../Sources/GraphicsEngine/Materials/Material.h \
     ../Sources/GraphicsEngine/Materials/MaterialDiffuse.h \
     ../Sources/GraphicsEngine/Materials/MaterialLightReflect.h \
+    ../Sources/GraphicsEngine/Materials/MaterialSpecular.h \
     ../Sources/GraphicsEngine/Materials/MaterialSand.h \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.h \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.h \
@@ -192,4 +194,4 @@ HEADERS += \
     ../Sources/Tasks/Task04.h \
     ../Sources/Tasks/Task05_01.h \
     ../Sources/Tasks/Task08.h \
-    ../Sources/GraphicsEngine/Materials/lightreflectmaterial.h
+    ../Sources/GraphicsEngine/Materials/MaterialSpecular.h
