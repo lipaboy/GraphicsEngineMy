@@ -25,8 +25,8 @@ public:
 		
 		// Camera Translation
 		{
-			Vector3 forward	= pTransform->GetForward();
-			Vector3 right	= pTransform->GetRight();
+            Vector3 forward	= pTransform->GetForward();
+            Vector3 right	= pTransform->GetRight();
 			double dt = Time::GetDeltaTime();
 
 			const double speed = 1.0;

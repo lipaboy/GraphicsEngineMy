@@ -72,14 +72,11 @@ void main()
                 {
                         lightDir = normalize(vertexPos - lights[i].position.xyz).xyz;
                         float spotDiffAngle = clamp(dot(lights[i].direction.xyz, lightDir), 0.0, 1.0);
-                        const float SPOT_INNER_CONE = 0.9;
+                        const float SPOT_INNER_CONE = 0.9;      // #hardcode
                         const float SPOT_OUTER_CONE = 0.7;
-                        //if (spotDiffAngle < SPOT_INNER_CONE)
-                            intensity = clamp(1.0
-                                - (SPOT_INNER_CONE - spotDiffAngle) / (SPOT_INNER_CONE - SPOT_OUTER_CONE)
-                                , 0.0, 1.0);
-                        //if (spotDiffAngle < SPOT_OUTER_CONE)
-                         //   lightDir = vec3(0, 0, 0);
+                        intensity = clamp(1.0
+                            - (SPOT_INNER_CONE - spotDiffAngle) / (SPOT_INNER_CONE - SPOT_OUTER_CONE)
+                            , 0.0, 1.0);
                 }
                 col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal) * intensity;
 	}
