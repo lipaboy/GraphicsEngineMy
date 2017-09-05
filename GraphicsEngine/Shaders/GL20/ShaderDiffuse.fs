@@ -44,10 +44,10 @@ void main()
 	// Переводим позицию из локальной в глобальную систему координат
 	vec3 vertexPos = (vec4(localPosition, 1.0) * matWorldT).xyz;
 
-	for (int i = 0; i < 3; ++i)
+        for (int i = 0; float(i) < lightsCount.x; ++i)
 	{
 		// Выходим, как только закончились источники освещения
-                if (float(i) >= lightsCount.x) break;
+                //if (float(i) >= lightsCount.x) break;
 		
 		float type = lights[i].type.x;
 		float epsilon = 0.001;
