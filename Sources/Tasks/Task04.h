@@ -2,10 +2,13 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Light.h"
+
 #include "GraphicsEngine/Materials/MaterialTask01.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
 #include "GraphicsEngine/Materials/MaterialDiffuse.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseSpecular.h"
+#include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
+
 #include "GraphicsEngine/Meshes/MeshTriangle.h"
 #include "GraphicsEngine/Meshes/MeshQuad.h"
 #include "GraphicsEngine/Meshes/MeshSphere.h"
@@ -40,11 +43,11 @@ public:
 		{
 			Object * pObject1 = new Object();
 
-            pObject1->m_pTransform	= new Transform(0,0,3.5, 0,0,0, 3,3,3);
-            pObject1->m_pMesh		= new MeshSphere(20);
-                  //  new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-            pObject1->m_pMaterial	= //new MaterialDiffuse();
-                    new MaterialDiffuseSpecular();
+            pObject1->m_pTransform	= new Transform(0,2,0.0, 0,0,0, 3,3,3);
+            pObject1->m_pMesh		= //new MeshSphere(20);
+                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+            pObject1->m_pMaterial	= new MaterialDiffuse();
+                    //new MaterialDiffuseAttenuation();
             pObject1->AddComponent( new ObjectRotator(0,100,100) );
 
 			scene.AddObject( pObject1 );

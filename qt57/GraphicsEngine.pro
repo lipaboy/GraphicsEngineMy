@@ -52,6 +52,7 @@ SOURCES += \
     ../Sources/GraphicsEngine/Materials/MaterialSand.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.cpp \
+    ../Sources/GraphicsEngine/Materials/MaterialDiffuseAttenuation.cpp\
 \
     ../Sources/GraphicsEngine/Meshes/Mesh.cpp \
     ../Sources/GraphicsEngine/Meshes/MeshCube.cpp \
@@ -76,7 +77,7 @@ SOURCES += \
     ../Sources/GraphicsEngine/Time.cpp \
     ../Sources/GraphicsEngine/Transform.cpp \
     ../Sources/GraphicsEngine/Vector3.cpp \
-    ../Sources/main.cpp \
+    ../Sources/main.cpp
 
 
 DISTFILES += \
@@ -97,7 +98,9 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderUnlit.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.fs
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.fs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.vs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs
 
 HEADERS += \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \
@@ -147,7 +150,8 @@ HEADERS += \
     ../Sources/GraphicsEngine/Materials/Material.h \
     ../Sources/GraphicsEngine/Materials/MaterialDiffuse.h \
     ../Sources/GraphicsEngine/Materials/MaterialLightReflect.h \
-    ../Sources/GraphicsEngine/Materials/MaterialDiffuseSpecular.h \
+    ../Sources/GraphicsEngine/Materials/MaterialDiffuseSpecular.h\
+    ../Sources/GraphicsEngine/Materials/MaterialDiffuseAttenuation.h \
     ../Sources/GraphicsEngine/Materials/MaterialSand.h \
     ../Sources/GraphicsEngine/Materials/MaterialTask01.h \
     ../Sources/GraphicsEngine/Materials/MaterialUnlit.h \
@@ -195,5 +199,4 @@ HEADERS += \
     ../Sources/Tasks/Task01.h \
     ../Sources/Tasks/Task04.h \
     ../Sources/Tasks/Task05_01.h \
-    ../Sources/Tasks/Task08.h \
-    ../Sources/GraphicsEngine/Materials/MaterialSpecular.h
+    ../Sources/Tasks/Task08.h
