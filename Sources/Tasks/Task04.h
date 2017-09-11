@@ -81,18 +81,18 @@ public:
             scene.AddLight(pLight);
         }
 
-        //// Источник света #3
-        //{               //upper lighter (precisely)
-        //    Light * pLight = new Light(LightType::LIGHT_SPOT);
-        //    pLight->SetColor(0.3f,0.95f,0.5f);
-        //    pLight->SetIntensity(1);
+        // Источник света #3
+        {               //upper lighter (precisely)
+            Light * pLight = new Light(LightType::LIGHT_SPOT);
+            pLight->SetColor(0.3f,0.95f,0.5f);
+            pLight->SetIntensity(1);
 
-        //    Object * pLightObject = new Object();
-        //    pLightObject->m_pTransform	= new Transform(0,3,0, 90,0,0, 1,1,1);
-        //    pLightObject->AddComponent(pLight);
+            Object * pLightObject = new Object();
+            pLightObject->m_pTransform	= new Transform(0,6,10, 90,0,0, 1,1,1);
+            pLightObject->AddComponent(pLight);
 
-        //    scene.AddLight(pLight);
-        //}
+            scene.AddLight(pLight);
+        }
 	}
 
 	virtual void Update()
