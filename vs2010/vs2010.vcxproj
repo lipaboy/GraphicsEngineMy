@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -21,12 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -158,8 +160,12 @@ xcopy  /S /I /E /Y "..\Sources\GraphicsEngine\Shaders" "..\BUILD\Release\Shaders
     <ClInclude Include="..\Sources\GraphicsEngine\KeyCode.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Light.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Materials\Material.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseAttenuation.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseSpecular.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialLightReflect.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialSand.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuse.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialTask01.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialUnlit.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Math.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\MathConstants.h" />
@@ -181,6 +187,8 @@ xcopy  /S /I /E /Y "..\Sources\GraphicsEngine\Shaders" "..\BUILD\Release\Shaders
     <ClInclude Include="..\Sources\GraphicsEngine\Scene.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\SceneUtils.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Screen.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Shaders\PixelShader.h" />
+    <ClInclude Include="..\Sources\GraphicsEngine\Shaders\VertexShader.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Texture2D.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Time.h" />
     <ClInclude Include="..\Sources\GraphicsEngine\Transform.h" />
@@ -230,8 +238,12 @@ xcopy  /S /I /E /Y "..\Sources\GraphicsEngine\Shaders" "..\BUILD\Release\Shaders
     <ClCompile Include="..\Sources\GraphicsEngine\Input.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Internal\InternalInput.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Materials\Material.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseAttenuation.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseSpecular.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialLightReflect.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialSand.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuse.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialTask01.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialUnlit.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Meshes\Mesh.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Meshes\MeshCube.cpp" />
@@ -245,6 +257,8 @@ xcopy  /S /I /E /Y "..\Sources\GraphicsEngine\Shaders" "..\BUILD\Release\Shaders
     <ClCompile Include="..\Sources\GraphicsEngine\PlatformApi\Windows\WinWindow.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Scene.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Screen.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Shaders\PixelShader.cpp" />
+    <ClCompile Include="..\Sources\GraphicsEngine\Shaders\VertexShader.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Texture2D.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Time.cpp" />
     <ClCompile Include="..\Sources\GraphicsEngine\Transform.cpp" />
@@ -277,16 +291,12 @@ xcopy  /S /I /E /Y "..\Sources\GraphicsEngine\Shaders" "..\BUILD\Release\Shaders
     <None Include="..\Sources\GraphicsEngine\Shaders\DX9\ShaderUnlit.vs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuse.fs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuse.vs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderEarth.fs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderEarth.vs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderRoad.fs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderRoad.vs" />
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseAttenuation.fs" />
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseAttenuation.vs" />
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseSpecular.fs" />
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseSpecular.vs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderSand.fs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderSand.vs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cube.fs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cube.vs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cylinder.fs" />
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cylinder.vs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderUnlit.fs" />
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderUnlit.vs" />
   </ItemGroup>

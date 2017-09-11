@@ -321,6 +321,24 @@
     <ClInclude Include="..\Sources\GraphicsEngine\GraphicsApi\OpenGL20\GL20Input.h">
       <Filter>GraphicsEngine\GraphicsApi\OpenGL20</Filter>
     </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseAttenuation.h">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseSpecular.h">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialLightReflect.h">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Materials\MaterialTask01.h">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Shaders\PixelShader.h">
+      <Filter>GraphicsEngine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Sources\GraphicsEngine\Shaders\VertexShader.h">
+      <Filter>GraphicsEngine\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Sources\GraphicsEngine\Application.cpp">
@@ -483,6 +501,24 @@
     <ClCompile Include="..\Sources\GraphicsEngine\GraphicsApi\OpenGL20\GL20Input.cpp">
       <Filter>GraphicsEngine\GraphicsApi\OpenGL20</Filter>
     </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseAttenuation.cpp">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialDiffuseSpecular.cpp">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialLightReflect.cpp">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Materials\MaterialTask01.cpp">
+      <Filter>GraphicsEngine\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Shaders\PixelShader.cpp">
+      <Filter>GraphicsEngine\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Sources\GraphicsEngine\Shaders\VertexShader.cpp">
+      <Filter>GraphicsEngine\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Sources\GraphicsEngine\Shaders\DX11\ShaderDiffuse.fx">
@@ -542,24 +578,6 @@
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuse.vs">
       <Filter>GraphicsEngine\Shaders\GL20</Filter>
     </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderRoad.fs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderRoad.vs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cube.fs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cube.vs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cylinder.fs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderTask02Cylinder.vs">
-      <Filter>GraphicsEngine\Shaders\GL20</Filter>
-    </None>
     <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderUnlit.fs">
       <Filter>GraphicsEngine\Shaders\GL20</Filter>
     </None>
@@ -590,10 +608,16 @@
     <None Include="..\Sources\GraphicsEngine\Shaders\DX11\ShaderEarth.fx">
       <Filter>GraphicsEngine\Shaders\DX11</Filter>
     </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderEarth.fs">
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseAttenuation.fs">
       <Filter>GraphicsEngine\Shaders\GL20</Filter>
     </None>
-    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderEarth.vs">
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseAttenuation.vs">
+      <Filter>GraphicsEngine\Shaders\GL20</Filter>
+    </None>
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseSpecular.fs">
+      <Filter>GraphicsEngine\Shaders\GL20</Filter>
+    </None>
+    <None Include="..\Sources\GraphicsEngine\Shaders\GL20\ShaderDiffuseSpecular.vs">
       <Filter>GraphicsEngine\Shaders\GL20</Filter>
     </None>
   </ItemGroup>

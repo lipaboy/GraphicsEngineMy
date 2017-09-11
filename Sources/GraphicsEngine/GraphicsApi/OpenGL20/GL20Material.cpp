@@ -24,8 +24,12 @@ GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragm
 	{
 		if (!File::Exists(m_vsPath))
 		{
+#ifdef PLATFORM_LINUX
             char filepath[PATH_MAX];
             realpath(File::GetFileName(m_vsPath.c_str()).c_str(), filepath);
+#else
+            char filepath[] = "";
+#endif
             LogErrorInLoadFile(m_vsPath + " " + filepath);
 			return;
 		}

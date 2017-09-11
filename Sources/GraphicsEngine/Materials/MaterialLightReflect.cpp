@@ -5,6 +5,8 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+#include <ctime>
+#include <chrono>
 
 //MaterialLightReflect::MaterialDiffuse()
 //{
@@ -29,6 +31,7 @@ void MaterialLightReflect::Deinit()
 
 void MaterialLightReflect::SetMaterial()
 {
+
     // Заполняем матрицы World, View, Proj
     const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(m_pObject);
     const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
@@ -45,10 +48,16 @@ void MaterialLightReflect::SetMaterial()
     const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
     //const size_t count = lights.size();
 
+    using namespace std::chrono;
+    milliseconds ms = duration_cast< milliseconds >(
+        system_clock::now().time_since_epoch()
+        );
+    
     SetMaterialBegin();
     {
         SetVertexShaderBegin();
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
+        SetVertexShaderVector4("timeT", Vector4(std::sin((double)ms.count() / 800), 0, 0, 0));
         SetVertexShaderEnd();
 
         SetPixelShaderBegin();

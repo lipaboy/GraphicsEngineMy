@@ -2,6 +2,7 @@
 
 // Shader parameters
 uniform mat4 matrixWorldViewProjT;
+uniform vec4 timeT;
 
 // Vertex structure
 attribute vec3 position;
@@ -14,8 +15,8 @@ varying vec3 localNormal;
 
 void main()
 {
-	gl_Position		= vec4(position, 1.0) * matrixWorldViewProjT;
+	gl_Position		= (timeT + vec4(position, 1.0)) * matrixWorldViewProjT;
 	gl_FrontColor	= color;
-	localPosition	= position;
+	localPosition	= position + timeT.xyz;
 	localNormal		= normal;
 }
