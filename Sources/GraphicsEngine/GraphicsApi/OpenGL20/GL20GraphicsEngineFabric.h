@@ -2,8 +2,8 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineFabricImpl.h"
 
 
-// Class implements an interface GraphicsEngineFabricImpl in DirectX9.
-// Class creates objects listed below if DirectX9 is chosen as Graphics API
+// Class implements an interface GraphicsEngineFabricImpl in OpenGL20.
+// Class creates objects listed below if OpenGL20 is chosen as Graphics API
 // Design Patterns: Abstract Factory (role - Concrete Factory).
 class GL20GraphicsEngineFabric : public GraphicsEngineFabricImpl
 {
