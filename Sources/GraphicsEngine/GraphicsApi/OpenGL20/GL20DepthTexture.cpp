@@ -1,9 +1,8 @@
 #include "GL20DepthTexture.h"
+#include "GraphicsEngine/Screen.h"
 
-
-void GL20DepthTexture::Init(const Rect &_viewPort)
+void GL20DepthTexture::Init()
 {
-    viewPort = _viewPort;
     glGenFramebuffers(1, &depthMapFBO);
 
     glGenTextures(1, &depthMap);
@@ -39,12 +38,13 @@ void GL20DepthTexture::setRenderLocation(RenderLocation location)
 
     //        ConfigureShaderAndMatrices();
     //        RenderScene();
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
         break;
 
     case SCREEN:
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
         // 2. then render scene as normal with shadow mapping (using depth map)
-        glViewport(0, 0, viewPort.w, viewPort.h);
+        glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
        // ConfigureShaderAndMatrices();

@@ -1,7 +1,11 @@
 ﻿#pragma once
 #include <math.h>
 #include "GraphicsEngine/Math.h"
+#include "GraphicsEngine/PlatformApi/Platform.h"
 
+#ifdef CAN_USE_OPEN_GL
+#include <glm/vec3.hpp>
+#endif
 
 class Vector3
 {
@@ -27,6 +31,12 @@ public:
 	{
 
 	}
+
+#ifdef CAN_USE_OPEN_GL
+    glm::vec3 toGlmVec3() const {
+        return glm::vec3(x, y, z);
+    }
+#endif
 
 	Vector3 operator - () const
 	{

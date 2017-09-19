@@ -101,7 +101,9 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.vs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.fs
 
 HEADERS += \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \
@@ -201,4 +203,5 @@ HEADERS += \
     ../Sources/Tasks/Task04.h \
     ../Sources/Tasks/Task05_01.h \
     ../Sources/Tasks/Task08.h \
-    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h
+    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h \
+    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h

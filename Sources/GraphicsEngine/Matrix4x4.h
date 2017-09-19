@@ -4,6 +4,10 @@
 #include "GraphicsEngine/Vector3.h"
 #include "GraphicsEngine/Vector4.h"
 
+#include "PlatformApi/Platform.h"
+#ifdef CAN_USE_OPEN_GL
+#include <glm/mat4x4.hpp>
+#endif
 
 struct Matrix4x4
 {
@@ -16,6 +20,21 @@ struct Matrix4x4
 		};
 		double m[4][4];
 	};
+
+#ifdef CAN_USE_OPEN_GL
+    Matrix4x4 & operator = (const glm::mat4 & that)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                m[i][j] = that[i][j];
+            }
+        }
+
+        return (*this);
+    }
+#endif
 	
 	Matrix4x4 & operator = (const Matrix4x4 & that)
 	{

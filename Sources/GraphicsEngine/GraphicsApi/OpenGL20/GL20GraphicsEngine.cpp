@@ -4,6 +4,8 @@
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Input.h"
 
+#include "GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h"
+
 
 GL20GraphicsEngine * pGL20Engine = NULL;
 
@@ -144,6 +146,11 @@ void GL20GraphicsEngine::Init()
 	GraphicsEngineContext * pContext = new GraphicsEngineContext(this);
 	Application::Instance().SetContext( pContext );
 
+    // New lines
+    // TODO: add Deinit()
+    depthTexture.Init();
+    shadowMaterial.Init(nullptr);
+
 	GL20Input::Init();
 
 	m_scene.Init();
@@ -203,6 +210,15 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 
 void GL20GraphicsEngine::Render1()
 {
+    depthTexture.setRenderLocation(DEPTH_TEXTURE);
+    shadowMaterial.SetMaterial();
+
+    {
+        m_scene.Update();
+        m_scene.Render();
+    }
+
+    depthTexture.setRenderLocation(SCREEN);
 	// Choose buffers to be cleared
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

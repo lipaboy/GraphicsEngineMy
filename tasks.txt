@@ -13,3 +13,20 @@
 - spot light. На первом проходе камера ставится прямо в позицию источника освещения, ориентация выбирается тоже исходя из направления фонарика, матрица проекции - перспективная, угол обзора берётся из параметров фонарика.
 - point light. Наиболее сложный в реализации. Т.к. свет от него идёт во все стороны, то единственный подход - то же самое, что spot light, только нужно отрисовать 6 текстур (источник света как бы находится в центре куба, соответственно нужно отрисовать карту теней для всех шести сторон).
 4. Нужно не забывать, что делаешь реализацию в движке, который cross graphics api (DirectX, OpenGL). Т.е. нужно весь код по установке объектов и камер писать без привязки к OpenGL/DirectX. Код на OpenGL- это шейдеры и Render Texture (в которую рисуется карта теней на первом проходе), причём Render Texture должна тоже скрывать реализацию OpenGL по аналогии с классами Mesh, Material, ... Придётся менять код глубоко внутри движка, где рисуется вся сцена, т.к. теперь придётся рисовать дважды, плюс то в Render Texture, то на экран (сейчас всё рисуется только на экран).
+
+
+
+
+glm::vec3 lightInvDir = get Light direction and inverse it (maybe);
+
+ // Compute the MVP matrix from the light's point of view
+ glm::mat4 depthProjectionMatrix = glm::ortho<float>(-10,10,-10,10,-10,20);
+ glm::mat4 depthViewMatrix = glm::lookAt(lightInvDir, glm::vec3(0,0,0), glm::vec3(0,1,0));
+ glm::mat4 depthModelMatrix = glm::mat4(1.0);
+ glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
+
+ // Send our transformation to the currently bound shader,
+ // in the "MVP" uniform
+ glUniformMatrix4fv(depthMatrixID, 1, GL_FALSE, &depthMVP[0][0])
+
+
