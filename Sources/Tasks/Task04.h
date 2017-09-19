@@ -13,6 +13,7 @@
 #include "GraphicsEngine/Meshes/MeshQuad.h"
 #include "GraphicsEngine/Meshes/MeshSphere.h"
 #include "GraphicsEngine/Meshes/MeshCube.h"
+#include "GraphicsEngine/Meshes/MeshCylinder.h"
 #include "GraphicsEngine/Object.h"
 #include "GraphicsEngine/Scene.h"
 #include "GraphicsEngine/Transform.h"
@@ -39,11 +40,11 @@ public:
 			scene.SetCamera( pCamera );
 		}
 
-		// объект #1 - Сфера
-		{
-			Object * pObject1 = new Object();
+         //объект #1 - Сфера
+        {
+            Object * pObject1 = new Object();
 
-            pObject1->m_pTransform	= new Transform(0,0,10, 0,0,0, 3,3,3);
+            pObject1->m_pTransform	= new Transform(4,0,10, 0,0,0, 3,3,3);
             pObject1->m_pMesh		= new MeshSphere(20);
                     //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();
@@ -51,20 +52,20 @@ public:
                 //new MaterialDiffuseSpecular();
            // pObject1->AddComponent( new ObjectRotator(0,100,100) );
 
-			scene.AddObject( pObject1 );
-		}
+            scene.AddObject( pObject1 );
+        }
 
-        // объект #2 - Cube
+        // объект #2 - Quad
         {
             Object * pObject1 = new Object();
 
-            pObject1->m_pTransform	= new Transform(-4,0,10, 0,0,0, 3,3,3);
+            pObject1->m_pTransform	= new Transform(0,0,10, 0,-70,0, 3,3,3);
             pObject1->m_pMesh		= //new MeshSphere(20);
-                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+                    new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();
                 new MaterialDiffuseAttenuation();
                 //new MaterialDiffuseSpecular();
-           // pObject1->AddComponent( new ObjectRotator(0,100,100) );
+            //pObject1->AddComponent( new ObjectRotator(0,100,100) );
 
             scene.AddObject( pObject1 );
         }
@@ -77,8 +78,9 @@ public:
 
             Object * pLightObject   = new Object();
             pLightObject->m_pTransform	= new Transform(1,0,0, //position - no mean for LIGHT_DIRECTIONAL
-                                                        0,90,0, 1,1,1);
+                                                        0,-90,0, 1,1,1);
             pLightObject->AddComponent(pLight);
+            //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
             scene.AddLight(pLight);
         }

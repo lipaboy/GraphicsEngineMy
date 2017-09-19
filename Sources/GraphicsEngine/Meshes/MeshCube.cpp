@@ -103,15 +103,15 @@ void MeshCube::InitCubeSimple()
 
 	std::vector<Vector3> normals;
 	{
-		normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 0	
-		normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 1
-		normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 2
-		normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 3
+        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 0
+        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 1
+        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 2
+        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 3
 
-		normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 4
-		normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 5	
-		normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 6
-		normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 7
+        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 4
+        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 5
+        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 6
+        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 7
 
 		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 8
 		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 9
@@ -135,6 +135,9 @@ void MeshCube::InitCubeSimple()
 		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 23
 		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 24
 		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 25
+
+//        for (auto it = normals.begin(); it != normals.end(); it++)
+//            *it = -(*it);
 	}
 
 	std::vector<Vector3> uv0;
