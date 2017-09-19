@@ -77,7 +77,8 @@ SOURCES += \
     ../Sources/GraphicsEngine/Time.cpp \
     ../Sources/GraphicsEngine/Transform.cpp \
     ../Sources/GraphicsEngine/Vector3.cpp \
-    ../Sources/main.cpp
+    ../Sources/main.cpp \
+    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.cpp
 
 
 DISTFILES += \
@@ -199,4 +200,5 @@ HEADERS += \
     ../Sources/Tasks/Task01.h \
     ../Sources/Tasks/Task04.h \
     ../Sources/Tasks/Task05_01.h \
-    ../Sources/Tasks/Task08.h
+    ../Sources/Tasks/Task08.h \
+    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h
