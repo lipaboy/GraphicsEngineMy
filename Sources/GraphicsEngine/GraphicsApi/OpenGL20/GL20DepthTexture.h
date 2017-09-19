@@ -15,13 +15,15 @@ class GL20DepthTexture
 {
 public:
 
-    void Init(Rect const & viewPort);
+    void Init(Rect const & _viewPort);
 
     void setRenderLocation(RenderLocation location);
 
 private:
     GLuint depthMapFBO;
     GLuint depthMap;
+
+    Rect viewPort;
 
     const unsigned int SHADOW_WIDTH = 1024;
     const unsigned int SHADOW_HEIGHT = 1024;

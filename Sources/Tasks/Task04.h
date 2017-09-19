@@ -53,46 +53,61 @@ public:
 
 			scene.AddObject( pObject1 );
 		}
+
+        // объект #2 - Cube
+        {
+            Object * pObject1 = new Object();
+
+            pObject1->m_pTransform	= new Transform(-4,0,10, 0,0,0, 3,3,3);
+            pObject1->m_pMesh		= //new MeshSphere(20);
+                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+            pObject1->m_pMaterial = //new MaterialDiffuse();
+                new MaterialDiffuseAttenuation();
+                //new MaterialDiffuseSpecular();
+           // pObject1->AddComponent( new ObjectRotator(0,100,100) );
+
+            scene.AddObject( pObject1 );
+        }
 //
-////		 Источник света #1
-//        {               //left lighter
-//            Light * pLight = new Light(LightType::LIGHT_DIRECTIONAL);
-//            pLight->SetColor(1,1,0);
+//		 Источник света #1
+        {               //left lighter
+            Light * pLight = new Light(LightType::LIGHT_DIRECTIONAL);
+            pLight->SetColor(1,1,0);
+            pLight->SetIntensity(1);
+
+            Object * pLightObject   = new Object();
+            pLightObject->m_pTransform	= new Transform(1,0,0, //position - no mean for LIGHT_DIRECTIONAL
+                                                        0,90,0, 1,1,1);
+            pLightObject->AddComponent(pLight);
+
+            scene.AddLight(pLight);
+        }
+
+//        // Источник света #2
+//        {               //right lighter
+//            Light * pLight = new Light(LightType::LIGHT_POINT);
+//            pLight->SetColor(1,1,1);
 //            pLight->SetIntensity(1);
-//
-//            Object * pLightObject   = new Object();
-//            pLightObject->m_pTransform	= new Transform(1,0,0, //position - no mean for LIGHT_DIRECTIONAL
-//                                                        0,90,0, 1,1,1);
+
+//            Object * pLightObject = new Object();
+//            pLightObject->m_pTransform	= new Transform(6,0,10, 0,0,0, 1,1,1);
 //            pLightObject->AddComponent(pLight);
-//
+
 //            scene.AddLight(pLight);
 //        }
 
-        // Источник света #2
-        {               //right lighter
-            Light * pLight = new Light(LightType::LIGHT_POINT);
-            pLight->SetColor(1,1,1);
-            pLight->SetIntensity(1);
+//        // Источник света #3
+//        {               //upper lighter (precisely)
+//            Light * pLight = new Light(LightType::LIGHT_SPOT);
+//            pLight->SetColor(0.3f,0.95f,0.5f);
+//            pLight->SetIntensity(1);
 
-            Object * pLightObject = new Object();
-            pLightObject->m_pTransform	= new Transform(6,0,10, 0,0,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
+//            Object * pLightObject = new Object();
+//            pLightObject->m_pTransform	= new Transform(0,6,10, 90,0,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
 
-            scene.AddLight(pLight);
-        }
-
-        // Источник света #3
-        {               //upper lighter (precisely)
-            Light * pLight = new Light(LightType::LIGHT_SPOT);
-            pLight->SetColor(0.3f,0.95f,0.5f);
-            pLight->SetIntensity(1);
-
-            Object * pLightObject = new Object();
-            pLightObject->m_pTransform	= new Transform(0,6,10, 90,0,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
-
-            scene.AddLight(pLight);
-        }
+//            scene.AddLight(pLight);
+//        }
 	}
 
 	virtual void Update()

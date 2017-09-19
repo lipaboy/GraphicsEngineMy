@@ -1,8 +1,9 @@
 #include "GL20DepthTexture.h"
 
 
-void GL20DepthTexture::Init(const Rect &viewPort)
+void GL20DepthTexture::Init(const Rect &_viewPort)
 {
+    viewPort = _viewPort;
     glGenFramebuffers(1, &depthMapFBO);
 
     glGenTextures(1, &depthMap);
