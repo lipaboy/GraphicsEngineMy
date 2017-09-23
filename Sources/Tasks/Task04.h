@@ -39,17 +39,18 @@ public:
 			scene.SetCamera( pCamera );
 		}
 
+        float zCoord = 5.5;
 		// объект #1 - Сфера
 		{
 			Object * pObject1 = new Object();
 
-            pObject1->m_pTransform	= new Transform(0,0,10, 0,0,0, 3,3,3);
+            pObject1->m_pTransform	= new Transform(0,0,zCoord, 0,0,0, 3,3,3);
             pObject1->m_pMesh		= new MeshSphere(20);
                     //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();
                 new MaterialDiffuseAttenuation();
                 //new MaterialDiffuseSpecular();
-           // pObject1->AddComponent( new ObjectRotator(0,100,100) );
+            pObject1->AddComponent( new ObjectRotator(100,100,100) );
 
 			scene.AddObject( pObject1 );
 		}
@@ -75,7 +76,7 @@ public:
             pLight->SetIntensity(1);
 
             Object * pLightObject = new Object();
-            pLightObject->m_pTransform	= new Transform(6,0,10, 0,0,0, 1,1,1);
+            pLightObject->m_pTransform	= new Transform(6,0,zCoord, 0,0,0, 1,1,1);
             pLightObject->AddComponent(pLight);
 
             scene.AddLight(pLight);
@@ -88,7 +89,7 @@ public:
             pLight->SetIntensity(1);
 
             Object * pLightObject = new Object();
-            pLightObject->m_pTransform	= new Transform(0,6,10, 90,0,0, 1,1,1);
+            pLightObject->m_pTransform	= new Transform(0,6,zCoord, 90,0,0, 1,1,1);
             pLightObject->AddComponent(pLight);
 
             scene.AddLight(pLight);

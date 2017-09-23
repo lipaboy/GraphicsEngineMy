@@ -119,10 +119,10 @@ void GL20GraphicsEngine::Init()
 	// Set primitive type to draw
 	{
 		// Draw polygons only (is used usual)
-		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+        glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 
 		// Draw edges only (is used for debug)
-		//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+        //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 	}
 
 	// Set culling mode
@@ -131,7 +131,10 @@ void GL20GraphicsEngine::Init()
 		// CCW = Conter Clock Wise
 		// CW = Clock Wise
 		glEnable(GL_CULL_FACE);
-		glCullFace(GL_BACK);
+        glCullFace(
+                    GL_BACK     //default
+                    //GL_FRONT
+                    );
 	
 		// Draw front and back polygons == Turn off culling
 		//glDisable(GL_CULL_FACE);
@@ -139,7 +142,7 @@ void GL20GraphicsEngine::Init()
 
 	// Turn on the z-buffer
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
+    glDepthFunc(GL_LESS);
 
 	GraphicsEngineContext * pContext = new GraphicsEngineContext(this);
 	Application::Instance().SetContext( pContext );

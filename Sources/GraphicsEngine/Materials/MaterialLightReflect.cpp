@@ -58,7 +58,7 @@ void MaterialLightReflect::SetMaterial()
     {
         SetVertexShaderBegin();
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-        SetVertexShaderVector4("timeT", Vector4( std::sin((double)ms.count() / 800), 
+        SetVertexShaderVector4("timeT", Vector4( std::sin((double)ms.count() / 800),
             std::cos((double)ms.count() / 800), 0, 0));
         SetVertexShaderEnd();
 
