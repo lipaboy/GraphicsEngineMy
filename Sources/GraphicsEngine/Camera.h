@@ -29,6 +29,7 @@ public:
 private:
 //public:
 
+    // TODO: May be move it to Update virtual method??
 	void RecalculateMatrixProj();
 
 private:

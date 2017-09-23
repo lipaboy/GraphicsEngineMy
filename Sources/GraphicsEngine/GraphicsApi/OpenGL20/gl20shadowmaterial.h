@@ -78,7 +78,7 @@ public:
             glm::mat4 depthViewMatrix = glm::lookAt(
                         lightInvDir.toGlmVec3(),
                         //glm::vec3(10, 0, 0),
-                                                    glm::vec3(0,0,0), glm::vec3(0,1,0));
+                                                    glm::vec3(0,0,10), glm::vec3(0,1,0));
             glm::mat4 depthModelMatrix = glm::mat4(1.0);
             glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
 
