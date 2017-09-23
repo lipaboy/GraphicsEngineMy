@@ -150,10 +150,12 @@ void GL20GraphicsEngine::Init()
     // New lines
     // TODO: add Deinit()
     depthTexture.Init();
+
     Object * object1 = new Object();
     object1 -> m_pTransform = new Transform(0,0,0, 0,0,0, 1,1,1);
     //shadowMaterial.Init(&object1);
-    object1 -> m_pMaterial = new ShadowMaterial();
+    pShadowMaterial = new ShadowMaterial();
+    object1 -> m_pMaterial = pShadowMaterial;
     object1 -> m_pMesh = new MeshTriangle();
 
 	GL20Input::Init();
@@ -219,8 +221,13 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 
 void GL20GraphicsEngine::Render1()
 {
-    depthTexture.setRenderLocation(DEPTH_TEXTURE);
+    pShadowMaterial->SetMaterial();
+    //depthTexture.setRenderLocation(DEPTH_TEXTURE);
     //shadowMaterial.SetMaterial();
+
+    glViewport(0, 0, 1024, 1024);
+    glBindFramebuffer(GL_FRAMEBUFFER, depthTexture.depthMapFBO);
+        glClear(GL_DEPTH_BUFFER_BIT);
 
     {
         m_scene.Update();
@@ -229,15 +236,25 @@ void GL20GraphicsEngine::Render1()
         GUI::Update();  //Necessary??
     }
 
-    depthTexture.setRenderLocation(SCREEN);
+        //RenderScene(simpleDepthShader);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
+    //depthTexture.setRenderLocation(SCREEN);
 	// Choose buffers to be cleared
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT
+            |
+            GL_DEPTH_BUFFER_BIT
+            );
 
 	// Clear the backbuffer to blue
-	glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+    pShadowMaterial->SetMaterial();
 	
 	// Clear the z-buffer
-	glClearDepth(1.0f);
+    //glClearDepth(1.0f);
+
+    glBindTexture(GL_TEXTURE_2D, depthTexture.depthMap);
 	
 	{
 		m_scene.Update();

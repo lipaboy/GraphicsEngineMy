@@ -6,7 +6,7 @@
 class MaterialImpl
 {
 public:
-	virtual ~MaterialImpl() { };
+    virtual ~MaterialImpl() { }
 
 	virtual void Init() = 0;
 	virtual void Deinit() = 0;
@@ -22,6 +22,7 @@ public:
 	virtual void SetPixelShaderBegin() = 0;
 	virtual void SetPixelShaderMatrix4x4	(const char * propertyName, const Matrix4x4 & matrix) = 0;
 	virtual void SetPixelShaderVector4		(const char * propertyName, const Vector4 & vector) = 0;
+    virtual void SetPixelShaderInt  		(const char * propertyName, int value) = 0;
 	virtual void SetPixelShaderTexture2d	(const char * propertyName, const Texture2D * pTexture) = 0;
 	virtual void SetPixelShaderEnd() = 0;
 

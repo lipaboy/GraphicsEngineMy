@@ -20,7 +20,7 @@ public:
 
     void setRenderLocation(RenderLocation location);
 
-private:
+public:
     GLuint depthMapFBO;
     GLuint depthMap;
 

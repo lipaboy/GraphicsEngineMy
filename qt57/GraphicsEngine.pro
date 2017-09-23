@@ -103,7 +103,9 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.fs
+    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.fs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderQuadDepth.fs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderQuadDepth.vs
 
 HEADERS += \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \

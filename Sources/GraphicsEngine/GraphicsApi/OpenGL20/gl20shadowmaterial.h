@@ -84,8 +84,8 @@ public:
             depthMVP2 = depthMVP;
             SetVertexShaderMatrix4x4("depthMVP", depthMVP2);
             // rotate our figure
-            SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
-               0 * std::cos((double)ms.count() / 800), 0, 0));
+           // SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
+             //  0 * std::cos((double)ms.count() / 800), 0, 0));
 
             SetVertexShaderEnd();
 

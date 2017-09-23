@@ -212,7 +212,14 @@ void GL20Material::SetPixelShaderVector4(const char * propertyName, const Vector
 	GLfloat vectorf[4];	
 	GL20Convert::ToGL20Vector4(vector, vectorf);
 
-	glUniform4fv(location, 1, &vectorf[0]);
+    glUniform4fv(location, 1, &vectorf[0]);
+}
+
+void GL20Material::SetPixelShaderInt(const char *propertyName, int value)
+{
+    GLuint location = glGetUniformLocation(m_program, propertyName);
+
+    glUniform1i(location, value);
 }
 
 void GL20Material::SetPixelShaderTexture2d(const char * propertyName, const Texture2D * pTexture)

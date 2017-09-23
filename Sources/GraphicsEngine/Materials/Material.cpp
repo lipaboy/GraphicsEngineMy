@@ -61,7 +61,12 @@ void Material::SetPixelShaderMatrix4x4(const char * propertyName, const Matrix4x
 
 void Material::SetPixelShaderVector4(const char * propertyName, const Vector4 & vector)
 {
-	m_pImpl->SetPixelShaderVector4(propertyName, vector);
+    m_pImpl->SetPixelShaderVector4(propertyName, vector);
+}
+
+void Material::SetPixelShaderInt(const char *propertyName, int value)
+{
+    m_pImpl->SetPixelShaderInt(propertyName, value);
 }
 
 void Material::SetPixelShaderTexture2d(const char * propertyName, const Texture2D * pTexture)

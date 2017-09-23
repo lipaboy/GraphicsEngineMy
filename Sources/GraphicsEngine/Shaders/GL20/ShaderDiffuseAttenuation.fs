@@ -20,6 +20,19 @@ uniform Light lights[MAX_LIGHT_COUNT];
 
 varying vec3 localPosition;
 varying vec3 localNormal;
+varying vec2 TexCoords;
+
+uniform vec4 near_plane;
+uniform vec4 far_plane;
+
+uniform sampler2D depthMap;
+
+// required when using a perspective projection matrix
+float LinearizeDepth(float depth)
+{
+    float z = depth * 2.0 - 1.0; // Back to NDC
+    return (2.0 * near_plane.x * far_plane.x) / (far_plane.x + near_plane.x - z * (far_plane.x - near_plane.x));
+}
 
 
 vec3 calcDiffuse(vec4 lightCol, vec3 lightDir, vec3 vertexNormal)
@@ -96,6 +109,11 @@ void main()
                     * intensity * attenuation;
 	}
 	
-	gl_FragColor = vec4(col, 1.0);
+//maybe GLuint
+        float depthValue = texture(depthMap, TexCoords).r;
+
+gl_FragColor = vec4(col * vec3(LinearizeDepth(depthValue) / far_plane.x), 1.0); // perspective
+        //gl_FragColor = vec4(vec3(depthValue * col), 1.0); // orthographic
+            //vec4(col, 1.0);
         gl_FragColor.a = 1.0;       //why so?
 }
