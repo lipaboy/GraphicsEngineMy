@@ -27,8 +27,11 @@ public:
 	const Matrix4x4 & GetMatrixProj();
 
 private:
+//public:
 
 	void RecalculateMatrixProj();
+
+private:
 
 	// Вертикальный угол обзора в градусах
 	float m_fovY;

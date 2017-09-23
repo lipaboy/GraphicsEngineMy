@@ -152,16 +152,16 @@ void GL20GraphicsEngine::Init()
     depthTexture.Init();
 
     Object * object1 = new Object();
-    object1 -> m_pTransform = new Transform(0,0,0, 0,0,0, 1,1,1);
-    //shadowMaterial.Init(&object1);
     pShadowMaterial = new ShadowMaterial();
+    object1 -> m_pTransform = new Transform(0,0,0, 0,0,0, 1,1,1);
     object1 -> m_pMaterial = pShadowMaterial;
     object1 -> m_pMesh = new MeshTriangle();
+    pShadowMaterial->Init(object1);
 
 	GL20Input::Init();
 
     m_scene.Init();
-    m_scene.AddObject(object1);
+    //m_scene.AddObject(object1);
 }
 
 void GL20GraphicsEngine::Deinit()
@@ -225,7 +225,16 @@ void GL20GraphicsEngine::Render1()
     //depthTexture.setRenderLocation(DEPTH_TEXTURE);
     //shadowMaterial.SetMaterial();
 
-    glViewport(0, 0, 1024, 1024);
+    Transform * transformTemp = ((m_scene.GetCamera().GetObjectPtr()->m_pTransform));
+    const std::list<const Light *> & lights = m_scene.GetLights();
+    Transform newTransform (*transformTemp);
+    newTransform.Rotate(0, 180, 0);
+    //m_scene.GetCamera().GetObjectPtr()->m_pTransform = &newTransform;
+
+    //m_scene.GetCamera().SetViewport(Rect(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT));
+    //m_scene.GetCamera().RecalculateMatrixProj();
+
+    glViewport(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, depthTexture.depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -233,13 +242,16 @@ void GL20GraphicsEngine::Render1()
         m_scene.Update();
         m_scene.Render();
 
-        GUI::Update();  //Necessary??
+        //GUI::Update();  //Necessary??
     }
 
+        m_scene.GetCamera().GetObjectPtr()->m_pTransform = transformTemp;
         //RenderScene(simpleDepthShader);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
+    //m_scene.GetCamera().SetViewport(Rect(0, 0, Screen::GetWidth(), Screen::GetHeight()));
+    //m_scene.GetCamera().RecalculateMatrixProj();
     //depthTexture.setRenderLocation(SCREEN);
 	// Choose buffers to be cleared
     glClear(GL_COLOR_BUFFER_BIT

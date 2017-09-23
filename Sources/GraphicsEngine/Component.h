@@ -19,10 +19,15 @@ public:
 		m_pObject = pObject;
 	}
 	
-	Object * GetObjectPtr()
+    Object * GetObjectPtr()
 	{
 		return m_pObject;
 	}
+
+    const Object * getConstObjectPtr() const
+    {
+        return m_pObject;
+    }
 
 	virtual void Update() { }
 
