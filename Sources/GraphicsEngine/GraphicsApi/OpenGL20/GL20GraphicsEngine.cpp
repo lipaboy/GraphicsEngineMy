@@ -5,6 +5,7 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Input.h"
 
 #include "GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h"
+#include "GraphicsEngine/Meshes/MeshTriangle.h"
 
 
 GL20GraphicsEngine * pGL20Engine = NULL;
@@ -149,15 +150,23 @@ void GL20GraphicsEngine::Init()
     // New lines
     // TODO: add Deinit()
     depthTexture.Init();
-    shadowMaterial.Init(nullptr);
+    Object * object1 = new Object();
+    object1 -> m_pTransform = new Transform(0,0,0, 0,0,0, 1,1,1);
+    //shadowMaterial.Init(&object1);
+    object1 -> m_pMaterial = new ShadowMaterial();
+    object1 -> m_pMesh = new MeshTriangle();
 
 	GL20Input::Init();
 
-	m_scene.Init();
+    m_scene.Init();
+    m_scene.AddObject(object1);
 }
 
 void GL20GraphicsEngine::Deinit()
 {
+   // depthTexture.Deinit();
+   // shadowMaterial.Deinit();
+
 	m_scene.Deinit();
 	
 	// TODO: Поймать событие закрытия окна и освободить ресурсы
@@ -211,11 +220,13 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 void GL20GraphicsEngine::Render1()
 {
     depthTexture.setRenderLocation(DEPTH_TEXTURE);
-    shadowMaterial.SetMaterial();
+    //shadowMaterial.SetMaterial();
 
     {
         m_scene.Update();
         m_scene.Render();
+
+        GUI::Update();  //Necessary??
     }
 
     depthTexture.setRenderLocation(SCREEN);

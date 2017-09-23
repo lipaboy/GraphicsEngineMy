@@ -16,6 +16,7 @@ class GL20DepthTexture
 public:
 
     void Init();
+    //void Deinit();
 
     void setRenderLocation(RenderLocation location);
 

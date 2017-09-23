@@ -41,20 +41,20 @@ public:
 
 
         // Заполняем матрицы World, View, Proj
-//        const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(m_pObject);
-//        const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
-//        const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
+        const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(m_pObject);
+        const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
+        const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
 
-//        const Matrix4x4 matWorldViewProjT	= MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
-//        const Matrix4x4 matWorldT			= matWorld.Transpose();
-//        const Matrix4x4 matWorldNormal		= matWorld.Inverse();
+        const Matrix4x4 matWorldViewProjT	= MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
+        const Matrix4x4 matWorldT			= matWorld.Transpose();
+        const Matrix4x4 matWorldNormal		= matWorld.Inverse();
 
-//        // Получили список всех источников света в сцене
-//        std::list<const Light *> lights = SceneUtils::GetLights();
-//        const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
-//        const size_t MAX_LIGHT_COUNT = 3;
-//        const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
-//        //const size_t count = lights.size();
+        // Получили список всех источников света в сцене
+        std::list<const Light *> lights = SceneUtils::GetLights();
+        const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
+        const size_t MAX_LIGHT_COUNT = 3;
+        const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
+        //const size_t count = lights.size();
 
         using namespace std::chrono;
         milliseconds ms = duration_cast< milliseconds >(

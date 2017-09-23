@@ -29,7 +29,7 @@ private:
 	const char * m_pWindowTitle;
 	int m_window;
 	
-    ShadowMaterial shadowMaterial;
+   // ShadowMaterial shadowMaterial;
     GL20DepthTexture depthTexture;
 	Rect m_viewportRect;
 
