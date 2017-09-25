@@ -50,7 +50,7 @@ public:
             pObject1->m_pMaterial = //new MaterialDiffuse();
                 new MaterialDiffuseAttenuation();
                 //new MaterialDiffuseSpecular();
-           // pObject1->AddComponent( new ObjectRotator(0,100,100) );
+            pObject1->AddComponent( new ObjectRotator(100,100,100) );
 
             scene.AddObject( pObject1 );
         }
@@ -58,7 +58,6 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-
             pObject1->m_pTransform	= new Transform(0,0,10, 0,-70,0, 3,3,3);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
@@ -66,6 +65,7 @@ public:
                 new MaterialDiffuseAttenuation();
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,100,100) );
+
 
             scene.AddObject( pObject1 );
         }
@@ -75,7 +75,6 @@ public:
             Light * pLight = new Light(LightType::LIGHT_DIRECTIONAL);
             pLight->SetColor(1,1,0);
             pLight->SetIntensity(1);
-
             Object * pLightObject   = new Object();
             pLightObject->m_pTransform	= new Transform(1,0,0, //position - no mean for LIGHT_DIRECTIONAL
                                                         0,-90,0, 1,1,1);
