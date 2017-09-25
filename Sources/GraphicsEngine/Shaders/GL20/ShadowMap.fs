@@ -1,9 +1,10 @@
 #version 300 es
 
 // Ouput data
-//layout(location = 0) out float  gl_FragDepth;
+//layout(location = 0) out float fragmentdepth;
 
 void main(){
     // Not really needed, OpenGL does it anyway
-     //gl_FragDepth = gl_FragCoord.z;
+    //fragmentdepth = gl_FragCoord.z;
+    gl_FragDepth = gl_FragCoord.z;
 }

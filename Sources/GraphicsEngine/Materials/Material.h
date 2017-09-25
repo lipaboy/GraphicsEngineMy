@@ -30,6 +30,7 @@ protected:
 	void SetPixelShaderBegin();
 	void SetPixelShaderMatrix4x4	(const char * propertyName, const Matrix4x4 & matrix);
 	void SetPixelShaderVector4		(const char * propertyName, const Vector4 & vector);
+    void SetPixelShaderInt  		(const char * propertyName, int value);
 	void SetPixelShaderTexture2d	(const char * propertyName, const Texture2D * pTexture);
 	void SetPixelShaderEnd();
 	

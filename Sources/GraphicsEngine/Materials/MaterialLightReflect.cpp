@@ -14,6 +14,7 @@
 //    setShaderFilename();
 //}
 
+#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngine.h"
 
 // TODO: Реализовать переключение Graphics API при нажатии на кнопки (1 - DirectX 11, 2 - OpenGL 2.0, 9 - DirectX 9)
 // и отладить на этом механизм использования функций Init() и Deinit()
@@ -58,16 +59,22 @@ void MaterialLightReflect::SetMaterial()
     {
         SetVertexShaderBegin();
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-        SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
-           0 * std::cos((double)ms.count() / 800), 0, 0));
+        SetVertexShaderVector4("timeT", Vector4( 1 * std::sin((double)ms.count() / 800),
+           1 * std::cos((double)ms.count() / 800), 0, 0));
         SetVertexShaderEnd();
 
-        SetPixelShaderBegin();
+        SetPixelShaderBegin();      // == fragment shader
         SetPixelShaderMatrix4x4	("matWorldNormal",	matWorldNormal);
         SetPixelShaderMatrix4x4	("matWorldT",		matWorldT);
         SetPixelShaderVector4	("materialColor",	Vector4(1, 1, 1, 1));
         SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
         SetPixelShaderVector4	("cameraPosition",		cameraPosition);
+
+        //glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+        //maybe to GLuint ??
+        SetPixelShaderVector4 ("near_plane", Vector4(0.5, 1, 1, 1));
+        SetPixelShaderVector4 ("far_plane", Vector4(100, 1, 1, 1));
+
 
         // Передаём параметры каждого источника света
         int i = 0;

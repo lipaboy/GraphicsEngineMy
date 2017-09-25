@@ -16,10 +16,11 @@ class GL20DepthTexture
 public:
 
     void Init();
+    //void Deinit();
 
     void setRenderLocation(RenderLocation location);
 
-private:
+public:
     GLuint depthMapFBO;
     GLuint depthMap;
 
