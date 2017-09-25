@@ -59,8 +59,8 @@ void MaterialLightReflect::SetMaterial()
     {
         SetVertexShaderBegin();
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-        SetVertexShaderVector4("timeT", Vector4( 1 * std::sin((double)ms.count() / 800),
-           1 * std::cos((double)ms.count() / 800), 0, 0));
+        SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
+           0 * std::cos((double)ms.count() / 800), 0, 0));
         SetVertexShaderEnd();
 
         SetPixelShaderBegin();      // == fragment shader

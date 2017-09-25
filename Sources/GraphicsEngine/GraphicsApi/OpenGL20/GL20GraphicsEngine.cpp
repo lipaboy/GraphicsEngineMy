@@ -224,9 +224,8 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 
 void GL20GraphicsEngine::Render1()
 {
-    pShadowMaterial->SetMaterial();
+    //pShadowMaterial->SetMaterial();
     //depthTexture.setRenderLocation(DEPTH_TEXTURE);
-    //shadowMaterial.SetMaterial();
 
     Transform * transformTemp = ((m_scene.GetCamera().GetObjectPtr()->m_pTransform));
     const std::list<const Light *> & lights = m_scene.GetLights();
@@ -242,14 +241,13 @@ void GL20GraphicsEngine::Render1()
         glClear(GL_DEPTH_BUFFER_BIT);
 
     {
-        m_scene.Update();
+        //m_scene.Update();
         m_scene.Render();
 
         //GUI::Update();  //Necessary??
     }
 
         m_scene.GetCamera().GetObjectPtr()->m_pTransform = transformTemp;
-        //RenderScene(simpleDepthShader);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
@@ -264,7 +262,7 @@ void GL20GraphicsEngine::Render1()
 
 	// Clear the backbuffer to blue
     glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
-    pShadowMaterial->SetMaterial();
+    //pShadowMaterial->SetMaterial();
 	
 	// Clear the z-buffer
     //glClearDepth(1.0f);
@@ -273,7 +271,7 @@ void GL20GraphicsEngine::Render1()
 	
 	{
 		m_scene.Update();
-		m_scene.Render();
+        m_scene.Render();
 
 		GUI::Update();
 	}

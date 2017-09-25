@@ -76,11 +76,12 @@ public:
             // Compute the MVP matrix from the light's point of view
             glm::mat4 depthProjectionMatrix = glm::ortho<float>(-10,10,-10,10,-10,20);
             glm::mat4 depthViewMatrix = glm::lookAt(
-                        lightInvDir.toGlmVec3(),
-                        //glm::vec3(10, 0, 0),
+                        //lightInvDir.toGlmVec3(),
+                        glm::vec3(10, 0, 10),
                                                     glm::vec3(0,0,10), glm::vec3(0,1,0));
             glm::mat4 depthModelMatrix = glm::mat4(1.0);
-            glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
+            glm::mat4 depthMVP = //depthProjectionMatrix * depthViewMatrix *
+                    depthModelMatrix;
 
             Matrix4x4 depthMVP2;
             depthMVP2 = depthMVP;
