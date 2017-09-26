@@ -227,15 +227,18 @@ void GL20GraphicsEngine::Render1()
     //pShadowMaterial->SetMaterial();
     //depthTexture.setRenderLocation(DEPTH_TEXTURE);
 
-    Transform * transformTemp = ((m_scene.GetCamera().GetObjectPtr()->m_pTransform));
+    Camera & camera = m_scene.GetCamera();
+    Transform * transformTemp = camera.GetObjectPtr()->m_pTransform;
     const std::list<const Light *> & lights = m_scene.GetLights();
-    Transform newTransform (*transformTemp);
-    newTransform.Rotate(0, 180, 0);
-    //m_scene.GetCamera().GetObjectPtr()->m_pTransform = &newTransform;
+    Transform newTransform (*(lights.front() -> GetConstObjectPtr() -> m_pTransform));
+    newTransform.Rotate(0, 90, 0);
+    m_scene.GetCamera().GetObjectPtr()->m_pTransform = &newTransform;
+    camera.isPerspective = false;
 
     //m_scene.GetCamera().SetViewport(Rect(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT));
     //m_scene.GetCamera().RecalculateMatrixProj();
 
+    // TODO: change it from Camera
     glViewport(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, depthTexture.depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
@@ -247,7 +250,8 @@ void GL20GraphicsEngine::Render1()
         //GUI::Update();  //Necessary??
     }
 
-        m_scene.GetCamera().GetObjectPtr()->m_pTransform = transformTemp;
+        camera.GetObjectPtr()->m_pTransform = transformTemp;
+        camera.isPerspective = true;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());

@@ -26,6 +26,8 @@ public:
 	const Matrix4x4 & GetMatrixView();
 	const Matrix4x4 & GetMatrixProj();
 
+    bool isPerspective = true;
+
 private:
 //public:
 

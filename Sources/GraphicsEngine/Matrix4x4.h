@@ -21,6 +21,7 @@ struct Matrix4x4
 		double m[4][4];
 	};
 
+    // TODO: you can remove it
 #ifdef CAN_USE_OPEN_GL
     Matrix4x4 & operator = (const glm::mat4 & that)
     {

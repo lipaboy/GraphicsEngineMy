@@ -5,6 +5,7 @@
 #include "GraphicsEngine/Screen.h"
 
 
+
 Camera::Camera()
 {
 	m_fovY		= 45.0f;
@@ -55,6 +56,12 @@ const Matrix4x4 & Camera::GetMatrixProj()
 	return m_matProj;
 }
 
+#ifdef CAN_USE_OPEN_GL
+#include <glm/mat4x4.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#endif
+
 void Camera::RecalculateMatrixProj()
 {
 	float sw = Screen::GetWidth();
@@ -65,5 +72,13 @@ void Camera::RecalculateMatrixProj()
 
 	float aspect = (sw * vw) / (sh * vh);
 	
-	m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
+    if (isPerspective)
+        m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
+    else {
+#ifdef CAN_USE_OPEN_GL
+        m_matProj = glm::ortho<float>(-10,10,-10,10,
+                                                            -10, 15);
+       // m_matProj = depthProjectionMatrix;
+#endif
+    }
 }

@@ -33,9 +33,10 @@ public:
 		// Камера
 		{
 			Object * pCameraObj = new Object();
-			pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-7.0f), Vector3(0.0f, 0.0f, 0.0f));
+            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-7.0f), Vector3(0, 0, 0));
 			Camera * pCamera = new Camera();
 			pCameraObj->AddComponent( pCamera );
+            pCameraObj->AddComponent( new ObjectRotator(0,0,0) );
 
 			scene.SetCamera( pCamera );
 		}

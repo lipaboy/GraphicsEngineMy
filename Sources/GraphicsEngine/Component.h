@@ -4,7 +4,7 @@
 class Object;
 
 
-class Component
+class   Component
 {
 public:
 	Component() 
@@ -24,7 +24,7 @@ public:
 		return m_pObject;
 	}
 
-    const Object * getConstObjectPtr() const
+    const Object * GetConstObjectPtr() const
     {
         return m_pObject;
     }
