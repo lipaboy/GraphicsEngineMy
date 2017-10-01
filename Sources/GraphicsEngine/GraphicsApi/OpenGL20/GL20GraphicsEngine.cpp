@@ -231,7 +231,9 @@ void GL20GraphicsEngine::Render1()
     Transform * transformTemp = camera.GetObjectPtr()->m_pTransform;
     const std::list<const Light *> & lights = m_scene.GetLights();
     Transform newTransform (*(lights.front() -> GetConstObjectPtr() -> m_pTransform));
-    newTransform.Rotate(0, 90, 0);
+
+    newTransform.SetPosition(-10 * newTransform.GetForward());
+    newTransform.Rotate(0, 180, 0);
     m_scene.GetCamera().GetObjectPtr()->m_pTransform = &newTransform;
     camera.isPerspective = false;
 
@@ -244,10 +246,7 @@ void GL20GraphicsEngine::Render1()
         glClear(GL_DEPTH_BUFFER_BIT);
 
     {
-        //m_scene.Update();
         m_scene.Render();
-
-        //GUI::Update();  //Necessary??
     }
 
         camera.GetObjectPtr()->m_pTransform = transformTemp;

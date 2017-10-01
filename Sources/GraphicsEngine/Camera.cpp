@@ -76,8 +76,11 @@ void Camera::RecalculateMatrixProj()
         m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
     else {
 #ifdef CAN_USE_OPEN_GL
-        m_matProj = glm::ortho<float>(-10,10,-10,10,
-                                                            -10, 15);
+        // left, right, bottom, top, near, far
+        float val = 8;
+        m_matProj = glm::ortho<float>(-val,val,-val,val,
+                                                            //-10, 15);
+                                      m_nearPlane, m_farPlane);
        // m_matProj = depthProjectionMatrix;
 #endif
     }

@@ -75,7 +75,7 @@ public:
         }
 //
 //		 Источник света #1
-        {               //left lighter
+        {
             Light * pLight = new Light(LightType::LIGHT_DIRECTIONAL);
             pLight->SetColor(1,1,0);
             pLight->SetIntensity(1);

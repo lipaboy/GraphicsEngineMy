@@ -112,7 +112,7 @@ void main()
 //maybe GLuint
         float depthValue = texture(depthMap, TexCoords).r;
 
-        gl_FragColor = vec4(col * vec3(LinearizeDepth(depthValue) / far_plane.x), 1.0); // perspective
-        //gl_FragColor = vec4(vec3(depthValue * col), 1.0); // orthographic
+        //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthValue) / far_plane.x), 1.0); // perspective
+        gl_FragColor = vec4(vec3(depthValue * col), 1.0); // orthographic
         gl_FragColor.a = 1.0;       //why so?
 }

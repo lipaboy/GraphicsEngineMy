@@ -27,6 +27,7 @@ public:
 		{
             Vector3 forward	= pTransform->GetForward();
             Vector3 right	= pTransform->GetRight();
+            Vector3 up = pTransform->GetUp();
 			double dt = Time::GetDeltaTime();
 
             const double speed = 1.0 * .5;
@@ -36,25 +37,26 @@ public:
 			{
 				// TODO: Task08
 				// Move forward
-
+                pTransform->RotateAroundCenter(-right.Normalize() * speed);
 			}
 			else if (Input::GetKey(KEY_CODE_S) || Input::GetKey(KEY_CODE_DOWN_ARROW))
 			{
 				// TODO: Task08
 				// Move backward
+                pTransform->RotateAroundCenter(right.Normalize() * speed);
 			}
 
 			if (Input::GetKey(KEY_CODE_D) || Input::GetKey(KEY_CODE_RIGHT_ARROW))
 			{
 				// TODO: Task08
 				// Move right
-                pTransform->RotateAroundCenter(Vector3(0, speed, 0));
+                pTransform->RotateAroundCenter(up.Normalize() * speed);
 			}
 			else if (Input::GetKey(KEY_CODE_A) || Input::GetKey(KEY_CODE_LEFT_ARROW))
 			{
 				// TODO: Task08
 				// Move left
-                pTransform->RotateAroundCenter(Vector3(0, -speed, 0));
+                pTransform->RotateAroundCenter(-up.Normalize() * speed);
 			}
 
 			if (Input::GetKey(KEY_CODE_LEFT_SHIFT) || Input::GetKey(KEY_CODE_RIGHT_SHIFT))
