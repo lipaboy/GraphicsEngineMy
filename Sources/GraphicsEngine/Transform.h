@@ -33,6 +33,7 @@ public:
 	* @brief Rotate object in local coordinate system.
 	*/
 	void Rotate			(const Vector3 & euler);
+    void RotateAroundCenter(const Vector3 & euler);
 
 	/*
 	* @brief Rotate object in local coordinate system.
@@ -55,6 +56,8 @@ private:
 	Vector3 m_position;
 	Vector3 m_eulerAngles;
 	Vector3 m_scale;
+    // Rotate around center
+    Vector3 m_eulerAnglesAroundCenter = Vector3(0, 0, 0);
 
 	// Вектор "вперёд" в глобальной с.к. (равен (0,0,1) в локальной с.к.)
 	Vector3 m_forward;

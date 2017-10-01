@@ -29,13 +29,14 @@ public:
             Vector3 right	= pTransform->GetRight();
 			double dt = Time::GetDeltaTime();
 
-            const double speed = 1.0;
+            const double speed = 1.0 * .5;
 			Vector3 direction;
 
 			if (Input::GetKey(KEY_CODE_W) || Input::GetKey(KEY_CODE_UP_ARROW))
 			{
 				// TODO: Task08
 				// Move forward
+
 			}
 			else if (Input::GetKey(KEY_CODE_S) || Input::GetKey(KEY_CODE_DOWN_ARROW))
 			{
@@ -47,11 +48,13 @@ public:
 			{
 				// TODO: Task08
 				// Move right
+                pTransform->RotateAroundCenter(Vector3(0, speed, 0));
 			}
 			else if (Input::GetKey(KEY_CODE_A) || Input::GetKey(KEY_CODE_LEFT_ARROW))
 			{
 				// TODO: Task08
 				// Move left
+                pTransform->RotateAroundCenter(Vector3(0, -speed, 0));
 			}
 
 			if (Input::GetKey(KEY_CODE_LEFT_SHIFT) || Input::GetKey(KEY_CODE_RIGHT_SHIFT))

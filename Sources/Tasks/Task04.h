@@ -20,6 +20,8 @@
 #include "Tasks/Task.h"
 #include "Tasks/ObjectRotator.h"
 
+#include "CameraController.h"
+
 
 class Task04: public Task
 {
@@ -33,10 +35,11 @@ public:
 		// Камера
 		{
 			Object * pCameraObj = new Object();
-            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-7.0f), Vector3(0, 0, 0));
+            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-20), Vector3(0, 0, 0));
 			Camera * pCamera = new Camera();
 			pCameraObj->AddComponent( pCamera );
-            pCameraObj->AddComponent( new ObjectRotator(0,0,0) );
+            //pCameraObj->AddComponent( new ObjectRotator(0,100*2,0) );
+            pCameraObj->AddComponent(new CameraController());
 
 			scene.SetCamera( pCamera );
 		}
@@ -45,13 +48,13 @@ public:
         {
             Object * pObject1 = new Object();
 
-            pObject1->m_pTransform	= new Transform(4,0,10, 0,0,0, 3,3,3);
+            pObject1->m_pTransform	= new Transform(4,0,0, 0,0,0, 3,3,3);
             pObject1->m_pMesh		= new MeshSphere(20);
                     //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();
                 new MaterialDiffuseAttenuation();
                 //new MaterialDiffuseSpecular();
-            pObject1->AddComponent( new ObjectRotator(100,100,100) );
+            //pObject1->AddComponent( new ObjectRotator(0,2*50,0) );
 
             scene.AddObject( pObject1 );
         }
@@ -59,7 +62,7 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-            pObject1->m_pTransform	= new Transform(0,0,10, 0,-70,0, 3,3,3);
+            pObject1->m_pTransform	= new Transform(0,0,0, 0,-70,0, 3,3,3);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();

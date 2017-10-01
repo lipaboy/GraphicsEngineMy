@@ -27,6 +27,7 @@ public:
 		
 		double deltaTime = Time::GetDeltaTime();
 
-		m_pObject->m_pTransform->Rotate(speed * deltaTime);
+        //m_pObject->m_pTransform->Rotate(speed * deltaTime);
+        m_pObject->m_pTransform->RotateAroundCenter(speed * deltaTime);
 	}
 };

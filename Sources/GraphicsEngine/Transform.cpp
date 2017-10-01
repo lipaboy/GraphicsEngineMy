@@ -111,7 +111,13 @@ void Transform::Translate( float x, float y, float z )
 void Transform::Rotate(const Vector3 & euler)
 {
 	m_eulerAngles += euler;
-	m_shouldRecalc = true;
+    m_shouldRecalc = true;
+}
+
+void Transform::RotateAroundCenter(const Vector3 &euler)
+{
+    m_eulerAnglesAroundCenter += euler;
+    m_shouldRecalc = true;
 }
 
 void Transform::Rotate( float x, float y, float z )
@@ -164,8 +170,11 @@ void Transform::Recalc()
 		Matrix4x4 matTrans	= Matrix4x4::Translation(m_position);
 		Matrix4x4 matRot	= Matrix4x4::Rotation(m_eulerAngles);
 		Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
+        //Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
 
-		m_matWorld = matScale * matRot * matTrans;
+        m_matWorld = matScale * matRot * matTrans;
+                //* matRotAroundCenter;
+                //matTrans * matRot;
 		
 		// If has parent then use parent matrix
 		if (NULL != m_pParent)
@@ -193,6 +202,8 @@ void Transform::Recalc()
 	// ѕересчитываем матрицу View
 	{
 		m_matView = Matrix4x4::LookAtLH(m_position, m_position + m_forward, m_up);
+        Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
+        m_matView = matRotAroundCenter * m_matView;
 	}
 
 	m_shouldRecalc = false;
