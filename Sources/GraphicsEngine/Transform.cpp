@@ -120,6 +120,13 @@ void Transform::RotateAroundCenter(const Vector3 &euler)
     m_shouldRecalc = true;
 }
 
+void Transform::RotateByOperator(Vector3 const & asixRotation, double angle)
+{
+    matRotOp = LipaboyLib::RotateOperator(LipaboyLib::Vector3D(asixRotation.x, asixRotation.y,
+                                                        asixRotation.z), angle).getMatrix()
+            * matRotOp;
+}
+
 void Transform::Rotate( float x, float y, float z )
 {
 	m_eulerAngles += Vector3(x,y,z);
@@ -169,12 +176,14 @@ void Transform::Recalc()
 	{
 		Matrix4x4 matTrans	= Matrix4x4::Translation(m_position);
 		Matrix4x4 matRot	= Matrix4x4::Rotation(m_eulerAngles);
-		Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
-        //Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
+        Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
+        Matrix4x4 _matRotOp;
+        _matRotOp = matRotOp;
 
-        m_matWorld = matScale * matRot * matTrans;
-                //* matRotAroundCenter;
-                //matTrans * matRot;
+        m_matWorld = matScale * matRot *
+                _matRotOp.Transpose()
+                //* _matRotOp
+                * matTrans;
 		
 		// If has parent then use parent matrix
 		if (NULL != m_pParent)

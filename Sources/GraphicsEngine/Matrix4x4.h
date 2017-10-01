@@ -9,6 +9,8 @@
 #include <glm/mat4x4.hpp>
 #endif
 
+#include "lipaboyLibrary/src/maths/matrix4x4.h"
+
 struct Matrix4x4
 {
 	union {
@@ -36,6 +38,18 @@ struct Matrix4x4
         return (*this);
     }
 #endif
+    Matrix4x4 & operator = (const LipaboyLib::Matrix4x4 & that)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                m[i][j] = that.get(i, j);
+            }
+        }
+
+        return (*this);
+    }
 	
 	Matrix4x4 & operator = (const Matrix4x4 & that)
 	{

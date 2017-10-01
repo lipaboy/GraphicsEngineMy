@@ -2,6 +2,8 @@
 #include "GraphicsEngine/Vector3.h"
 #include "GraphicsEngine/Matrix4x4.h"
 
+#include "lipaboyLibrary/src/maths/rotateoperator.h"
+
 class Transform
 {
 public:
@@ -32,8 +34,9 @@ public:
 	/*
 	* @brief Rotate object in local coordinate system.
 	*/
-	void Rotate			(const Vector3 & euler);
-    void RotateAroundCenter(const Vector3 & euler);
+    void Rotate             (const Vector3 & euler);
+    void RotateAroundCenter (const Vector3 & euler);
+    void RotateByOperator     (Vector3 const & asixRotation, double angle);
 
 	/*
 	* @brief Rotate object in local coordinate system.
@@ -58,6 +61,7 @@ private:
 	Vector3 m_scale;
     // Rotate around center
     Vector3 m_eulerAnglesAroundCenter = Vector3(0, 0, 0);
+    LipaboyLib::Matrix4x4 matRotOp = LipaboyLib::Matrix4x4::getEye();
 
 	// Вектор "вперёд" в глобальной с.к. (равен (0,0,1) в локальной с.к.)
 	Vector3 m_forward;

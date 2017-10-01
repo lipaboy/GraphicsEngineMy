@@ -228,13 +228,16 @@ void GL20GraphicsEngine::Render1()
     //depthTexture.setRenderLocation(DEPTH_TEXTURE);
 
     Camera & camera = m_scene.GetCamera();
-    Transform * transformTemp = camera.GetObjectPtr()->m_pTransform;
+    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
     const std::list<const Light *> & lights = m_scene.GetLights();
-    Transform newTransform (*(lights.front() -> GetConstObjectPtr() -> m_pTransform));
+    Transform * cameraTransform = m_scene.GetCamera().GetConstObjectPtr()->m_pTransform;
+    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-    newTransform.SetPosition(-10 * newTransform.GetForward());
-    newTransform.Rotate(0, 180, 0);
-    m_scene.GetCamera().GetObjectPtr()->m_pTransform = &newTransform;
+    cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
+    cameraTransform -> SetEulerAngles(lightTransform -> GetEulerAngles());
+    cameraTransform -> Rotate(180, 180, 0);
+    //newTransform.RotateByOperator(newTransform.GetUp(), PI);
+
     camera.isPerspective = false;
 
     //m_scene.GetCamera().SetViewport(Rect(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT));
@@ -249,7 +252,9 @@ void GL20GraphicsEngine::Render1()
         m_scene.Render();
     }
 
-        camera.GetObjectPtr()->m_pTransform = transformTemp;
+        //camera.GetObjectPtr()->m_pTransform = transformTemp;
+        cameraTransform->SetPosition(transformTemp.GetPosition());
+        cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
         camera.isPerspective = true;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

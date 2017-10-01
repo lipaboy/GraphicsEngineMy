@@ -28,6 +28,8 @@ public:
 		double deltaTime = Time::GetDeltaTime();
 
         m_pObject->m_pTransform->Rotate(speed * deltaTime);
+        //m_pObject->m_pTransform->RotateByOperator(m_pObject->m_pTransform->GetUp(),
+          //                                       speed.x * deltaTime * (PI / 180));
         //m_pObject->m_pTransform->RotateAroundCenter(speed * deltaTime);
 	}
 };
