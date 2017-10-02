@@ -9,7 +9,8 @@
 class MaterialLightReflect : public Material
 {
 public:
-//    MaterialLightReflect();
+    MaterialLightReflect(float red = 1.f, float green = 1.f, float blue = 1.f) :
+        ambientColor(red, green, blue) {}
 
 //    virtual void setShaderFilename() = 0;
 
@@ -17,6 +18,9 @@ public:
     virtual void Deinit();
 
     virtual void SetMaterial();
+
+private:
+    Vector3 ambientColor;
 };
 
 #endif // MATERIALLIGHTREFLECT_H

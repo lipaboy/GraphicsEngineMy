@@ -20,7 +20,9 @@ uniform Light lights[MAX_LIGHT_COUNT];
 
 varying vec3 localPosition;
 varying vec3 localNormal;
+
 varying vec2 TexCoords;
+varying vec4 FragPosLightSpace;
 
 uniform vec4 near_plane;
 uniform vec4 far_plane;
@@ -32,6 +34,26 @@ float LinearizeDepth(float depth)
 {
     float z = depth * 2.0 - 1.0; // Back to NDC
     return (2.0 * near_plane.x * far_plane.x) / (far_plane.x + near_plane.x - z * (far_plane.x - near_plane.x));
+}
+
+float ShadowCalculation(vec4 fragPosLightSpace)
+{
+    // perform perspective divide
+    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+
+    // transform to [0,1] range
+    projCoords = projCoords * 0.5 + 0.5;
+
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    float closestDepth = texture(depthMap, projCoords.xy).r;
+
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoords.z;
+
+    // check whether current frag pos is in shadow
+    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+
+    return shadow;
 }
 
 
@@ -110,9 +132,14 @@ void main()
 	}
 	
 //maybe GLuint
-        float depthValue = texture(depthMap, TexCoords).r;
+        vec3 depthValue = texture(depthMap, TexCoords).rgb;
+
+        float shadow = ShadowCalculation(FragPosLightSpace);
+        //vec3 color = texture(diffuseTexture, fs_in.TexCoords).rgb;
+        vec3 lighting = (1.0 - shadow) * col * depthValue;
 
         //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthValue) / far_plane.x), 1.0); // perspective
-        gl_FragColor = vec4(vec3(depthValue * col), 1.0); // orthographic
+        gl_FragColor = vec4(lighting, 1.0);
+            //vec4(vec3(depthValue * col), 1.0); // orthographic
         gl_FragColor.a = 1.0;       //why so?
 }

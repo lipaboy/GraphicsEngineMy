@@ -54,6 +54,27 @@ void MaterialLightReflect::SetMaterial()
     milliseconds ms = duration_cast< milliseconds >(
         system_clock::now().time_since_epoch()
         );
+
+   // Camera & camera = Application::Instance().GetScene().GetCamera();
+   // bool temp = camera.isPerspective;
+   // camera.isPerspective = false;
+    //const Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, matView,
+      //                                                      camera.GetMatrixProj());
+    Vector3 lightInvDir =  lights.front()->GetDirection();
+
+    // Compute the MVP matrix from the light's point of view
+    Matrix4x4 depthProjectionMatrix;
+    depthProjectionMatrix = glm::ortho<float>(-10,10,-10,10,-10,20);
+    Matrix4x4 depthViewMatrix;
+    depthViewMatrix = glm::lookAt(
+                lightInvDir.toGlmVec3(),
+                //glm::vec3(10, 0, 10),
+                                            glm::vec3(0,0,0), glm::vec3(0,1,0));
+    //Matrix4x4 depthModelMatrix = glm::mat4(1.0);
+    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
+                                                                    depthProjectionMatrix);
+   // lightSpaceMatrix = depthMVP;
+   // camera.isPerspective = temp;
     
     SetMaterialBegin();
     {
@@ -61,12 +82,13 @@ void MaterialLightReflect::SetMaterial()
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
         SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
            0 * std::cos((double)ms.count() / 800), 0, 0));
+        SetVertexShaderMatrix4x4("lightSpaceMatrix", lightSpaceMatrix);
         SetVertexShaderEnd();
 
         SetPixelShaderBegin();      // == fragment shader
         SetPixelShaderMatrix4x4	("matWorldNormal",	matWorldNormal);
         SetPixelShaderMatrix4x4	("matWorldT",		matWorldT);
-        SetPixelShaderVector4	("materialColor",	Vector4(1, 1, 1, 1));
+        SetPixelShaderVector4	("materialColor",	Vector4(ambientColor, 1));
         SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
         SetPixelShaderVector4	("cameraPosition",		cameraPosition);
 

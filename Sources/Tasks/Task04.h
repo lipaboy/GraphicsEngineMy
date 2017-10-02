@@ -14,6 +14,7 @@
 #include "GraphicsEngine/Meshes/MeshSphere.h"
 #include "GraphicsEngine/Meshes/MeshCube.h"
 #include "GraphicsEngine/Meshes/MeshCylinder.h"
+
 #include "GraphicsEngine/Object.h"
 #include "GraphicsEngine/Scene.h"
 #include "GraphicsEngine/Transform.h"
@@ -66,7 +67,7 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-            pObject1->m_pTransform	= new Transform(0,0,0, 0,-70,0, 6,6,6);
+            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-70,0, 6,6,6);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = //new MaterialDiffuse();
@@ -90,6 +91,55 @@ public:
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
             scene.AddLight(pLight);
+        }
+//-------------------------------------------
+        // Ox
+        {
+            Object * pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        0,0,90, .2,2,2);
+            //pTriangle->m_pTransform->RotateByOperator(Vector3(0,0,1), -PI / 2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(1,0,0);
+            scene.AddObject(pTriangle);
+
+            pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        0,180,-90, .2,2,2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(1,0,0);
+            scene.AddObject(pTriangle);
+        }
+        // Oy
+        {
+            Object * pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        0,0,0, .2,2,2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,1,0);
+            scene.AddObject(pTriangle);
+
+            pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        0,180,0, .2,2,2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,1,0);
+            scene.AddObject(pTriangle);
+        }
+        {
+            Object * pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        90,0,0, .2,2,2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,0,1);
+            scene.AddObject(pTriangle);
+
+            pTriangle   = new Object();
+            pTriangle->m_pTransform	= new Transform(0,0,0,
+                                                        90,0,180, .2,2,2);
+            pTriangle->m_pMesh = new MeshTriangle();
+            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,0,1);
+            scene.AddObject(pTriangle);
         }
 
 //        // Источник света #2

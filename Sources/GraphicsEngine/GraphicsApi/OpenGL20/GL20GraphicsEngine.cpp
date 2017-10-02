@@ -235,8 +235,8 @@ void GL20GraphicsEngine::Render1()
 
     cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
     cameraTransform -> SetEulerAngles(lightTransform -> GetEulerAngles());
-    cameraTransform -> Rotate(180, 180, 0);
-    //newTransform.RotateByOperator(newTransform.GetUp(), PI);
+    //cameraTransform -> Rotate(180, 180, 0);
+    cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
 
     camera.isPerspective = false;
 
@@ -255,6 +255,7 @@ void GL20GraphicsEngine::Render1()
         //camera.GetObjectPtr()->m_pTransform = transformTemp;
         cameraTransform->SetPosition(transformTemp.GetPosition());
         cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+        cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
         camera.isPerspective = true;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -270,11 +271,7 @@ void GL20GraphicsEngine::Render1()
 
 	// Clear the backbuffer to blue
     glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
-    //pShadowMaterial->SetMaterial();
 	
-	// Clear the z-buffer
-    //glClearDepth(1.0f);
-
     glBindTexture(GL_TEXTURE_2D, depthTexture.depthMap);
 	
 	{
@@ -283,6 +280,10 @@ void GL20GraphicsEngine::Render1()
 
 		GUI::Update();
 	}
+
+
+    // Clear the z-buffer
+    glClearDepth(1.0f);
 
 	// Flush the OpenGL buffers to the window
 	//glFlush();

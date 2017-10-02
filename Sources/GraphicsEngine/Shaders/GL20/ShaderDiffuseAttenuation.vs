@@ -16,14 +16,18 @@ varying vec3 localNormal;
 attribute vec2 aTexCoords;
 
 varying vec2 TexCoords;
+varying vec4 FragPosLightSpace;
+
+uniform mat4 lightSpaceMatrix;
 
 
 void main()
 {
-        TexCoords = aTexCoords;
-
 	gl_Position		= (timeT + vec4(position, 1.0)) * matrixWorldViewProjT;
 	gl_FrontColor	= color;
 	localPosition	= position + timeT.xyz;
 	localNormal		= normal;
+
+        TexCoords = aTexCoords;
+        FragPosLightSpace =  lightSpaceMatrix * vec4(localPosition, 1.0);
 }

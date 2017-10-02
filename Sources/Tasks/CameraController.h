@@ -37,15 +37,15 @@ public:
 			{
 				// TODO: Task08
 				// Move forward
-                //pTransform->RotateAroundCenter(-right.Normalize() * speed);
-                direction = forward;
+                pTransform->RotateAroundCenter(-right.Normalize() * speed* (1.0 / 20));
+                //direction = forward;
 			}
 			else if (Input::GetKey(KEY_CODE_S) || Input::GetKey(KEY_CODE_DOWN_ARROW))
 			{
 				// TODO: Task08
 				// Move backward
-                //pTransform->RotateAroundCenter(right.Normalize() * speed);
-                direction = -forward;
+                pTransform->RotateAroundCenter(right.Normalize() * speed* (1.0 / 20));
+                //direction = -forward;
 			}
 
 			if (Input::GetKey(KEY_CODE_D) || Input::GetKey(KEY_CODE_RIGHT_ARROW))

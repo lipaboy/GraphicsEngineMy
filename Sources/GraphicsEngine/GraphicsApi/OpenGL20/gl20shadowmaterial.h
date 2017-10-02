@@ -80,7 +80,7 @@ public:
                         glm::vec3(10, 0, 10),
                                                     glm::vec3(0,0,10), glm::vec3(0,1,0));
             glm::mat4 depthModelMatrix = glm::mat4(1.0);
-            glm::mat4 depthMVP = //depthProjectionMatrix * depthViewMatrix *
+            glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix *
                     depthModelMatrix;
 
             Matrix4x4 depthMVP2;
