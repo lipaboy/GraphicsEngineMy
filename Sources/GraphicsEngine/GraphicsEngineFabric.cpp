@@ -35,7 +35,12 @@ MeshImpl * GraphicsEngineFabric::CreateMesh()
 
 Texture2DImpl * GraphicsEngineFabric::CreateTexture2D(const char * filepath)
 {
-	return pImpl->CreateTexture2D(filepath);
+    return pImpl->CreateTexture2D(filepath);
+}
+
+std::shared_ptr<RenderTextureImpl> GraphicsEngineFabric::CreateRenderTexture()
+{
+    return pImpl->CreateRenderTexture();
 }
 
 MaterialImpl * GraphicsEngineFabric::CreateMaterial(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)

@@ -14,7 +14,13 @@
 //    setShaderFilename();
 //}
 
-#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngine.h"
+//#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngine.h"
+#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
+#ifdef CAN_USE_OPEN_GL
+#include <glm/mat4x4.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#endif
 
 // TODO: Реализовать переключение Graphics API при нажатии на кнопки (1 - DirectX 11, 2 - OpenGL 2.0, 9 - DirectX 9)
 // и отладить на этом механизм использования функций Init() и Deinit()

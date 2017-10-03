@@ -105,7 +105,7 @@ public:
 
             pTriangle   = new Object();
             pTriangle->m_pTransform	= new Transform(0,0,0,
-                                                        0,180,-90, .2,2,2);
+                                                        0,180,90, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
             pTriangle->m_pMaterial = new MaterialDiffuseSpecular(1,0,0);
             scene.AddObject(pTriangle);

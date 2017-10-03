@@ -18,13 +18,15 @@ GraphicsEngine & GraphicsEngine::Instance()
 
 GraphicsEngine::GraphicsEngine()
 {
-	
 }
 
 void GraphicsEngine::Init()
 {
 	pGraphicsEngineImpl = GraphicsEngineFabric::CreateEngine();
 	pGraphicsEngineImpl->Init();
+
+    pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
+    pRenderTextureImpl -> Init();
 }
 
 void GraphicsEngine::Deinit()
@@ -36,7 +38,12 @@ void GraphicsEngine::Render()
 {
 	Time::Update();
 
+    // Set camera at light source
+
+    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
 	pGraphicsEngineImpl->Render();
+    pRenderTextureImpl -> setRenderLocation(SCREEN);
+    pGraphicsEngineImpl->Render();
 }
 
 bool GraphicsEngine::IsRunning()

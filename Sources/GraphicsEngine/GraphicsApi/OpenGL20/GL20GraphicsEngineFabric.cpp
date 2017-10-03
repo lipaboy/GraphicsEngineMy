@@ -26,7 +26,12 @@ MeshImpl * GL20GraphicsEngineFabric::CreateMesh()
 
 Texture2DImpl * GL20GraphicsEngineFabric::CreateTexture2D(const char * filepath)
 {
-	return new GL20Texture2D(filepath);
+    return new GL20Texture2D(filepath);
+}
+
+std::shared_ptr<RenderTextureImpl> GL20GraphicsEngineFabric::CreateRenderTexture()
+{
+    return std::shared_ptr<RenderTextureImpl>(new GL20DepthTexture());
 }
 
 MaterialImpl * GL20GraphicsEngineFabric::CreateMaterial(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)

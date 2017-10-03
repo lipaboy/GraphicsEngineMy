@@ -9,6 +9,8 @@
 #include "GraphicsEngine/GraphicsApi/PixelShaderImpl.h"
 #include "GraphicsEngine/GraphicsApi/Texture2DImpl.h"
 
+#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
+#include <memory>
 
 // Interface to create objects listed below.
 // This class is Abstract factory, derived classes implement this interface.
@@ -25,6 +27,8 @@ public:
 	virtual MeshImpl *				CreateMesh() = 0;
 	
 	virtual Texture2DImpl *			CreateTexture2D(const char * filepath) = 0;
+    virtual std::shared_ptr<RenderTextureImpl>
+                                    CreateRenderTexture() = 0;
 
 	virtual MaterialImpl *			CreateMaterial(const char * vertexShaderFilePath, const char * fragmentShaderFilePath) = 0;
 

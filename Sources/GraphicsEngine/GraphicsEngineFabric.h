@@ -17,6 +17,9 @@ public:
 	
 	static Texture2DImpl *		CreateTexture2D(const char * filepath);
 
+    static std::shared_ptr<RenderTextureImpl>
+                                CreateRenderTexture();
+
 	static MaterialImpl *		CreateMaterial(const char * vertexShaderFilePath, const char * fragmentShaderFilePath);
 
 	static VertexShaderImpl *	CreateVertexShader(const char * filepath);

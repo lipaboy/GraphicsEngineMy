@@ -80,6 +80,7 @@ SOURCES += \
     ../Sources/main.cpp \
 \
     ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.cpp \
+    ../Sources/GraphicsEngine/GraphicsApi/RenderTextureImpl.cpp \
 \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.cpp \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.cpp \
@@ -208,8 +209,10 @@ HEADERS += \
     ../Sources/Tasks/Task04.h \
     ../Sources/Tasks/Task05_01.h \
     ../Sources/Tasks/Task08.h \
+\
     ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h \
     ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h \
+    ../Sources/GraphicsEngine/GraphicsApi/RenderTextureImpl.h \
 \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.h \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.h \

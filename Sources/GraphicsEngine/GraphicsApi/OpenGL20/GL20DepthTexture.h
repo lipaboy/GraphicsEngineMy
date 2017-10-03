@@ -5,15 +5,17 @@
 
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 #include "GraphicsEngine/Rect.h"
+#include "GraphicsEngine/Application.h"
+#include "GraphicsEngine/Camera.h"
 
-enum RenderLocation {
-    SCREEN,
-    DEPTH_TEXTURE
-};
+#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 
-class GL20DepthTexture
+
+
+class GL20DepthTexture : public RenderTextureImpl
 {
 public:
+    GL20DepthTexture() : m_scene(Application::Instance().GetScene()) {}
 
     void Init();
     //void Deinit();
@@ -26,6 +28,12 @@ public:
 
     const unsigned int SHADOW_WIDTH = 1024;
     const unsigned int SHADOW_HEIGHT = 1024;
+
+    Scene & m_scene;
+    Rect tempViewport;
+    int tempWidth;
+    int tempHeight;
+    RenderLocation previousLocation;
 };
 
 

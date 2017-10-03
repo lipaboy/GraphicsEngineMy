@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineFabricImpl.h"
 
+#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
+#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h"
+#include <memory>
 
 // Class implements an interface GraphicsEngineFabricImpl in OpenGL20.
 // Class creates objects listed below if OpenGL20 is chosen as Graphics API
@@ -15,6 +18,8 @@ public:
 	MeshImpl *				CreateMesh();
 	
 	Texture2DImpl *			CreateTexture2D(const char * filepath);
+    std::shared_ptr<RenderTextureImpl>
+                            CreateRenderTexture();
 
 	MaterialImpl *			CreateMaterial(const char * vertexShaderFilePath, const char * fragmentShaderFilePath);
 	

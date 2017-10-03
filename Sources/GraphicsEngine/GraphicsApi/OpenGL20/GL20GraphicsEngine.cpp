@@ -152,14 +152,8 @@ void GL20GraphicsEngine::Init()
 
     // New lines
     // TODO: add Deinit()
-    depthTexture.Init();
+    //depthTexture.Init();
 
-    Object * object1 = new Object();
-    pShadowMaterial = new ShadowMaterial();
-    object1 -> m_pTransform = new Transform(0,0,0, 0,0,0, 1,1,1);
-    object1 -> m_pMaterial = pShadowMaterial;
-    object1 -> m_pMesh = new MeshTriangle();
-    pShadowMaterial->Init(object1);
 
 	GL20Input::Init();
 
@@ -224,55 +218,62 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 
 void GL20GraphicsEngine::Render1()
 {
-    //pShadowMaterial->SetMaterial();
-    //depthTexture.setRenderLocation(DEPTH_TEXTURE);
+//    depthTexture.setRenderLocation(DEPTH_TEXTURE);
 
-    Camera & camera = m_scene.GetCamera();
-    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
-    const std::list<const Light *> & lights = m_scene.GetLights();
-    Transform * cameraTransform = m_scene.GetCamera().GetConstObjectPtr()->m_pTransform;
-    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
+//    Camera & camera = m_scene.GetCamera();
+//    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
+//    const std::list<const Light *> & lights = m_scene.GetLights();
+//    Transform * cameraTransform = m_scene.GetCamera().GetConstObjectPtr()->m_pTransform;
+//    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-    cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
-    cameraTransform -> SetEulerAngles(lightTransform -> GetEulerAngles());
-    //cameraTransform -> Rotate(180, 180, 0);
-    cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
+//    cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
+//    cameraTransform -> SetEulerAngles(lightTransform -> GetEulerAngles());
+//    cameraTransform -> Rotate(0, 180, 0);
+//   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
+//        //                                cameraTransform->GetUp(), PI);
 
-    camera.isPerspective = false;
+//    camera.isPerspective = false;
 
-    //m_scene.GetCamera().SetViewport(Rect(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT));
-    //m_scene.GetCamera().RecalculateMatrixProj();
+//    //m_scene.GetCamera().SetViewport(Rect(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT));
+//    //m_scene.GetCamera().RecalculateMatrixProj();
 
-    // TODO: change it from Camera
-    glViewport(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT);
-    glBindFramebuffer(GL_FRAMEBUFFER, depthTexture.depthMapFBO);
-        glClear(GL_DEPTH_BUFFER_BIT);
+//    // TODO: change it from Camera
+////    glViewport(0, 0, depthTexture.SHADOW_WIDTH, depthTexture.SHADOW_HEIGHT);
+////    glBindFramebuffer(GL_FRAMEBUFFER, depthTexture.depthMapFBO);
+////        glClear(GL_DEPTH_BUFFER_BIT);
 
-    {
-        m_scene.Render();
-    }
+//    {
+//        m_scene.Render();
+//    }
 
-        //camera.GetObjectPtr()->m_pTransform = transformTemp;
-        cameraTransform->SetPosition(transformTemp.GetPosition());
-        cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
-        cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
-        camera.isPerspective = true;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//        //camera.GetObjectPtr()->m_pTransform = transformTemp;
+//        cameraTransform->SetPosition(transformTemp.GetPosition());
+//        cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+//       // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
+//        camera.isPerspective = true;
 
-    glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
-    //m_scene.GetCamera().SetViewport(Rect(0, 0, Screen::GetWidth(), Screen::GetHeight()));
-    //m_scene.GetCamera().RecalculateMatrixProj();
-    //depthTexture.setRenderLocation(SCREEN);
-	// Choose buffers to be cleared
-    glClear(GL_COLOR_BUFFER_BIT
-            |
-            GL_DEPTH_BUFFER_BIT
-            );
 
-	// Clear the backbuffer to blue
-    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+//    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+//    glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
+//    //m_scene.GetCamera().SetViewport(Rect(0, 0, Screen::GetWidth(), Screen::GetHeight()));
+//    //m_scene.GetCamera().RecalculateMatrixProj();
+//    //depthTexture.setRenderLocation(SCREEN);
+//	// Choose buffers to be cleared
+//    glClear(GL_COLOR_BUFFER_BIT
+//            |
+//            GL_DEPTH_BUFFER_BIT
+//            );
+
+//	// Clear the backbuffer to blue
+//
 	
-    glBindTexture(GL_TEXTURE_2D, depthTexture.depthMap);
+//    glBindTexture(GL_TEXTURE_2D, depthTexture.depthMap);
+
+
+       // depthTexture.setRenderLocation(SCREEN);
+   // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
 	
 	{
 		m_scene.Update();
@@ -281,9 +282,8 @@ void GL20GraphicsEngine::Render1()
 		GUI::Update();
 	}
 
-
     // Clear the z-buffer
-    glClearDepth(1.0f);
+   // glClearDepth(1.0f);
 
 	// Flush the OpenGL buffers to the window
 	//glFlush();

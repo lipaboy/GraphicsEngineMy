@@ -38,38 +38,34 @@ void GL20DepthTexture::setRenderLocation(RenderLocation location)
     switch (location) {
 
     case DEPTH_TEXTURE:
-        glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
-        // TODO: bad error catching
-        if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-            std::cerr << "GL FrameBuffer isn't complete" << std::endl;
-            return;
+
+        if (previousLocation == SCREEN) {
+            tempViewport = m_scene.GetCamera().GetViewport();
+            tempHeight = Screen::GetHeight();
+            tempWidth = Screen::GetWidth();
         }
-        glDrawBuffer(GL_NONE);
-        glReadBuffer(GL_NONE);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
         // 1. first render to depth map
-        glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+        m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
+        Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
+        //glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-            glClear(GL_DEPTH_BUFFER_BIT);
+        glClear(GL_DEPTH_BUFFER_BIT);
 
-    //        ConfigureShaderAndMatrices();
-    //        RenderScene();
-
+        previousLocation = DEPTH_TEXTURE;
         break;
 
     case SCREEN:
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         // 2. then render scene as normal with shadow mapping (using depth map)
-        glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
+        m_scene.GetCamera().SetViewport(tempViewport);
+        Screen::SetResolution(tempWidth, tempHeight);
+        //glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-       // ConfigureShaderAndMatrices();
-
         glBindTexture(GL_TEXTURE_2D, depthMap);
+        glClearDepth(1.0f);
 
-        //RenderScene();
+        previousLocation = SCREEN;
         break;
     }
 }
