@@ -3,10 +3,8 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 #include "GraphicsEngine/Scene.h"
 
-//#include "GL20DepthTexture.h"
-//#include "GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h"
-
-//static GL20DepthTexture depthTexture;
+//#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
+//#include <memory>
 
 class GL20GraphicsEngine : public GraphicsEngineImpl
 {
@@ -17,6 +15,7 @@ public:
 	void Deinit();
 
 	void Render();
+    void RenderWithoutMainLoopEvent();
 	bool IsRunning();
 
 	void SetViewport(Rect rect);
@@ -30,6 +29,7 @@ private:
 	const char * m_pWindowTitle;
 	int m_window;
 	
+    //std::shared_ptr<RenderTextureImpl> pRenderTextureImpl;
     //ShadowMaterial * pShadowMaterial;
 
 	Rect m_viewportRect;

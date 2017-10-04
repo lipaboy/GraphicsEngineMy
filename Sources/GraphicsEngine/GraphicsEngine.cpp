@@ -41,7 +41,7 @@ void GraphicsEngine::Render()
     // Set camera at light source
 
     pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
-	pGraphicsEngineImpl->Render();
+    pGraphicsEngineImpl->RenderWithoutMainLoopEvent();
     pRenderTextureImpl -> setRenderLocation(SCREEN);
     pGraphicsEngineImpl->Render();
 }

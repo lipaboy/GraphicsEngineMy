@@ -4,8 +4,7 @@
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Input.h"
 
-#include "GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h"
-#include "GraphicsEngine/Meshes/MeshTriangle.h"
+//#include "GraphicsEngine/GraphicsEngineFabric.h"
 
 
 GL20GraphicsEngine * pGL20Engine = NULL;
@@ -154,6 +153,8 @@ void GL20GraphicsEngine::Init()
     // TODO: add Deinit()
     //depthTexture.Init();
 
+   // pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
+   // pRenderTextureImpl -> Init();
 
 	GL20Input::Init();
 
@@ -174,7 +175,7 @@ void GL20GraphicsEngine::Deinit()
 
 void GL20GraphicsEngine::Render()
 {
-	GL20Input::Clear();
+    GL20Input::Clear();
 
 	// Dispatch window events
 	glutMainLoopEvent();
@@ -183,7 +184,18 @@ void GL20GraphicsEngine::Render()
 	if (IsRunning())
 	{
 		glutPostRedisplay();		
-	}
+    }
+}
+
+void GL20GraphicsEngine::RenderWithoutMainLoopEvent()
+{
+    GL20Input::Clear();
+
+    // Render scene - Tell OpenGL to call GL20Render()
+    if (IsRunning())
+    {
+        glutPostRedisplay();
+    }
 }
 
 bool GL20GraphicsEngine::IsRunning()
@@ -218,6 +230,27 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 
 void GL20GraphicsEngine::Render1()
 {
+    //pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
+    //m_scene.Render();
+    //pRenderTextureImpl -> setRenderLocation(SCREEN);
+
+    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+
+    {
+        m_scene.Update();
+        m_scene.Render();
+
+        GUI::Update();
+    }
+
+    // Clear the z-buffer
+   // glClearDepth(1.0f);
+
+    // Flush the OpenGL buffers to the window
+    //glFlush();
+    glutSwapBuffers();
+
+
 //    depthTexture.setRenderLocation(DEPTH_TEXTURE);
 
 //    Camera & camera = m_scene.GetCamera();
@@ -273,21 +306,8 @@ void GL20GraphicsEngine::Render1()
 
        // depthTexture.setRenderLocation(SCREEN);
    // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
-	
-	{
-		m_scene.Update();
-        m_scene.Render();
 
-		GUI::Update();
-	}
 
-    // Clear the z-buffer
-   // glClearDepth(1.0f);
-
-	// Flush the OpenGL buffers to the window
-	//glFlush();
-	glutSwapBuffers();
 }
 
 // Reshapes the window appropriately

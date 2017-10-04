@@ -9,6 +9,8 @@ public:
 	virtual void Deinit() = 0;
 
 	virtual void Render() = 0;
+    // Crutch
+    virtual void RenderWithoutMainLoopEvent() = 0;   // For OpenGL ( without calling glutMainLoopEvent() )
 	virtual bool IsRunning() = 0;
 
 	virtual void SetViewport(Rect rect) = 0;
