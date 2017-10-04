@@ -211,7 +211,6 @@ HEADERS += \
     ../Sources/Tasks/Task08.h \
 \
     ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h \
-    ../Sources/GraphicsEngine/GraphicsApi/OpenGL20/gl20shadowmaterial.h \
     ../Sources/GraphicsEngine/GraphicsApi/RenderTextureImpl.h \
 \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.h \

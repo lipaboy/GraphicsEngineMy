@@ -33,6 +33,7 @@ private:
     //ShadowMaterial * pShadowMaterial;
 
 	Rect m_viewportRect;
+    bool isSwapBuffers = true;
 
 	Scene & m_scene;
 };

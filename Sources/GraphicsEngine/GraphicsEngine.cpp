@@ -38,12 +38,37 @@ void GraphicsEngine::Render()
 {
 	Time::Update();
 
+    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
+
     // Set camera at light source
 
-    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
-    pGraphicsEngineImpl->RenderWithoutMainLoopEvent();
+    Scene & m_scene = Application::Instance().GetScene();
+
+    Camera & camera = m_scene.GetCamera();
+    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
+    const std::list<const Light *> & lights = m_scene.GetLights();
+    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
+    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
+
+    cameraTransform -> SetPosition(-20 * lightTransform->GetForward());
+    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
+    cameraTransform -> Rotate(0, 180, 0);
+   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
+        //                                cameraTransform->GetUp(), PI);
+
+    camera.isPerspective = false;
+
+    // Render
+    pGraphicsEngineImpl -> RenderWithoutMainLoopEvent();
+
+    //camera.GetObjectPtr()->m_pTransform = transformTemp;
+    cameraTransform->SetPosition(transformTemp.GetPosition());
+    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
+    camera.isPerspective = true;
+
     pRenderTextureImpl -> setRenderLocation(SCREEN);
-    pGraphicsEngineImpl->Render();
+    pGraphicsEngineImpl -> Render();
 }
 
 bool GraphicsEngine::IsRunning()

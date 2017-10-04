@@ -5,6 +5,11 @@
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 #include <memory>
 
+#include "GraphicsEngine/Camera.h"
+#include "Application.h"
+#include "Transform.h"
+#include "Light.h"
+
 class GraphicsEngine
 {
 public:

@@ -46,9 +46,9 @@ void GL20DepthTexture::setRenderLocation(RenderLocation location)
         }
 
         // 1. first render to depth map
-        m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
-        Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
-        //glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+        //m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
+        //Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
+        glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -58,9 +58,9 @@ void GL20DepthTexture::setRenderLocation(RenderLocation location)
     case SCREEN:
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         // 2. then render scene as normal with shadow mapping (using depth map)
-        m_scene.GetCamera().SetViewport(tempViewport);
-        Screen::SetResolution(tempWidth, tempHeight);
-        //glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
+        //m_scene.GetCamera().SetViewport(tempViewport);
+        //Screen::SetResolution(tempWidth, tempHeight);
+        glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glBindTexture(GL_TEXTURE_2D, depthMap);
         glClearDepth(1.0f);

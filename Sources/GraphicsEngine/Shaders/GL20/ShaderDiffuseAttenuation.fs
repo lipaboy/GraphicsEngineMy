@@ -139,7 +139,7 @@ void main()
         vec3 lighting = (1.0 - shadow) * col * depthValue;
 
         //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthValue) / far_plane.x), 1.0); // perspective
-        gl_FragColor = vec4(lighting, 1.0);
-            //vec4(vec3(depthValue * col), 1.0); // orthographic
+        gl_FragColor = //vec4(lighting, 1.0);
+            vec4(vec3(depthValue * col), 1.0); // orthographic
         gl_FragColor.a = 1.0;       //why so?
 }
