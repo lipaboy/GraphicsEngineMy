@@ -4,7 +4,7 @@
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Input.h"
 
-//#include "GraphicsEngine/GraphicsEngineFabric.h"
+
 
 
 GL20GraphicsEngine * pGL20Engine = NULL;
@@ -153,8 +153,8 @@ void GL20GraphicsEngine::Init()
     // TODO: add Deinit()
     //depthTexture.Init();
 
-   // pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
-   // pRenderTextureImpl -> Init();
+    //pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
+    //pRenderTextureImpl -> Init();
 
 	GL20Input::Init();
 
@@ -235,12 +235,11 @@ void GL20GraphicsEngine::SetResolution(int width, int height)
 void GL20GraphicsEngine::Render1()
 {
     // Clear the backbuffer to blue
-    if (isSwapBuffers)
-        glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
-    {if (isSwapBuffers)
+    glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+    {
         m_scene.Update();
         m_scene.Render();
-if (isSwapBuffers)
+
         GUI::Update();
     }
     // Clear the z-buffer
@@ -248,8 +247,7 @@ if (isSwapBuffers)
 
     // Flush the OpenGL buffers to the window
     //glFlush();
-    if (isSwapBuffers)
-        glutSwapBuffers();
+    glutSwapBuffers();
 }
 
 // Reshapes the window appropriately

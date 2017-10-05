@@ -77,7 +77,7 @@ void Camera::RecalculateMatrixProj()
     else {
 #ifdef CAN_USE_OPEN_GL
         // left, right, bottom, top, near, far
-        float val = 3 ;
+        float val = 1 ;
         m_matProj = glm::ortho<float>(-val,val,-val,val
                                                            // ,-10, 15
                                       ,m_nearPlane, m_farPlane

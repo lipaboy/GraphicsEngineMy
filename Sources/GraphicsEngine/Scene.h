@@ -2,6 +2,8 @@
 #include <list>
 #include "Object.h"
 
+#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
+#include <memory>
 
 class Camera;
 class Light;
@@ -26,7 +28,12 @@ public:
 	void Render();
 
 private:
+    void Render1();
+
+private:
 	std::list<const Object *>	m_objects;
 	std::list<const Light *>	m_lights;
 	Camera *					m_pCamera;
+
+    std::shared_ptr<RenderTextureImpl> pRenderTextureImpl;
 };

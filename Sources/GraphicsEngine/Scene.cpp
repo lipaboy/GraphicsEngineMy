@@ -7,10 +7,14 @@
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Application.h"
 
+#include "GraphicsEngine/GraphicsEngineFabric.h"
 
 void Scene::Init()
 {
 	m_pCamera = NULL;
+
+    pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
+    pRenderTextureImpl -> Init();
 }
 
 void Scene::Deinit()
@@ -90,7 +94,44 @@ void Scene::Update()
 	}
 }
 
-void Scene::Render()
+void Scene::Render() {
+    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
+
+    // Set camera at light source
+
+    Camera & camera = GetCamera();
+    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
+    const std::list<const Light *> & lights = GetLights();
+    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
+    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
+
+    cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
+    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
+    cameraTransform -> Rotate(0, 180, 0);
+   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
+        //                                cameraTransform->GetUp(), PI);
+
+    camera.isPerspective = false;
+
+    {
+        // Render
+        Render1();
+    }
+
+    //camera.GetObjectPtr()->m_pTransform = transformTemp;
+    cameraTransform->SetPosition(transformTemp.GetPosition());
+    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
+    camera.isPerspective = true;
+
+    pRenderTextureImpl -> setRenderLocation(SCREEN);
+
+    {
+        Render1();
+    }
+}
+
+void Scene::Render1()
 {
 	if (NULL == m_pCamera)
 	{

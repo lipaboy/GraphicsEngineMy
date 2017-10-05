@@ -3,8 +3,12 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 #include "GraphicsEngine/Scene.h"
 
-//#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
-//#include <memory>
+#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
+#include <memory>
+#include "GraphicsEngine/Transform.h"
+#include "GraphicsEngine/Camera.h"
+#include "GraphicsEngine/Light.h"
+
 
 class GL20GraphicsEngine : public GraphicsEngineImpl
 {
