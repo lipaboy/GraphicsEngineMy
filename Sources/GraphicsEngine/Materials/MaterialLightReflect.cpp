@@ -61,26 +61,31 @@ void MaterialLightReflect::SetMaterial()
         system_clock::now().time_since_epoch()
         );
 
-   // Camera & camera = Application::Instance().GetScene().GetCamera();
-   // bool temp = camera.isPerspective;
-   // camera.isPerspective = false;
+
+
+
     //const Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, matView,
       //                                                      camera.GetMatrixProj());
-    Vector3 lightInvDir =  lights.front()->GetDirection();
+//    Vector3 lightInvDir =  lights.front()->GetDirection();
 
-    // Compute the MVP matrix from the light's point of view
-    Matrix4x4 depthProjectionMatrix;
-    depthProjectionMatrix = glm::ortho<float>(-10,10,-10,10,-10,20);
-    Matrix4x4 depthViewMatrix;
-    depthViewMatrix = glm::lookAt(
-                lightInvDir.toGlmVec3(),
-                //glm::vec3(10, 0, 10),
-                                            glm::vec3(0,0,0), glm::vec3(0,1,0));
-    //Matrix4x4 depthModelMatrix = glm::mat4(1.0);
-    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
-                                                                    depthProjectionMatrix);
+//    // Compute the MVP matrix from the light's point of view
+//    Matrix4x4 depthProjectionMatrix;
+//    depthProjectionMatrix = glm::ortho<float>(-10,10,-10,10,-10,20);
+//    Matrix4x4 depthViewMatrix;
+//    depthViewMatrix = glm::lookAt(
+//                lightInvDir.toGlmVec3(),
+//                                            glm::vec3(0,0,0), glm::vec3(0,1,0));
+
+    Camera & camera = Application::Instance().GetScene().GetCamera();
+    bool temp = camera.isPerspective;
+    camera.isPerspective = false;
+    Matrix4x4 lightSpaceMatrix = //MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
+                                   //                                 depthProjectionMatrix);
+            MathUtils::GetMatrixWorldViewProjT(matWorld,
+                        lights.front() -> GetConstObjectPtr() -> m_pTransform -> GetMatView(),
+                                               SceneUtils::GetMatrixProj());
    // lightSpaceMatrix = depthMVP;
-   // camera.isPerspective = temp;
+    camera.isPerspective = temp;
     
     SetMaterialBegin();
     {

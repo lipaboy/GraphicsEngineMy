@@ -84,40 +84,40 @@ void main()
 
         for (int i = 0; float(i) < lightsCount.x; ++i)
 	{
-		// Выходим, как только закончились источники освещения
-                //if (float(i) >= lightsCount.x) break;
-		
-		float type = lights[i].type.x;
-		float epsilon = 0.001;
-		
-		vec4 lightCol = lights[i].color;
-		vec3 lightDir = vec3(0,0,0);
-	
-        float intensity = 1.0;
-        float attenuation = 1.0;
+            // Выходим, как только закончились источники освещения
+            //if (float(i) >= lightsCount.x) break;
 
-		// Attenuation component
-        float distanceToLight = distance(vertexPos, lights[i].position.xyz);
-        const float a = 0.1;
-        const float b = 0.2;
-        const float c = 0.1;
-        attenuation = 1.0 / (a + b * distanceToLight + c * pow(distanceToLight, 2));
+            float type = lights[i].type.x;
+            float epsilon = 0.001;
 
-		// Directional light
-                if (abs(type - 1.0) < epsilon)
-		{
-			lightDir = normalize(lights[i].direction.xyz).xyz;
-                        // attenuation of directional light always = 1
-			attenuation = 1.0;
-		}
-		// Point light
-                else if (abs(type - 2.0) < epsilon)
-		{
+            vec4 lightCol = lights[i].color;
+            vec3 lightDir = vec3(0,0,0);
+
+            float intensity = 1.0;
+            float attenuation = 1.0;
+
+            // Attenuation component
+            float distanceToLight = distance(vertexPos, lights[i].position.xyz);
+            const float a = 0.1;
+            const float b = 0.2;
+            const float c = 0.1;
+            attenuation = 1.0 / (a + b * distanceToLight + c * pow(distanceToLight, 2));
+
+            // Directional light
+            if (abs(type - 1.0) < epsilon)
+            {
+                lightDir = normalize(lights[i].direction.xyz).xyz;
+                // attenuation of directional light always = 1
+                attenuation = 1.0;
+            }
+            // Point light
+            else if (abs(type - 2.0) < epsilon)
+            {
                 lightDir = normalize(vertexPos - lights[i].position.xyz).xyz;
-        }
-        // Spot light
-        else if (abs(type - 3.0) < epsilon)
-        {
+            }
+            // Spot light
+            else if (abs(type - 3.0) < epsilon)
+            {
                 lightDir = normalize(vertexPos - lights[i].position.xyz).xyz;
                 float spotDiffAngle = clamp(dot(lights[i].direction.xyz, lightDir), 0.0, 1.0);
                 const float SPOT_INNER_CONE = 0.9;      // #hardcode
@@ -126,10 +126,10 @@ void main()
                     - (SPOT_INNER_CONE - spotDiffAngle) / (SPOT_INNER_CONE - SPOT_OUTER_CONE)
                     , 0.0, 1.0);
 
+            }
+            col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
+                        * intensity * attenuation;
         }
-        col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
-                    * intensity * attenuation;
-	}
 	
 //maybe GLuint
         vec3 depthValue = texture(depthMap, TexCoords).rgb;

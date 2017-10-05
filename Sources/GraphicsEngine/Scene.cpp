@@ -95,28 +95,35 @@ void Scene::Update()
 }
 
 void Scene::Render() {
-    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
+
 
     // Set camera at light source
 
+
     Camera & camera = GetCamera();
+
+    camera.isPerspective = false;
     Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
     const std::list<const Light *> & lights = GetLights();
     Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
     Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-    cameraTransform -> SetPosition(-10 * lightTransform->GetForward());
+    cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
     cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
     cameraTransform -> Rotate(0, 180, 0);
+
    // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
         //                                cameraTransform->GetUp(), PI);
 
-    camera.isPerspective = false;
+    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
+
 
     {
         // Render
         Render1();
     }
+
+    pRenderTextureImpl -> setRenderLocation(SCREEN);
 
     //camera.GetObjectPtr()->m_pTransform = transformTemp;
     cameraTransform->SetPosition(transformTemp.GetPosition());
@@ -124,7 +131,7 @@ void Scene::Render() {
     // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
     camera.isPerspective = true;
 
-    pRenderTextureImpl -> setRenderLocation(SCREEN);
+
 
     {
         Render1();
