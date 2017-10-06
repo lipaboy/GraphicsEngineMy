@@ -23,11 +23,11 @@ uniform mat4 lightSpaceMatrix;
 
 void main()
 {
-	gl_Position		= (timeT + vec4(position, 1.0)) * matrixWorldViewProjT;
+        gl_Position		=   (timeT + vec4(position, 1.0)) * matrixWorldViewProjT;
 	gl_FrontColor	= color;
 	localPosition	= position + timeT.xyz;
 	localNormal		= normal;
 
         TexCoords = aTexCoords;
-        FragPosLightSpace =  lightSpaceMatrix * vec4(localPosition, 1.0);
+        FragPosLightSpace =  vec4(localPosition, 1.0) * lightSpaceMatrix;
 }

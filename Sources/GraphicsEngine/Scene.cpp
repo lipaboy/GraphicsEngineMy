@@ -108,9 +108,14 @@ void Scene::Render() {
     Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
     Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-    cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
-    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
-    cameraTransform -> Rotate(0, 180, 0);
+    // There is a problem and it isn't in camera beforeward setting
+
+    //cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
+    cameraTransform -> SetPosition(Vector3(10, 0, 0));
+    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
+    cameraTransform -> SetScale(Vector3(1, 1, 1));
+//    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
+    //cameraTransform -> Rotate(0, 180, 0);
 
    // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
         //                                cameraTransform->GetUp(), PI);

@@ -83,6 +83,7 @@ void Camera::RecalculateMatrixProj()
                                       ,m_nearPlane, m_farPlane
                                       );
         m_matProj = m_matProj.Transpose();
+
        // m_matProj = depthProjectionMatrix;
 #endif
     }
