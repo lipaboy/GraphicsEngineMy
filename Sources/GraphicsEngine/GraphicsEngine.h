@@ -2,11 +2,6 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineContext.h"
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 
-#include "GraphicsEngine/Camera.h"
-#include "Application.h"
-#include "Transform.h"
-#include "Light.h"
-
 class GraphicsEngine
 {
 public:

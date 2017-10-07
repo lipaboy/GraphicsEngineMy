@@ -5,8 +5,6 @@
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 #include <memory>
 
-//#include "GraphicsEngine/Materials/MaterialShadowMappingDepth.h"
-
 class Camera;
 class Light;
 
@@ -38,9 +36,7 @@ private:
 	Camera *					m_pCamera;
 
     std::shared_ptr<RenderTextureImpl> pRenderTextureImpl;
-//    std::list<MaterialShadowMappingDepth> m_depthMaterials;
 
     // Save temporary data
-    std::list<Material const *> m_materials;
 
 };

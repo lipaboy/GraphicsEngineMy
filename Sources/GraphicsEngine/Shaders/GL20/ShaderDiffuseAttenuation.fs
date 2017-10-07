@@ -143,8 +143,7 @@ void main()
         }
 
         //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthFloat) / far_plane.x), 1.0); // perspective
-        gl_FragColor = vec4(vec3(depthValue * col), 1.0); // orthographic
+        gl_FragColor = vec4(vec3(col), 1.0); // orthographic
         //gl_FragColor = vec4(lighting, 1.0);
         //gl_FragColor = vec4(col * visibility, 1.0);
-        gl_FragColor.a = 1.0;       //why so?
 }

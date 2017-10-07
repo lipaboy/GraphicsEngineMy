@@ -35,12 +35,6 @@ void GraphicsEngine::Render()
 {
     Time::Update();
 
-    // Set viewport of current camera
-//    {
-//        Rect viewport = m_pCamera->GetViewport();
-//        pGraphicsEngineImpl->SetViewport(viewport);
-//    }
-
     pGraphicsEngineImpl -> Render();
 }
 

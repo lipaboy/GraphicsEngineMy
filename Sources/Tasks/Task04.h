@@ -55,8 +55,8 @@ public:
             pObject1->m_pTransform	= new Transform(4,0,0, 0,0,0, 3,3,3);
             pObject1->m_pMesh		= new MeshSphere(20);
                     //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-            pObject1->m_pMaterial = //new MaterialDiffuse();
-                new MaterialDiffuseAttenuation();
+            pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+                new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,2*50,0) );
             pObject1->AddComponent(new CameraController());
@@ -70,8 +70,8 @@ public:
             pObject1->m_pTransform	= new Transform(-3,0,0, 0,-70,0, 6,6,6);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
-            pObject1->m_pMaterial = //new MaterialDiffuse();
-                new MaterialDiffuseAttenuation();
+            pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+                new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,100,100) );
 
@@ -100,14 +100,14 @@ public:
                                                         0,0,-90, .2,2,2);
             //pTriangle->m_pTransform->RotateByOperator(Vector3(0,0,1), -PI / 2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(1,0,0);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(1,0,0));
             scene.AddObject(pTriangle);
 
             pTriangle   = new Object();
             pTriangle->m_pTransform	= new Transform(0,0,0,
                                                         0,180,-90, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(1,0,0);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(1,0,0));
             scene.AddObject(pTriangle);
         }
         // Oy
@@ -116,14 +116,14 @@ public:
             pTriangle->m_pTransform	= new Transform(0,0,0,
                                                         0,0,0, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,1,0);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(0,1,0));
             scene.AddObject(pTriangle);
 
             pTriangle   = new Object();
             pTriangle->m_pTransform	= new Transform(0,0,0,
                                                         0,180,0, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,1,0);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(0,1,0));
             scene.AddObject(pTriangle);
         }
         {
@@ -131,14 +131,14 @@ public:
             pTriangle->m_pTransform	= new Transform(0,0,0,
                                                         90,0,0, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,0,1);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(0,0,1));
             scene.AddObject(pTriangle);
 
             pTriangle   = new Object();
             pTriangle->m_pTransform	= new Transform(0,0,0,
                                                         90,0,180, .2,2,2);
             pTriangle->m_pMesh = new MeshTriangle();
-            pTriangle->m_pMaterial = new MaterialDiffuseSpecular(0,0,1);
+            pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(0,0,1));
             scene.AddObject(pTriangle);
         }
 

@@ -9,24 +9,18 @@
 
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
-//#include <algorithm>
-
 void Scene::Init()
 {
 	m_pCamera = NULL;
 
     pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
     pRenderTextureImpl -> Init();
-
 }
 
 void Scene::Deinit()
 {
 	// ”дал¤ем объекты
-	{
-//        foreach (it, m_depthMaterials) {
-//            it->Deinit();
-//        }
+    {
 		std::list<const Object *>::iterator iter;
 		for (iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		{
@@ -36,8 +30,7 @@ void Scene::Deinit()
 	}
 
 	m_lights.clear();
-	m_objects.clear();	
-//    m_depthMaterials.clear();
+    m_objects.clear();
 
 	// ”дал¤ем камеру
 	m_pCamera = NULL;
@@ -51,11 +44,7 @@ void Scene::AddObject(Object * pObject)
 	}
 
 	pObject->Init();
-	m_objects.push_back(pObject);
-//    m_depthMaterials.emplace_back();
-//    m_depthMaterials.back().Init();
-    // I can't save pointers to materials beforehand because materials can be changed
-    //m_materials.resize(1 + m_materials.size());
+    m_objects.push_back(pObject);
 }
 
 void Scene::AddLight(Light * pLight)
@@ -134,15 +123,8 @@ void Scene::Render() {
     pRenderTextureImpl -> SetRenderLocation(DEPTH_TEXTURE);
 
     {
-//        std::generate(m_materials.begin(), m_materials.end(),
-//                      [this] () -> Material const * {
-//                          static std::list<Object const *>::iterator iter = this -> m_objects.begin();
-//                          return (*(iter++)) -> m_pMaterial;
-//                      });
-//        std::fill(m_objects.begin(), m_objects.end(), &depthMaterial);
         // Render
         Render1();
-        //std::copy(m_materials.begin(), m_materials.end(), m_objects.begin());
     }
 
     pRenderTextureImpl -> SetRenderLocation(SCREEN);
@@ -183,10 +165,10 @@ void Scene::Render1()
 		const Object * pObject = (*iter);
 		if (NULL == pObject) continue;
 
-        Material *	pMaterial	= (SCREEN == currentRenderLocation) ? pObject->m_pMaterial
-                                                                    : pObject->m_pDepthMaterial.get();
+        std::shared_ptr<Material> pMaterial = (SCREEN == currentRenderLocation || true) ? pObject->m_pMaterial
+                                                                    : pObject->m_pDepthMaterial;
 		Mesh *		pMesh		= pObject->m_pMesh;
-		if ((NULL == pMaterial) || (NULL == pMesh)) continue;
+        if ((nullptr == pMaterial) || (NULL == pMesh)) continue;
 		if (!pMaterial->IsInited()) continue;
 		
 		pMaterial->SetMaterial();

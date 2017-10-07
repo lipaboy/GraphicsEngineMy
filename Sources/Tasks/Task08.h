@@ -42,7 +42,7 @@ public:
 
 			pObject1->m_pTransform	= new Transform( 0,0,0, 90,0,0, 1,10,1 );
 			pObject1->m_pMesh		= new MeshQuad();			
-			pObject1->m_pMaterial	= new MaterialSand(TEXTURE_FILTER_MODE_POINT);
+            pObject1->m_pMaterial	= std::shared_ptr<Material>(new MaterialSand(TEXTURE_FILTER_MODE_POINT));
 						
 			scene.AddObject( pObject1 );
 		}

@@ -28,9 +28,9 @@ public:
 	Mesh *		m_pMesh;
 
 	// Содержит Vertex & Pixel Shaders
-	Material *	m_pMaterial;
+    std::shared_ptr<Material>	m_pMaterial;
 
-    std::shared_ptr<MaterialShadowMappingDepth> m_pDepthMaterial;
+    std::shared_ptr<Material> m_pDepthMaterial;
 
 	// Содержит объекты пользователя
 	std::list<Component *> m_components;

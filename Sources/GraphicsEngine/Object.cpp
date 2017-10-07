@@ -10,8 +10,8 @@ Object::Object()
 {
 	m_pTransform	= NULL;
 	m_pMesh			= NULL;
-	m_pMaterial		= NULL;	
-    m_pDepthMaterial= std::make_shared<MaterialShadowMappingDepth>();
+    m_pMaterial		= nullptr;
+    m_pDepthMaterial= nullptr;
 }
 
 Object::~Object()
@@ -31,11 +31,11 @@ Object::~Object()
 		m_components.clear();
 	}
 
-	if (NULL != m_pMaterial)
+    if (nullptr != m_pMaterial)
 	{
 		m_pMaterial->Deinit();
-		delete m_pMaterial;
-		m_pMaterial = NULL;
+        //delete m_pMaterial;
+        m_pMaterial = nullptr;
 	}
 
 	if (NULL != m_pMesh)
@@ -51,7 +51,10 @@ Object::~Object()
 		m_pTransform = NULL;
 	}	
 
-    m_pDepthMaterial->Deinit();
+    if (nullptr != m_pDepthMaterial) {
+        m_pDepthMaterial->Deinit();
+        m_pDepthMaterial = nullptr;
+    }
 }
 
 void Object::Init()
@@ -61,11 +64,12 @@ void Object::Init()
 		m_pMesh->Init();
 	}
 
-	if (NULL != m_pMaterial)
+    if (nullptr != m_pMaterial)
 	{
 		m_pMaterial->Init(this);
 	}
 
+    m_pDepthMaterial = std::shared_ptr<Material>(new MaterialShadowMappingDepth());
     m_pDepthMaterial->Init(this);
 }
 

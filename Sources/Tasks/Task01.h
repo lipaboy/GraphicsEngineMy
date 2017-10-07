@@ -44,7 +44,7 @@ public:
 			Object * pObject = new Object();
 			pObject->m_pMesh		= new MeshCube(3);
 			pObject->m_pTransform	= new Transform();
-			pObject->m_pMaterial	= new MaterialUnlit();
+            pObject->m_pMaterial	= std::shared_ptr<Material>(new MaterialUnlit());
 			pObject->AddComponent( new ObjectRotator(0, 45, 0) );
 			
 			scene.AddObject( pObject );
@@ -58,7 +58,7 @@ public:
 			Object * pObject = new Object();
 			pObject->m_pMesh		= new MeshCube(3);
 			pObject->m_pTransform	= new Transform(7, 0, 0,  0, 0, 23,  1, 1, 1);
-			pObject->m_pMaterial	= new MaterialUnlit();
+            pObject->m_pMaterial	= std::shared_ptr<Material>(new MaterialUnlit());
 			pObject->AddComponent( new ObjectRotator(0, 100, 0) );
 
 			pObject->m_pTransform->SetParent( pObj1->m_pTransform );
@@ -73,7 +73,7 @@ public:
 			Object * pObject = new Object();
 			pObject->m_pMesh		= new MeshCube(4);
 			pObject->m_pTransform	= new Transform(3, 0, 0);
-			pObject->m_pMaterial	= new MaterialUnlit();
+            pObject->m_pMaterial	= std::shared_ptr<Material>(new MaterialUnlit());
 			pObject->AddComponent( new ObjectRotator(0, 360, 0) );
 
 			pObject->m_pTransform->SetParent( pObj2->m_pTransform );
