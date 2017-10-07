@@ -11,7 +11,9 @@ class RenderTextureImpl
 public:
     virtual void Init() = 0;
 
-    virtual void setRenderLocation(RenderLocation location) = 0;
+    virtual void SetRenderLocation(RenderLocation location) = 0;
+
+    virtual RenderLocation GetRenderLocation() const = 0;
 };
 
 #endif // RENDERTEXTURE_H

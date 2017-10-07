@@ -1,6 +1,7 @@
 ﻿#include "Object.h"
 #include "Component.h"
 #include "GraphicsEngine/Materials/Material.h"
+#include "GraphicsEngine/Materials/MaterialShadowMappingDepth.h"
 #include "Meshes/Mesh.h"
 #include "Transform.h"
 
@@ -10,6 +11,7 @@ Object::Object()
 	m_pTransform	= NULL;
 	m_pMesh			= NULL;
 	m_pMaterial		= NULL;	
+    m_pDepthMaterial= std::make_shared<MaterialShadowMappingDepth>();
 }
 
 Object::~Object()
@@ -48,6 +50,8 @@ Object::~Object()
 		delete m_pTransform;
 		m_pTransform = NULL;
 	}	
+
+    m_pDepthMaterial->Deinit();
 }
 
 void Object::Init()
@@ -61,6 +65,8 @@ void Object::Init()
 	{
 		m_pMaterial->Init(this);
 	}
+
+    m_pDepthMaterial->Init(this);
 }
 
 void Object::AddComponent(Component * pComponent)

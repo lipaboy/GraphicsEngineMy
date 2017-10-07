@@ -84,7 +84,8 @@ SOURCES += \
 \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.cpp \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.cpp \
-    ../Sources/lipaboyLibrary/src/maths/vector4d.cpp
+    ../Sources/lipaboyLibrary/src/maths/vector4d.cpp \
+    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.cpp
 
 
 DISTFILES += \
@@ -107,7 +108,9 @@ DISTFILES += \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.vs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseSpecular.fs \
     ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.vs \
-    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs #\
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderDiffuseAttenuation.fs \ #\
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderShadowMap.fs \
+    ../Sources/GraphicsEngine/Shaders/GL20/ShaderShadowMap.vs
 #    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.vs \
 #    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.fs
 
@@ -215,4 +218,5 @@ HEADERS += \
 \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.h \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.h \
-    ../Sources/lipaboyLibrary/src/maths/vector4d.h
+    ../Sources/lipaboyLibrary/src/maths/vector4d.h \
+    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.h

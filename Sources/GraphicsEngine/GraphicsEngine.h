@@ -2,9 +2,6 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineContext.h"
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 
-#include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
-#include <memory>
-
 #include "GraphicsEngine/Camera.h"
 #include "Application.h"
 #include "Transform.h"
@@ -23,8 +20,7 @@ public:
 	
 private:
 	// TODO: Сделать по всему проекту префикс m_ (почитать С++ code style)
-	GraphicsEngineImpl * pGraphicsEngineImpl;
-    std::shared_ptr<RenderTextureImpl> pRenderTextureImpl;
+    GraphicsEngineImpl * pGraphicsEngineImpl;
 
 	GraphicsEngine();
 	GraphicsEngine( const GraphicsEngine & );

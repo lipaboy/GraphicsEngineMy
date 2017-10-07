@@ -61,29 +61,28 @@ void MaterialLightReflect::SetMaterial()
         system_clock::now().time_since_epoch()
         );
 
-    //const Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, matView,
-      //                                                      camera.GetMatrixProj());
-    Matrix4x4 biasMatrix = {
-        0.5, 0.0, 0.0, 0.0,
-        0.0, 0.5, 0.0, 0.0,
-        0.0, 0.0, 0.5, 0.0,
-        0.5, 0.5, 0.5, 1.0
-    };
-    Camera & camera = Application::Instance().GetScene().GetCamera();
-    bool temp = camera.isPerspective;
-    camera.isPerspective = false;
-    Vector3 lightInvDir =  -lights.front()->GetDirection();
+    const Matrix4x4 lightSpaceMatrix = matWorldViewProjT;
+//    Matrix4x4 biasMatrix = {
+//        0.5, 0.0, 0.0, 0.0,
+//        0.0, 0.5, 0.0, 0.0,
+//        0.0, 0.0, 0.5, 0.0,
+//        0.5, 0.5, 0.5, 1.0
+//    };
+//    Camera & camera = Application::Instance().GetScene().GetCamera();
+//    bool temp = camera.isPerspective;
+//    camera.isPerspective = false;
+//    Vector3 lightInvDir =  -lights.front()->GetDirection();
 
-    // Compute the MVP matrix from the light's point of view
-    Matrix4x4 depthViewMatrix;
-    depthViewMatrix = glm::lookAt(
-                lightInvDir.toGlmVec3(),
-                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-    depthViewMatrix = depthViewMatrix.Transpose();
-    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
-                                                                        SceneUtils::GetMatrixProj());
-    lightSpaceMatrix = lightSpaceMatrix * biasMatrix.Transpose();
-    camera.isPerspective = temp;
+//    // Compute the MVP matrix from the light's point of view
+//    Matrix4x4 depthViewMatrix;
+//    depthViewMatrix = glm::lookAt(
+//                lightInvDir.toGlmVec3(),
+//                                glm::vec3(0,0,0), glm::vec3(0,1,0));
+//    depthViewMatrix = depthViewMatrix.Transpose();
+//    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
+//                                                                        SceneUtils::GetMatrixProj());
+//    lightSpaceMatrix = lightSpaceMatrix * biasMatrix.Transpose();
+//    camera.isPerspective = temp;
     
     SetMaterialBegin();
     {

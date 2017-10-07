@@ -1,11 +1,13 @@
 ﻿#pragma once
 #include <list>
+#include <memory>
 
 
 class Mesh;
 class Component;
 class Material;
 class Transform;
+class MaterialShadowMappingDepth;
 
 
 class Object
@@ -27,6 +29,8 @@ public:
 
 	// Содержит Vertex & Pixel Shaders
 	Material *	m_pMaterial;
+
+    std::shared_ptr<MaterialShadowMappingDepth> m_pDepthMaterial;
 
 	// Содержит объекты пользователя
 	std::list<Component *> m_components;

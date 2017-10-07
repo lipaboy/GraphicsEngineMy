@@ -2,6 +2,7 @@
 #include "GraphicsEngine/Scene.h"
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/Camera.h"
+#include "GraphicsEngine/Transform.h"
 
 class SceneUtils
 {

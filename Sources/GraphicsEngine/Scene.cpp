@@ -9,18 +9,24 @@
 
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+//#include <algorithm>
+
 void Scene::Init()
 {
 	m_pCamera = NULL;
 
     pRenderTextureImpl = GraphicsEngineFabric::CreateRenderTexture();
     pRenderTextureImpl -> Init();
+
 }
 
 void Scene::Deinit()
 {
 	// ”дал¤ем объекты
 	{
+//        foreach (it, m_depthMaterials) {
+//            it->Deinit();
+//        }
 		std::list<const Object *>::iterator iter;
 		for (iter = m_objects.begin(); iter != m_objects.end(); iter++)
 		{
@@ -31,6 +37,7 @@ void Scene::Deinit()
 
 	m_lights.clear();
 	m_objects.clear();	
+//    m_depthMaterials.clear();
 
 	// ”дал¤ем камеру
 	m_pCamera = NULL;
@@ -45,6 +52,10 @@ void Scene::AddObject(Object * pObject)
 
 	pObject->Init();
 	m_objects.push_back(pObject);
+//    m_depthMaterials.emplace_back();
+//    m_depthMaterials.back().Init();
+    // I can't save pointers to materials beforehand because materials can be changed
+    //m_materials.resize(1 + m_materials.size());
 }
 
 void Scene::AddLight(Light * pLight)
@@ -120,15 +131,21 @@ void Scene::Render() {
    // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
         //                                cameraTransform->GetUp(), PI);
 
-    pRenderTextureImpl -> setRenderLocation(DEPTH_TEXTURE);
-
+    pRenderTextureImpl -> SetRenderLocation(DEPTH_TEXTURE);
 
     {
+//        std::generate(m_materials.begin(), m_materials.end(),
+//                      [this] () -> Material const * {
+//                          static std::list<Object const *>::iterator iter = this -> m_objects.begin();
+//                          return (*(iter++)) -> m_pMaterial;
+//                      });
+//        std::fill(m_objects.begin(), m_objects.end(), &depthMaterial);
         // Render
         Render1();
+        //std::copy(m_materials.begin(), m_materials.end(), m_objects.begin());
     }
 
-    pRenderTextureImpl -> setRenderLocation(SCREEN);
+    pRenderTextureImpl -> SetRenderLocation(SCREEN);
 
     //camera.GetObjectPtr()->m_pTransform = transformTemp;
     cameraTransform->SetPosition(transformTemp.GetPosition());
@@ -136,9 +153,7 @@ void Scene::Render() {
     // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
     camera.isPerspective = true;
 
-
-
-    {
+    {   
         Render1();
     }
 }
@@ -150,23 +165,26 @@ void Scene::Render1()
 		return;
 	}
 
-	// Set viewport of current camera
-	{
-		Rect viewport = m_pCamera->GetViewport();
+    // Set viewport of current camera
+    {
+        Rect viewport = m_pCamera->GetViewport();
 
-		GraphicsEngineContext *	pContext	= Application::Instance().GetContext();
-		GraphicsEngineImpl *	pImpl		= pContext->m_pImpl;
+        GraphicsEngineContext *	pContext	= Application::Instance().GetContext();
+        GraphicsEngineImpl *	pImpl		= pContext->m_pImpl;
 		
-		pImpl->SetViewport(viewport);
-	}
+        pImpl->SetViewport(viewport);
+    }
 	
+
+    RenderLocation currentRenderLocation = pRenderTextureImpl -> GetRenderLocation();
 	std::list<const Object *>::iterator iter;
 	for (iter = m_objects.begin(); iter != m_objects.end(); iter++)
 	{
 		const Object * pObject = (*iter);
 		if (NULL == pObject) continue;
 
-		Material *	pMaterial	= pObject->m_pMaterial;
+        Material *	pMaterial	= (SCREEN == currentRenderLocation) ? pObject->m_pMaterial
+                                                                    : pObject->m_pDepthMaterial.get();
 		Mesh *		pMesh		= pObject->m_pMesh;
 		if ((NULL == pMaterial) || (NULL == pMesh)) continue;
 		if (!pMaterial->IsInited()) continue;
