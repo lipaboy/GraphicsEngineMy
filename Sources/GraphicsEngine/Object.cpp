@@ -69,7 +69,8 @@ void Object::Init()
 		m_pMaterial->Init(this);
 	}
 
-    m_pDepthMaterial = std::shared_ptr<Material>(new MaterialShadowMappingDepth());
+    if (nullptr == m_pDepthMaterial)
+        m_pDepthMaterial = std::shared_ptr<Material>(new MaterialShadowMappingDepth());
     m_pDepthMaterial->Init(this);
 }
 

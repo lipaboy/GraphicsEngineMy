@@ -22,7 +22,7 @@ public:
     //void Deinit();
 
     void SetRenderLocation(RenderLocation location);
-    RenderLocation GetRenderLocation() const { return location; }
+    RenderLocation GetRenderLocation() const { return previousLocation; }
 
 public:
     GLuint depthMapFBO;
@@ -35,7 +35,7 @@ public:
     Rect tempViewport;
     int tempWidth;
     int tempHeight;
-    RenderLocation location;
+    RenderLocation previousLocation;
 };
 
 

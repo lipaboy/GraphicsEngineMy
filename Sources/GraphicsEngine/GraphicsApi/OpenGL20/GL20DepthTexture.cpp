@@ -39,7 +39,7 @@ void GL20DepthTexture::SetRenderLocation(RenderLocation location)
 
     case DEPTH_TEXTURE:
 
-        if (location == SCREEN) {
+        if (previousLocation == SCREEN) {
             tempViewport = m_scene.GetCamera().GetViewport();
             tempHeight = Screen::GetHeight();
             tempWidth = Screen::GetWidth();
@@ -52,7 +52,7 @@ void GL20DepthTexture::SetRenderLocation(RenderLocation location)
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        location = DEPTH_TEXTURE;
+        previousLocation = DEPTH_TEXTURE;
         break;
 
     case SCREEN:
@@ -65,7 +65,7 @@ void GL20DepthTexture::SetRenderLocation(RenderLocation location)
         glBindTexture(GL_TEXTURE_2D, depthMap);
         glClearDepth(1.0f);
 
-        location = SCREEN;
+        previousLocation = SCREEN;
         break;
     }
 }
