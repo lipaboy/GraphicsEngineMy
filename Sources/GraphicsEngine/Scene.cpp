@@ -156,7 +156,6 @@ void Scene::Render1()
 		
         pImpl->SetViewport(viewport);
     }
-	
 
     RenderLocation currentRenderLocation = pRenderTextureImpl -> GetRenderLocation();
 	std::list<const Object *>::iterator iter;
@@ -165,8 +164,9 @@ void Scene::Render1()
 		const Object * pObject = (*iter);
 		if (NULL == pObject) continue;
 
-        std::shared_ptr<Material> pMaterial = (SCREEN == currentRenderLocation || true) ? pObject->m_pMaterial
-                                                                    : pObject->m_pDepthMaterial;
+        std::shared_ptr<Material> pMaterial =
+                (SCREEN == currentRenderLocation) ? pObject->m_pMaterial
+                                                        : pObject->m_pDepthMaterial;
 		Mesh *		pMesh		= pObject->m_pMesh;
         if ((nullptr == pMaterial) || (NULL == pMesh)) continue;
 		if (!pMaterial->IsInited()) continue;

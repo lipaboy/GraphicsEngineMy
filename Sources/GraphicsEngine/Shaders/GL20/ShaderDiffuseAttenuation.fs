@@ -136,14 +136,14 @@ void main()
 
         float shadow = ShadowCalculation(FragPosLightSpace);
         // TODO: you need to check lightSpaceMatrix on correction
-        //vec3 lighting = (1.0 - shadow) * col;
+        vec3 lighting = (1.0 - shadow) * col;
         float visibility = 1.0;
         if ( texture( depthMap, FragPosLightSpace.xy ).z  <  FragPosLightSpace.z){
             visibility = 0.5;
         }
 
         //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthFloat) / far_plane.x), 1.0); // perspective
-        gl_FragColor = vec4(vec3(col), 1.0); // orthographic
-        //gl_FragColor = vec4(lighting, 1.0);
+        //gl_FragColor = vec4(vec3(col), 1.0); // orthographic
+        gl_FragColor = vec4(lighting, 1.0);
         //gl_FragColor = vec4(col * visibility, 1.0);
 }
