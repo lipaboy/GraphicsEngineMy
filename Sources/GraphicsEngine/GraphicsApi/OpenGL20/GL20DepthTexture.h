@@ -35,7 +35,7 @@ public:
     Rect tempViewport;
     int tempWidth;
     int tempHeight;
-    RenderLocation previousLocation;
+    RenderLocation previousLocation = SCREEN;
 };
 
 

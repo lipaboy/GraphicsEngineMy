@@ -51,7 +51,7 @@ float ShadowCalculation(vec4 fragPosLightSpace)
     float currentDepth = projCoords.z;
 
     // check whether current frag pos is in shadow
-    float shadow = currentDepth > closestDepth  ? 1.0 : 0.0;
+    float shadow = currentDepth > closestDepth  ? 0.6 : 0.0;
 
     return shadow;
 }
@@ -132,7 +132,7 @@ void main()
         }
 
         vec3 depthValue = texture(depthMap, TexCoords).rgb;
-        //float depthFloat = depthValue.x;
+        float depthFloat = depthValue.x;
 
         float shadow = ShadowCalculation(FragPosLightSpace);
         // TODO: you need to check lightSpaceMatrix on correction
@@ -143,7 +143,7 @@ void main()
         }
 
         //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthFloat) / far_plane.x), 1.0); // perspective
-        //gl_FragColor = vec4(vec3(col), 1.0); // orthographic
+        //gl_FragColor = vec4(vec3(col) * depthFloat, 1.0); // orthographic
         gl_FragColor = vec4(lighting, 1.0);
         //gl_FragColor = vec4(col * visibility, 1.0);
 }

@@ -61,28 +61,51 @@ void MaterialLightReflect::SetMaterial()
         system_clock::now().time_since_epoch()
         );
 
-    const Matrix4x4 lightSpaceMatrix = matWorldViewProjT;
-//    Matrix4x4 biasMatrix = {
-//        0.5, 0.0, 0.0, 0.0,
-//        0.0, 0.5, 0.0, 0.0,
-//        0.0, 0.0, 0.5, 0.0,
-//        0.5, 0.5, 0.5, 1.0
-//    };
-//    Camera & camera = Application::Instance().GetScene().GetCamera();
+    //---------------------Light space matrix-----------------------//
+    Camera & camera = Application::Instance().GetScene().GetCamera();
+
+    Matrix4x4 biasMatrix = {
+        0.5, 0.0, 0.0, 0.0,
+        0.0, 0.5, 0.0, 0.0,
+        0.0, 0.0, 0.5, 0.0,
+        0.5, 0.5, 0.5, 1.0
+    };
+
 //    bool temp = camera.isPerspective;
 //    camera.isPerspective = false;
-//    Vector3 lightInvDir =  -lights.front()->GetDirection();
 
-//    // Compute the MVP matrix from the light's point of view
-//    Matrix4x4 depthViewMatrix;
-//    depthViewMatrix = glm::lookAt(
-//                lightInvDir.toGlmVec3(),
-//                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-//    depthViewMatrix = depthViewMatrix.Transpose();
-//    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
-//                                                                        SceneUtils::GetMatrixProj());
-//    lightSpaceMatrix = lightSpaceMatrix * biasMatrix.Transpose();
+//    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
+//    Transform transformTemp(*cameraTransform);
+
+//    cameraTransform -> SetPosition(Vector3(10, 0, 0));
+//    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
+//    cameraTransform -> SetScale(Vector3(1, 1, 1));
+
+//    const Matrix4x4 & matWorldCam	= SceneUtils::GetMatrixWorld(camera.GetConstObjectPtr());
+//    const Matrix4x4 & matViewCam	= SceneUtils::GetMatrixView();
+//    const Matrix4x4 & matProjCam	= SceneUtils::GetMatrixProj();
+
+//    const Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorldCam, matViewCam, matProjCam);
+//            //matWorldViewProjT;
+
+//    cameraTransform->SetPosition(transformTemp.GetPosition());
+//    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+//    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
 //    camera.isPerspective = temp;
+
+
+    bool temp = camera.isPerspective;
+    camera.isPerspective = false;
+    // Compute the MVP matrix from the light's point of view
+    Matrix4x4 depthViewMatrix;
+    depthViewMatrix = glm::lookAt(
+                glm::vec3(20, 0, 0),
+                                glm::vec3(0,0,0), glm::vec3(0,1,0));
+    depthViewMatrix = depthViewMatrix.Transpose();
+    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
+                                                                        SceneUtils::GetMatrixProj());
+    lightSpaceMatrix = lightSpaceMatrix; //* biasMatrix.Transpose();
+   camera.isPerspective = temp;
     
     SetMaterialBegin();
     {

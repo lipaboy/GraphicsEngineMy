@@ -49,6 +49,7 @@ void GL20DepthTexture::SetRenderLocation(RenderLocation location)
         m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
         Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
         //glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+        //glActiveTexture(GL_TEXTURE0);
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -62,6 +63,7 @@ void GL20DepthTexture::SetRenderLocation(RenderLocation location)
         Screen::SetResolution(tempWidth, tempHeight);
         //glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, depthMap);
         glClearDepth(1.0f);
 

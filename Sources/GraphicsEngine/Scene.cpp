@@ -103,9 +103,9 @@ void Scene::Render() {
     Camera & camera = GetCamera();
 
     camera.isPerspective = false;
-    Transform transformTemp(*(camera.GetObjectPtr()->m_pTransform));
     const std::list<const Light *> & lights = GetLights();
     Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
+    Transform transformTemp(*cameraTransform);
     Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
     // There is a problem and it isn't in camera beforeward setting

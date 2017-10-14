@@ -3,6 +3,7 @@
 // Shader parameters
 uniform mat4 matrixWorldViewProjT;
 uniform vec4 timeT;
+uniform mat4 lightSpaceMatrix;
 
 // Vertex structure
 attribute vec3 position;
@@ -17,8 +18,6 @@ attribute vec2 aTexCoords;
 
 varying vec2 TexCoords;
 varying vec4 FragPosLightSpace;
-
-uniform mat4 lightSpaceMatrix;
 
 
 void main()
