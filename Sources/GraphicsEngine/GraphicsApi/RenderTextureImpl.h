@@ -1,7 +1,7 @@
 #ifndef RENDERTEXTUREIMPL_H
 #define RENDERTEXTUREIMPL_H
 
-enum RenderLocation {
+enum RenderTarget {
     SCREEN,
     DEPTH_TEXTURE
 };
@@ -11,9 +11,9 @@ class RenderTextureImpl
 public:
     virtual void Init() = 0;
 
-    virtual void SetRenderLocation(RenderLocation location) = 0;
+    virtual void SetRenderTarget(RenderTarget location) = 0;
 
-    virtual RenderLocation GetRenderLocation() const = 0;
+    virtual RenderTarget GetRenderLocation() const = 0;
 };
 
 #endif // RENDERTEXTURE_H

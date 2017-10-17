@@ -7,9 +7,9 @@
 
 enum LightType
 {
-	LIGHT_DIRECTIONAL,
-	LIGHT_POINT,
-	LIGHT_SPOT,
+    LIGHT_DIRECTIONAL = 1,
+    LIGHT_POINT       = 2,
+    LIGHT_SPOT        = 3
 };
 
 // Abstract class
@@ -21,7 +21,7 @@ protected:
 public:
     virtual ~AbstractLight() {}
 
-    virtual Matrix4x4 const & GetLightSpaceMatrix() const = 0;
+    virtual Matrix4x4 const & GetProjectionMatrix() const = 0;
 	
     virtual Vector4 GetType() const = 0;
 

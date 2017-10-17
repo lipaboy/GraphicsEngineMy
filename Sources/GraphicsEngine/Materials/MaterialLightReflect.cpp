@@ -104,7 +104,7 @@ void MaterialLightReflect::SetMaterial()
     depthViewMatrix = depthViewMatrix.Transpose();
     Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, depthViewMatrix,
                                                                         SceneUtils::GetMatrixProj());
-    lightSpaceMatrix = lightSpaceMatrix; //* biasMatrix.Transpose();
+    lightSpaceMatrix = matWorldViewProjT; //* biasMatrix.Transpose();
    camera.isPerspective = temp;
     
     SetMaterialBegin();

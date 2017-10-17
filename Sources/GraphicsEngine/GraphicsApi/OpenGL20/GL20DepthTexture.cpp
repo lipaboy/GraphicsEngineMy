@@ -33,7 +33,7 @@ void GL20DepthTexture::Init()
 
 }
 
-void GL20DepthTexture::SetRenderLocation(RenderLocation location)
+void GL20DepthTexture::SetRenderTarget(RenderTarget location)
 {
     switch (location) {
 

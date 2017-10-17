@@ -120,14 +120,14 @@ void Scene::Render() {
    // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
         //                                cameraTransform->GetUp(), PI);
 
-    pRenderTextureImpl -> SetRenderLocation(DEPTH_TEXTURE);
+    pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
 
     {
         // Render
         Render1();
     }
 
-    pRenderTextureImpl -> SetRenderLocation(SCREEN);
+    pRenderTextureImpl -> SetRenderTarget(SCREEN);
 
     //camera.GetObjectPtr()->m_pTransform = transformTemp;
     cameraTransform->SetPosition(transformTemp.GetPosition());
@@ -157,7 +157,7 @@ void Scene::Render1()
         pImpl->SetViewport(viewport);
     }
 
-    RenderLocation currentRenderLocation = pRenderTextureImpl -> GetRenderLocation();
+    RenderTarget currentRenderLocation = pRenderTextureImpl -> GetRenderLocation();
 	std::list<const Object *>::iterator iter;
 	for (iter = m_objects.begin(); iter != m_objects.end(); iter++)
 	{

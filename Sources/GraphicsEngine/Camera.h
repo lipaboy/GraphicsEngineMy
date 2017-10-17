@@ -2,7 +2,9 @@
 #include "GraphicsEngine/Component.h"
 #include "GraphicsEngine/Matrix4x4.h"
 #include "GraphicsEngine/Rect.h"
+#include "Lights/Light.h"
 
+#include <memory>
 
 class Camera : public Component
 {
@@ -27,6 +29,7 @@ public:
 	const Matrix4x4 & GetMatrixProj();
 
     bool isPerspective = true;
+    std::shared_ptr<const AbstractLight> lightView = nullptr;
 
 private:
 //public:
@@ -44,4 +47,6 @@ private:
 	Matrix4x4 m_matProj;
 
 	Rect viewport;
+
+
 };

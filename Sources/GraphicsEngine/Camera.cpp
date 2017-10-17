@@ -84,6 +84,8 @@ void Camera::RecalculateMatrixProj()
                                       );
         m_matProj = m_matProj.Transpose();
 
+       // m_matProj = lightView->GetSpaceMatrix();
+
        // m_matProj = depthProjectionMatrix;
 #endif
     }

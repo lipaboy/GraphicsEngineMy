@@ -4,7 +4,7 @@
 class Object;
 
 
-class   Component
+class Component
 {
 public:
 	Component() 

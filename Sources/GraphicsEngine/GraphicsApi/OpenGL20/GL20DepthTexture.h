@@ -21,8 +21,8 @@ public:
     // TODO: add glDeleteFramebuffer
     //void Deinit();
 
-    void SetRenderLocation(RenderLocation location);
-    RenderLocation GetRenderLocation() const { return previousLocation; }
+    void SetRenderTarget(RenderTarget location);
+    RenderTarget GetRenderLocation() const { return previousLocation; }
 
 public:
     GLuint depthMapFBO;
@@ -35,7 +35,7 @@ public:
     Rect tempViewport;
     int tempWidth;
     int tempHeight;
-    RenderLocation previousLocation = SCREEN;
+    RenderTarget previousLocation = SCREEN;
 };
 
 
