@@ -2,7 +2,7 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/Camera.h"
 #include "GraphicsEngine/GraphicsEngine.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
 #include "GraphicsEngine/Meshes/MeshCube.h"
 #include "GraphicsEngine/Meshes/MeshCylinder.h"

@@ -3,7 +3,7 @@
 #include "GraphicsEngine/Materials/Material.h"
 #include "GraphicsEngine/Camera.h"
 #include "GraphicsEngine/Meshes/Mesh.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Application.h"
 
@@ -47,7 +47,7 @@ void Scene::AddObject(Object * pObject)
     m_objects.push_back(pObject);
 }
 
-void Scene::AddLight(Light * pLight)
+void Scene::AddLight(ILight * pLight)
 {
 	if (NULL == pLight)
 	{
@@ -76,7 +76,7 @@ Camera & Scene::GetCamera() const
 	return (*m_pCamera);
 }
 
-const std::list<const Light *> & Scene::GetLights() const
+const std::list<const ILight *> & Scene::GetLights() const
 {
 	return m_lights;
 }
@@ -103,7 +103,7 @@ void Scene::Render() {
     Camera & camera = GetCamera();
 
     camera.isPerspective = false;
-    const std::list<const Light *> & lights = GetLights();
+    const std::list<const ILight *> & lights = GetLights();
     Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
     Transform transformTemp(*cameraTransform);
     Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));

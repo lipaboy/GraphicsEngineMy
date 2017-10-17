@@ -1,7 +1,8 @@
 ﻿#pragma once
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/GraphicsEngine.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
+#include "GraphicsEngine/Lights/LightDirectional.h"
 
 #include "GraphicsEngine/Materials/MaterialTask01.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
@@ -81,7 +82,7 @@ public:
 //
 //		 Источник света #1
         {
-            Light * pLight = new Light(LightType::LIGHT_DIRECTIONAL);
+            ILight * pLight = new LightDirectional();
             pLight->SetColor(1,1,0);
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();

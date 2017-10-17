@@ -85,7 +85,8 @@ SOURCES += \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.cpp \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.cpp \
     ../Sources/lipaboyLibrary/src/maths/vector4d.cpp \
-    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.cpp
+    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.cpp \
+    ../Sources/GraphicsEngine/Lights/LightDirectional.cpp
 
 
 DISTFILES += \
@@ -188,7 +189,7 @@ HEADERS += \
     ../Sources/GraphicsEngine/GUI.h \
     ../Sources/GraphicsEngine/Input.h \
     ../Sources/GraphicsEngine/KeyCode.h \
-    ../Sources/GraphicsEngine/Light.h \
+    ../Sources/GraphicsEngine/Lights/Light.h \
     ../Sources/GraphicsEngine/Math.h \
     ../Sources/GraphicsEngine/MathConstants.h \
     ../Sources/GraphicsEngine/MathUtils.h \
@@ -219,4 +220,6 @@ HEADERS += \
     ../Sources/lipaboyLibrary/src/maths/rotateoperator.h \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.h \
     ../Sources/lipaboyLibrary/src/maths/vector4d.h \
-    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.h
+    ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.h \
+    ../Sources/GraphicsEngine/Lights/Light.h \
+    ../Sources/GraphicsEngine/Lights/LightDirectional.h

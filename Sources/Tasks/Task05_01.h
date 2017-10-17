@@ -7,7 +7,7 @@
 #include "GraphicsEngine/Scene.h"
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Materials/MaterialSand.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 
 
 class Task05_01: public Task

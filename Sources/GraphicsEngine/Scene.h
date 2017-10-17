@@ -6,7 +6,7 @@
 #include <memory>
 
 class Camera;
-class Light;
+class ILight;
 
 
 class Scene
@@ -17,12 +17,12 @@ public:
 	void Deinit();
 
 	void AddObject	(Object * pObject);
-	void AddLight	(Light * pLight);
+	void AddLight	(ILight * pLight);
 	
 	void SetCamera	(Camera * pCamera);	
 	Camera &		GetCamera() const;
 	
-	const std::list<const Light *> & GetLights() const;
+	const std::list<const ILight *> & GetLights() const;
 	
 	void Update();
 	void Render();
@@ -32,7 +32,7 @@ private:
 
 private:
 	std::list<const Object *>	m_objects;
-	std::list<const Light *>	m_lights;
+	std::list<const ILight *>	m_lights;
 	Camera *					m_pCamera;
 
     std::shared_ptr<RenderTextureImpl> pRenderTextureImpl;

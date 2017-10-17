@@ -7,7 +7,7 @@
 #include <memory>
 #include "GraphicsEngine/Transform.h"
 #include "GraphicsEngine/Camera.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 
 
 class GL20GraphicsEngine : public GraphicsEngineImpl

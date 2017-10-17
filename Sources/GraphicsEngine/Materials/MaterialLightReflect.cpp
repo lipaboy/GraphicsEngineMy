@@ -1,7 +1,7 @@
 #include "MaterialLightReflect.h"
 
 #include "GraphicsEngine/Transform.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
@@ -50,7 +50,7 @@ void MaterialLightReflect::SetMaterial()
     const Matrix4x4 matWorldNormal		= matWorld.Inverse();
 
     // Получили список всех источников света в сцене
-    std::list<const Light *> lights = SceneUtils::GetLights();
+    std::list<const ILight *> lights = SceneUtils::GetLights();
     const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
     const size_t MAX_LIGHT_COUNT = 3;
     const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
@@ -131,10 +131,10 @@ void MaterialLightReflect::SetMaterial()
 
         // Передаём параметры каждого источника света
         int i = 0;
-        std::list<const Light *>::iterator iter;
+        std::list<const ILight *>::iterator iter;
         for (iter = lights.begin(); iter != lights.end(); ++iter, ++i)
         {
-            const Light * pLight = *iter;
+            const ILight * pLight = *iter;
             const Vector4 lightType			= pLight->GetType();
             const Vector4 lightPosition		= Vector4( pLight->GetPosition(), 1 );
             const Vector4 lightDirection	= Vector4( pLight->GetDirection(), 0 );

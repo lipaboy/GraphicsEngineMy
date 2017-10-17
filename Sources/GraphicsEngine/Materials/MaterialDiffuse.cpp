@@ -1,6 +1,6 @@
 ﻿#include "MaterialDiffuse.h"
 #include "GraphicsEngine/Transform.h"
-#include "GraphicsEngine/Light.h"
+#include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 

@@ -12,10 +12,11 @@ enum LightType
 	LIGHT_SPOT,
 };
 
-class Light : public Component
+// Interface
+class ILight : public Component
 {
-public:
-	Light(LightType type)
+protected:
+    ILight(LightType type)
 	{
 		switch (type)
 		{
@@ -34,7 +35,10 @@ public:
 				break;
 		}
 	}
-	virtual ~Light() {}
+public:
+    virtual ~ILight() {}
+
+    virtual Matrix4x4 const & GetLightSpaceMatrix() const = 0;
 	
 	virtual Vector4 GetType() const
 	{
@@ -82,5 +86,5 @@ protected:
 	float	m_intensity;
 
 private:
-	Light();
+    ILight();
 };

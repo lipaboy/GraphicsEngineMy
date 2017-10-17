@@ -43,7 +43,7 @@ public:
 		return eyePos;
 	}
 
-	static const std::list<const Light *> GetLights()
+	static const std::list<const ILight *> GetLights()
 	{
 		const Scene & scene = Application::Instance().GetScene();
 		return scene.GetLights();
