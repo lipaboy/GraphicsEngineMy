@@ -12,38 +12,18 @@ enum LightType
 	LIGHT_SPOT,
 };
 
-// Interface
-class ILight : public Component
+// Abstract class
+class AbstractLight : public Component
 {
 protected:
-    ILight(LightType type)
-	{
-		switch (type)
-		{
-			case LIGHT_DIRECTIONAL:
-				m_type = 1;
-				break;
-			case LIGHT_POINT:
-				m_type = 2;
-				break;
-			case LIGHT_SPOT:
-				m_type = 3;
-				break;
-			
-			default:
-				m_type = 1;
-				break;
-		}
-	}
+    AbstractLight() {}
+
 public:
-    virtual ~ILight() {}
+    virtual ~AbstractLight() {}
 
     virtual Matrix4x4 const & GetLightSpaceMatrix() const = 0;
 	
-	virtual Vector4 GetType() const
-	{
-		return Vector4(m_type,0,0,0);
-	}
+    virtual Vector4 GetType() const = 0;
 
 	virtual Vector4 GetColor() const
 	{
@@ -81,10 +61,8 @@ public:
 	}
 	
 protected:
-	int		m_type;
 	Vector3	m_color;
 	float	m_intensity;
 
-private:
-    ILight();
+
 };

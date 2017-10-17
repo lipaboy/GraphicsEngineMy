@@ -47,7 +47,7 @@ void Scene::AddObject(Object * pObject)
     m_objects.push_back(pObject);
 }
 
-void Scene::AddLight(ILight * pLight)
+void Scene::AddLight(AbstractLight * pLight)
 {
 	if (NULL == pLight)
 	{
@@ -76,7 +76,7 @@ Camera & Scene::GetCamera() const
 	return (*m_pCamera);
 }
 
-const std::list<const ILight *> & Scene::GetLights() const
+const std::list<const AbstractLight *> & Scene::GetLights() const
 {
 	return m_lights;
 }
@@ -103,7 +103,7 @@ void Scene::Render() {
     Camera & camera = GetCamera();
 
     camera.isPerspective = false;
-    const std::list<const ILight *> & lights = GetLights();
+    const std::list<const AbstractLight *> & lights = GetLights();
     Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
     Transform transformTemp(*cameraTransform);
     Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));

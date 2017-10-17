@@ -82,7 +82,7 @@ public:
 //
 //		 Источник света #1
         {
-            ILight * pLight = new LightDirectional();
+            AbstractLight * pLight = new LightDirectional();
             pLight->SetColor(1,1,0);
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();
