@@ -13,7 +13,7 @@ public:
 
     virtual void SetRenderTarget(RenderTarget location) = 0;
 
-    virtual RenderTarget GetRenderLocation() const = 0;
+    virtual RenderTarget GetRenderTarget() const = 0;
 };
 
 #endif // RENDERTEXTURE_H

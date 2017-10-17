@@ -157,7 +157,7 @@ void Scene::Render1()
         pImpl->SetViewport(viewport);
     }
 
-    RenderTarget currentRenderLocation = pRenderTextureImpl -> GetRenderLocation();
+    RenderTarget currentRenderLocation = pRenderTextureImpl -> GetRenderTarget();
 	std::list<const Object *>::iterator iter;
 	for (iter = m_objects.begin(); iter != m_objects.end(); iter++)
 	{

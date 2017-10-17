@@ -22,7 +22,7 @@ public:
     //void Deinit();
 
     void SetRenderTarget(RenderTarget location);
-    RenderTarget GetRenderLocation() const { return previousLocation; }
+    RenderTarget GetRenderTarget() const { return previousLocation; }
 
 public:
     GLuint depthMapFBO;
