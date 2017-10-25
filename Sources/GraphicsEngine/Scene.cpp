@@ -164,6 +164,7 @@ void Scene::Render1()
 		const Object * pObject = (*iter);
 		if (NULL == pObject) continue;
 
+        // You can play with switching of shaders (etc. set the same shader)
         std::shared_ptr<Material> pMaterial =
                 (SCREEN == currentRenderLocation) ? pObject->m_pMaterial
                                                         : pObject->m_pDepthMaterial;
