@@ -73,9 +73,9 @@ public:
 	double Length() const
 	{
 		return sqrt(x*x + y*y + z*z);
-	}
+    }
 
-	Vector3 & Normalize()
+    Vector3 & Normalize()
 	{
 		*this *= (1.0 / this->Length());
 

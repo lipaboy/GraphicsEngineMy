@@ -23,14 +23,19 @@ void LightDirectional::RecalcLightSpaceMatrix()
     bool temp = camera.isPerspective;
     camera.isPerspective = false;
 
-    Matrix4x4 depthViewMatrix;
-    depthViewMatrix = glm::lookAt(
-                glm::vec3(20, 0, 0),
-                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-    depthViewMatrix = depthViewMatrix.Transpose();
+    Transform * objectTrans = GetConstObjectPtr()->m_pTransform;
+    Vector3 forward = this->GetDirection();
+    forward.Normalize();
+
+    Matrix4x4 depthViewMatrix = Matrix4x4::LookAtLH(20 * forward, Vector3(0, 0, 0), objectTrans->GetUp());
+            //GetConstObjectPtr()->m_pTransform->GetMatView();
+//    depthViewMatrix = glm::lookAt(
+//                glm::vec3(20, 0, 0),
+//                                glm::vec3(0,0,0), glm::vec3(0,1,0));
+    //depthViewMatrix = depthViewMatrix.Transpose();
     m_spaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), depthViewMatrix,
                                                                         SceneUtils::GetMatrixProj());
-
+   // m_spaceMatrix = biasMatrix * m_spaceMatrix;
     camera.isPerspective = temp;
 
 }
