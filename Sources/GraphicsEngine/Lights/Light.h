@@ -21,7 +21,7 @@ protected:
 public:
     virtual ~AbstractLight() {}
 
-    virtual Matrix4x4 const & GetProjectionMatrix() const = 0;
+    virtual Matrix4x4 const & GetLightSpaceMatrix() const = 0;
 	
     virtual Vector4 GetType() const = 0;
 
@@ -59,7 +59,7 @@ public:
 		// Clamp intensity by interval [0, +infinity]
 		m_intensity = (intensity >= 0) ? intensity : 0;
 	}
-	
+
 protected:
 	Vector3	m_color;
 	float	m_intensity;

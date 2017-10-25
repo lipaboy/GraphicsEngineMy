@@ -43,7 +43,7 @@ public:
 		return eyePos;
 	}
 
-	static const std::list<const AbstractLight *> GetLights()
+    static const std::list<const AbstractLight *> & GetLights()
 	{
 		const Scene & scene = Application::Instance().GetScene();
 		return scene.GetLights();

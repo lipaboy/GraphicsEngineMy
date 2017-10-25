@@ -50,7 +50,7 @@ void MaterialLightReflect::SetMaterial()
     const Matrix4x4 matWorldNormal		= matWorld.Inverse();
 
     // Получили список всех источников света в сцене
-    std::list<const AbstractLight *> lights = SceneUtils::GetLights();
+    const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
     const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
     const size_t MAX_LIGHT_COUNT = 3;
     const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
@@ -62,53 +62,8 @@ void MaterialLightReflect::SetMaterial()
         );
 
     //---------------------Light space matrix-----------------------//
-    Camera & camera = Application::Instance().GetScene().GetCamera();
 
-    Matrix4x4 biasMatrix = {
-        0.5, 0.0, 0.0, 0.0,
-        0.0, 0.5, 0.0, 0.0,
-        0.0, 0.0, 0.5, 0.0,
-        0.5, 0.5, 0.5, 1.0
-    };
-
-//    bool temp = camera.isPerspective;
-//    camera.isPerspective = false;
-
-//    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
-//    Transform transformTemp(*cameraTransform);
-
-//    cameraTransform -> SetPosition(Vector3(10, 0, 0));
-//    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
-//    cameraTransform -> SetScale(Vector3(1, 1, 1));
-
-//    const Matrix4x4 & matWorldCam	= SceneUtils::GetMatrixWorld(camera.GetConstObjectPtr());
-//    const Matrix4x4 & matViewCam	= SceneUtils::GetMatrixView();
-//    const Matrix4x4 & matProjCam	= SceneUtils::GetMatrixProj();
-
-//    const Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorldCam, matViewCam, matProjCam);
-//            //matWorldViewProjT;
-
-//    cameraTransform->SetPosition(transformTemp.GetPosition());
-//    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
-//    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
-//    camera.isPerspective = temp;
-
-
-    bool temp = camera.isPerspective;
-    camera.isPerspective = false;
-    // Compute the MVP matrix from the light's point of view
-    Matrix4x4 depthViewMatrix;
-    depthViewMatrix = glm::lookAt(
-                glm::vec3(20, 0, 0),
-                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-    depthViewMatrix = depthViewMatrix.Transpose();
-    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), depthViewMatrix,
-                                                                        SceneUtils::GetMatrixProj());
-    lightSpaceMatrix = lightSpaceMatrix
-            //* biasMatrix.Transpose()
-            ;
-    //lightSpaceMatrix = matWorldViewProjT; //* biasMatrix.Transpose();
-   camera.isPerspective = temp;
+    Matrix4x4 const & lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
     
     SetMaterialBegin();
     {
@@ -134,7 +89,7 @@ void MaterialLightReflect::SetMaterial()
 
         // Передаём параметры каждого источника света
         int i = 0;
-        std::list<const AbstractLight *>::iterator iter;
+        std::list<const AbstractLight *>::const_iterator iter;
         for (iter = lights.begin(); iter != lights.end(); ++iter, ++i)
         {
             const AbstractLight * pLight = *iter;

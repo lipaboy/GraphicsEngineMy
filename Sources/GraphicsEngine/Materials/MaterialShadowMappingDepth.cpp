@@ -24,7 +24,6 @@ void MaterialShadowMappingDepth::Deinit()
 
 void MaterialShadowMappingDepth::SetMaterial()
 {
-    Camera & camera = Application::Instance().GetScene().GetCamera();
     // Заполняем матрицы World, View, Proj
     const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(m_pObject);
     const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
@@ -32,30 +31,8 @@ void MaterialShadowMappingDepth::SetMaterial()
 
     const Matrix4x4 matWorldViewProjT	= MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 
-    Matrix4x4 biasMatrix = {
-        0.5, 0.0, 0.0, 0.0,
-        0.0, 0.5, 0.0, 0.0,
-        0.0, 0.0, 0.5, 0.0,
-        0.5, 0.5, 0.5, 1.0
-    };
-
-    bool temp = camera.isPerspective;
-    camera.isPerspective = false;
-    // Compute the MVP matrix from the light's point of view
-    Matrix4x4 depthViewMatrix;
-    depthViewMatrix = glm::lookAt(
-                glm::vec3(20, 0, 0),
-                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-    depthViewMatrix = depthViewMatrix.Transpose();
-    Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), depthViewMatrix,
-                                                                        SceneUtils::GetMatrixProj());
-    lightSpaceMatrix = lightSpaceMatrix
-            //* biasMatrix.Transpose()
-            ;
-    //lightSpaceMatrix = matWorldViewProjT;
-    camera.isPerspective = temp;
-    //Matrix4x4 lightSpaceMatrix = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
-    //lightSpaceMatrix = lightSpaceMatrix * biasMatrix.Transpose();
+    const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
+    const Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
 
     SetMaterialBegin();
     {
