@@ -102,23 +102,24 @@ void Scene::Render() {
 
     Camera & camera = GetCamera();
 
-    camera.isPerspective = false;
+//    camera.isPerspective = false;
     const std::list<const AbstractLight *> & lights = GetLights();
-    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
-    Transform transformTemp(*cameraTransform);
-    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
+    camera.SetLightSide(lights.front());
+//    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
+//    Transform transformTemp(*cameraTransform);
+//    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-    // There is a problem and it isn't in camera beforeward setting
+//    // There is a problem and it isn't in camera beforeward setting
 
-    //cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
-    cameraTransform -> SetPosition(Vector3(10, 0, 0));
-    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
-    cameraTransform -> SetScale(Vector3(1, 1, 1));
-//    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
-    //cameraTransform -> Rotate(0, 180, 0);
+//    //cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
+//    cameraTransform -> SetPosition(Vector3(20, 0, 0));
+//    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
+//    cameraTransform -> SetScale(Vector3(1, 1, 1));
+////    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
+//    //cameraTransform -> Rotate(0, 180, 0);
 
-   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
-        //                                cameraTransform->GetUp(), PI);
+//   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
+//        //                                cameraTransform->GetUp(), PI);
 
     pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
 
@@ -128,12 +129,13 @@ void Scene::Render() {
     }
 
     pRenderTextureImpl -> SetRenderTarget(SCREEN);
+    camera.SetCameraSide();
 
-    //camera.GetObjectPtr()->m_pTransform = transformTemp;
-    cameraTransform->SetPosition(transformTemp.GetPosition());
-    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
-    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
-    camera.isPerspective = true;
+//    //camera.GetObjectPtr()->m_pTransform = transformTemp;
+//    cameraTransform->SetPosition(transformTemp.GetPosition());
+//    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
+//    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
+//    camera.isPerspective = true;
 
     {   
         Render1();

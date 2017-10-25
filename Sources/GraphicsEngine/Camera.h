@@ -28,8 +28,13 @@ public:
 	const Matrix4x4 & GetMatrixView();
 	const Matrix4x4 & GetMatrixProj();
 
+    // My code
+    // Camera will be looking from light position
+    void SetLightSide(AbstractLight const * light) { lightSide = light; }
+    void SetCameraSide() { lightSide = nullptr; }
+
     bool isPerspective = true;
-    std::shared_ptr<const AbstractLight> lightView = nullptr;
+    const AbstractLight * lightSide = nullptr;
 
 private:
 //public:

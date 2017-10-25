@@ -17,6 +17,12 @@ void LightDirectional::RecalcLightSpaceMatrix()
         0.0, 0.0, 0.5, 0.0,
         0.5, 0.5, 0.5, 1.0
     };
+    Matrix4x4 reflectMat = {
+        1., 0., 0., 0.,
+        0., 1., 0., 0.,
+        0., 0.,-1., 0.,
+        0., 0., 0., 1.
+    };
 
     Camera & camera = Application::Instance().GetScene().GetCamera();
 
@@ -27,12 +33,17 @@ void LightDirectional::RecalcLightSpaceMatrix()
     Vector3 forward = this->GetDirection();
     forward.Normalize();
 
-    Matrix4x4 depthViewMatrix = Matrix4x4::LookAtLH(20 * forward, Vector3(0, 0, 0), objectTrans->GetUp());
+    Matrix4x4 depthViewMatrix = Matrix4x4::LookAtLH(//Vector3(20, 0, 0)
+                                                    -20 * forward
+                                                    , forward,
+                                                    objectTrans->GetUp()) * biasMatrix.Transpose();
+    //depthViewMatrix = objectTrans->GetMatView();
             //GetConstObjectPtr()->m_pTransform->GetMatView();
+//    Matrix4x4 depthViewMatrix;
 //    depthViewMatrix = glm::lookAt(
 //                glm::vec3(20, 0, 0),
 //                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-    //depthViewMatrix = depthViewMatrix.Transpose();
+//    depthViewMatrix = (depthViewMatrix * reflectMat).Transpose();
     m_spaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), depthViewMatrix,
                                                                         SceneUtils::GetMatrixProj());
    // m_spaceMatrix = biasMatrix * m_spaceMatrix;

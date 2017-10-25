@@ -195,6 +195,7 @@ void Transform::Recalc()
 
 	// ѕересчитаем вектора m_forward, m_right, m_up
 	{
+        // forward doesn't depend on m_position (because 4 coord == 0)
 		Vector4 forward4 = m_matWorld * Vector4(0, 0, 1, 0);
 		m_forward = forward4.ToVector3();
 		m_forward.Normalize();
@@ -211,6 +212,7 @@ void Transform::Recalc()
 	// ѕересчитываем матрицу View
 	{
 		m_matView = Matrix4x4::LookAtLH(m_position, m_position + m_forward, m_up);
+        // What for? And do it need for light space matrix
         Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
         m_matView = matRotAroundCenter * m_matView;
 	}

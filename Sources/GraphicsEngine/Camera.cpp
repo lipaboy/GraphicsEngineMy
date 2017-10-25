@@ -46,7 +46,10 @@ Rect Camera::GetViewport()
 
 const Matrix4x4 & Camera::GetMatrixView()
 {
-	return m_pObject->m_pTransform->GetMatView();
+    // TODO:    wrong LightDirectional's matView
+    if (nullptr == lightSide)
+        return m_pObject->m_pTransform->GetMatView();
+    return lightSide->GetConstObjectPtr()->m_pTransform->GetMatView();
 }
 
 const Matrix4x4 & Camera::GetMatrixProj()
@@ -72,12 +75,13 @@ void Camera::RecalculateMatrixProj()
 
 	float aspect = (sw * vw) / (sh * vh);
 	
-    if (isPerspective)
+    if (nullptr == lightSide)
         m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
-    else {
+    else if (LIGHT_DIRECTIONAL == lightSide->GetType().x) {
+        // TODO: make it for Left hand sys coords
 #ifdef CAN_USE_OPEN_GL
         // left, right, bottom, top, near, far
-        float val = 10 ;
+        float val = 1 ;
         m_matProj = glm::ortho<float>(-val,val,-val,val
                                                            // ,-10, 15
                                       ,m_nearPlane, m_farPlane

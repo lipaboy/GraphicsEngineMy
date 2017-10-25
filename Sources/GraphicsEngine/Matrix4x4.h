@@ -307,6 +307,7 @@ struct Matrix4x4
 		return result;
 	}
 
+    // !Left hand coordinate system
 	static Matrix4x4 LookAtLH(Vector3 eyePoint, Vector3 lookAtPoint, Vector3 up)
 	{
 		Vector3 zaxis = (lookAtPoint - eyePoint).Normalize();
