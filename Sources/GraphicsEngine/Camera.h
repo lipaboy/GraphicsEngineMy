@@ -32,6 +32,7 @@ public:
     // Camera will be looking from light position
     void SetLightSide(AbstractLight const * light) { lightSide = light; }
     void SetCameraSide() { lightSide = nullptr; }
+    const AbstractLight * GetLightSide() const { return lightSide; }
 
     bool isPerspective = true;
     const AbstractLight * lightSide = nullptr;

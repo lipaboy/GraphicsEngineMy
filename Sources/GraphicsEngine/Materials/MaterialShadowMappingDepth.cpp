@@ -32,7 +32,9 @@ void MaterialShadowMappingDepth::SetMaterial()
     const Matrix4x4 matWorldViewProjT	= MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 
     const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
-    const Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+    Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+    lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
+    //lights.front()->SetLightSpaceMatrix(matWorldViewProjT);
 
     SetMaterialBegin();
     {
@@ -41,8 +43,8 @@ void MaterialShadowMappingDepth::SetMaterial()
         SetVertexShaderEnd();
 
         // Empty
-//        SetPixelShaderBegin();      // == fragment shader
-//        SetPixelShaderEnd();
+        SetPixelShaderBegin();      // == fragment shader
+        SetPixelShaderEnd();
     }
     SetMaterialEnd();
 }

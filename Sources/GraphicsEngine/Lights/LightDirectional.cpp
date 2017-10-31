@@ -26,8 +26,8 @@ void LightDirectional::RecalcLightSpaceMatrix()
 
     Camera & camera = Application::Instance().GetScene().GetCamera();
 
-    bool temp = camera.isPerspective;
-    camera.isPerspective = false;
+//    bool temp = camera.isPerspective;
+//    camera.isPerspective = false;
 
     Transform * objectTrans = GetConstObjectPtr()->m_pTransform;
     Vector3 forward = this->GetDirection();
@@ -44,9 +44,16 @@ void LightDirectional::RecalcLightSpaceMatrix()
 //                glm::vec3(20, 0, 0),
 //                                glm::vec3(0,0,0), glm::vec3(0,1,0));
 //    depthViewMatrix = (depthViewMatrix * reflectMat).Transpose();
-    m_spaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), depthViewMatrix,
-                                                                        SceneUtils::GetMatrixProj());
+
+
+    auto temp = camera.GetLightSide();
+    camera.SetLightSide(this);
+    const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(this->GetObjectPtr());
+    const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
+    const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
+    m_spaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), matView,
+                                                                        matProj);
+    camera.SetLightSide(temp);
    // m_spaceMatrix = biasMatrix * m_spaceMatrix;
-    camera.isPerspective = temp;
 
 }

@@ -10,6 +10,7 @@ attribute vec3 position;
 attribute vec4 color;
 attribute vec3 normal;
 
+// local variables (between shaders)
 varying vec3 localPosition;
 varying vec3 localNormal;
 

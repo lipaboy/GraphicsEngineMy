@@ -105,38 +105,17 @@ void Scene::Render() {
 //    camera.isPerspective = false;
     const std::list<const AbstractLight *> & lights = GetLights();
     camera.SetLightSide(lights.front());
-//    Transform * cameraTransform = camera.GetConstObjectPtr()->m_pTransform;
-//    Transform transformTemp(*cameraTransform);
-//    Transform * lightTransform ((lights.front() -> GetConstObjectPtr() -> m_pTransform));
 
-//    // There is a problem and it isn't in camera beforeward setting
-
-//    //cameraTransform -> SetPosition(-10 * lights.front()->GetDirection());
-//    cameraTransform -> SetPosition(Vector3(20, 0, 0));
-//    cameraTransform -> SetEulerAngles(Vector3(0, 90, 0));
-//    cameraTransform -> SetScale(Vector3(1, 1, 1));
-////    cameraTransform -> SetEulerAngles(lightTransform->GetEulerAngles());
-//    //cameraTransform -> Rotate(0, 180, 0);
-
-//   // cameraTransform -> RotateByOperator(//lightTransform->GetUp()
-//        //                                cameraTransform->GetUp(), PI);
-
-    pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
+//    pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
+    pRenderTextureImpl -> SetRenderTarget(SCREEN);
 
     {
         // Render
         Render1();
     }
-
+return;
     pRenderTextureImpl -> SetRenderTarget(SCREEN);
     camera.SetCameraSide();
-
-//    //camera.GetObjectPtr()->m_pTransform = transformTemp;
-//    cameraTransform->SetPosition(transformTemp.GetPosition());
-//    cameraTransform->SetEulerAngles(transformTemp.GetEulerAngles());
-//    // cameraTransform -> RotateByOperator(lightTransform->GetUp(), PI);
-//    camera.isPerspective = true;
-
     {   
         Render1();
     }
@@ -168,8 +147,8 @@ void Scene::Render1()
 
         // You can play with switching of shaders (etc. set the same shader)
         std::shared_ptr<Material> pMaterial =
-                (SCREEN == currentRenderLocation) ? pObject->m_pMaterial
-                                                        : pObject->m_pDepthMaterial;
+                //(SCREEN == currentRenderLocation) ? pObject->m_pMaterial :
+                                                         pObject->m_pDepthMaterial;
 		Mesh *		pMesh		= pObject->m_pMesh;
         if ((nullptr == pMaterial) || (NULL == pMesh)) continue;
 		if (!pMaterial->IsInited()) continue;

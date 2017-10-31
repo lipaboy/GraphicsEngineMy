@@ -31,6 +31,9 @@ void GL20DepthTexture::Init()
     glReadBuffer(GL_NONE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+    tempWidth = Screen::GetWidth();
+    tempHeight = Screen::GetHeight();
+   // tempViewport = m_scene.GetCamera().GetViewport();
 }
 
 void GL20DepthTexture::SetRenderTarget(RenderTarget location)

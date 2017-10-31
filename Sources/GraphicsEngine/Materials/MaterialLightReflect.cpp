@@ -63,7 +63,8 @@ void MaterialLightReflect::SetMaterial()
 
     //---------------------Light space matrix-----------------------//
 
-    Matrix4x4 const & lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+    Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+    lightSpaceMatrix = matWorld * lightSpaceMatrix;
     
     SetMaterialBegin();
     {

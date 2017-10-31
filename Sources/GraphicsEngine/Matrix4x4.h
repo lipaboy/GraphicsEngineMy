@@ -339,6 +339,33 @@ struct Matrix4x4
 		return result;
 	}
 
+    static Matrix4x4 OrhographicLH(double w, double h, double znear, double zfar)
+        {
+            Matrix4x4 result;
+
+            result.m11 = 2.0 / w;
+            result.m12 = 0;
+            result.m13 = 0;
+            result.m14 = 0;
+
+            result.m21 = 0;
+            result.m22 = 2.0 / h;
+            result.m23 = 0;
+            result.m24 = 0;
+
+            result.m31 = 0;
+            result.m32 = 0;
+            result.m33 = 1.0 / (zfar - znear);
+            result.m34 = 0;
+
+            result.m41 = 0;
+            result.m42 = 0;
+            result.m43 = - znear / (zfar - znear);
+            result.m44 = 1;
+
+            return result;
+        }
+
 	static Matrix4x4 PerspectiveFovLH(double fovY, double aspect, double znear, double zfar)
 	{
 		double yScale = 1.0 / tan(fovY/2 * DEG2RAD);
