@@ -106,14 +106,14 @@ void Scene::Render() {
     const std::list<const AbstractLight *> & lights = GetLights();
     camera.SetLightSide(lights.front());
 
-//    pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
-    pRenderTextureImpl -> SetRenderTarget(SCREEN);
+    pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
+    //pRenderTextureImpl -> SetRenderTarget(SCREEN);
 
     {
         // Render
         Render1();
     }
-return;
+//return;
     pRenderTextureImpl -> SetRenderTarget(SCREEN);
     camera.SetCameraSide();
     {   
@@ -147,7 +147,7 @@ void Scene::Render1()
 
         // You can play with switching of shaders (etc. set the same shader)
         std::shared_ptr<Material> pMaterial =
-                //(SCREEN == currentRenderLocation) ? pObject->m_pMaterial :
+                (SCREEN == currentRenderLocation) ? pObject->m_pMaterial :
                                                          pObject->m_pDepthMaterial;
 		Mesh *		pMesh		= pObject->m_pMesh;
         if ((nullptr == pMaterial) || (NULL == pMesh)) continue;

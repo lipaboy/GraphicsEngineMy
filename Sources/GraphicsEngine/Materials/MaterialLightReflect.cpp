@@ -64,7 +64,7 @@ void MaterialLightReflect::SetMaterial()
     //---------------------Light space matrix-----------------------//
 
     Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
-    lightSpaceMatrix = matWorld * lightSpaceMatrix;
+    lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
     
     SetMaterialBegin();
     {
