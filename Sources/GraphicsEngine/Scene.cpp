@@ -96,24 +96,17 @@ void Scene::Update()
 
 void Scene::Render() {
 
-
-    // Set camera at light source
-
-
     Camera & camera = GetCamera();
 
-//    camera.isPerspective = false;
     const std::list<const AbstractLight *> & lights = GetLights();
     camera.SetLightSide(lights.front());
 
     pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
-    //pRenderTextureImpl -> SetRenderTarget(SCREEN);
-
     {
         // Render
         Render1();
     }
-//return;
+
     pRenderTextureImpl -> SetRenderTarget(SCREEN);
     camera.SetCameraSide();
     {   

@@ -23,7 +23,7 @@ varying vec3 localPosition;
 varying vec3 localNormal;
 varying vec4 FragPosLightSpace[MAX_LIGHT_COUNT];
 
-float ShadowCalculation(vec4 fragPosLightSpace)
+float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 vertexNormal)
 {
     // perform perspective divide
     vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
@@ -38,7 +38,8 @@ float ShadowCalculation(vec4 fragPosLightSpace)
     float currentDepth = projCoords.z;
 
     // check whether current frag pos is in shadow
-    float shadow = currentDepth > closestDepth  ? 0.5 : 0.0;
+    float bias = max(0.05 * (1.0 - dot(vertexNormal, lightDir)), 0.005);
+    float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
 
     return shadow;
 }
@@ -116,7 +117,7 @@ void main()
             }
             col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
                         * intensity * attenuation;
-            float shadow = ShadowCalculation(FragPosLightSpace[i]);
+            float shadow = ShadowCalculation(FragPosLightSpace[i], lightDir, vertexNormal);
             col *= (1.0 - shadow);
         }
 

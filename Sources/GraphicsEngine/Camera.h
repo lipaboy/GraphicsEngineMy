@@ -34,7 +34,7 @@ public:
     void SetCameraSide() { lightSide = nullptr; }
     const AbstractLight * GetLightSide() const { return lightSide; }
 
-    bool isPerspective = true;
+   // bool isPerspective = true;
     const AbstractLight * lightSide = nullptr;
 
 private:

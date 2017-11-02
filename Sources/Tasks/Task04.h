@@ -68,7 +68,7 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-90,0, 6,6,6);
+            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-70,0, 6,6,6);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
@@ -93,19 +93,19 @@ public:
 
             scene.AddLight(pLight);
         }
-        //		 Источник света #1
-        {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(0.5,0,0);
-            pLight->SetIntensity(1);
-            Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(20,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        0,-80,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
-            //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
+//        //		 Источник света #2
+//        {
+//            AbstractLight * pLight = new LightDirectional();
+//            pLight->SetColor(0.5,0,0);
+//            pLight->SetIntensity(1);
+//            Object * pLightObject   = new Object();
+//            pLightObject->m_pTransform	= new Transform(20,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+//                                                        0,-80,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
+//            //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
-            scene.AddLight(pLight);
-        }
+//            scene.AddLight(pLight);
+//        }
 //-------------------------------------------
         // Ox
         {
