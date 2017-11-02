@@ -17,7 +17,7 @@ uniform vec4 materialColor;
 uniform vec4 lightsCount;
 uniform vec4 cameraPosition;
 uniform Light lights[MAX_LIGHT_COUNT];
-uniform sampler2D depthMap;
+uniform sampler2D depthMap[3];
 
 varying vec3 localPosition;
 varying vec3 localNormal;
@@ -32,7 +32,7 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 vertexNormal
     projCoords = projCoords * 0.5 + 0.5;
 
     // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    float closestDepth = texture(depthMap, projCoords.xy).r;
+    float closestDepth = texture(depthMap[1], projCoords.xy).r;
 
     // get depth of current fragment from light's perspective
     float currentDepth = projCoords.z;

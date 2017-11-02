@@ -54,7 +54,7 @@ void MaterialLightReflect::SetMaterial()
     const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
 
     // This constraint needs because you can have only static arrays in shader
-    const size_t MAX_LIGHT_COUNT = 10;
+    const size_t MAX_LIGHT_COUNT = size_t(SceneUtils::MAX_LIGHT_COUNT);
     const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;
 
     // Need for making move objects on scene

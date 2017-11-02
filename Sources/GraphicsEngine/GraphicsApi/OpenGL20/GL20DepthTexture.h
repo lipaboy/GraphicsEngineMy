@@ -7,10 +7,9 @@
 #include "GraphicsEngine/Rect.h"
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/Camera.h"
+#include "GraphicsEngine/SceneUtils.h"
 
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
-
-
 
 class GL20DepthTexture : public RenderTextureImpl
 {
@@ -24,8 +23,9 @@ public:
     RenderTarget GetRenderTarget() const { return previousLocation; }
 
 public:
-    GLuint depthMapFBO;
-    GLuint depthMap;
+    static constexpr uint32_t MAX_LIGHT_COUNT = SceneUtils::MAX_LIGHT_COUNT;
+    GLuint depthMapFBO[MAX_LIGHT_COUNT];
+    GLuint depthMap[MAX_LIGHT_COUNT];
 
     const unsigned int SHADOW_WIDTH = 1024;
     const unsigned int SHADOW_HEIGHT = 1024;

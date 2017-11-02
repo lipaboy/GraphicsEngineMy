@@ -7,6 +7,7 @@
 class SceneUtils
 {
 public:
+    static constexpr uint32_t MAX_LIGHT_COUNT = 3;
 
 	static const Matrix4x4 GetMatrixWorld(const Object * pObject)
 	{

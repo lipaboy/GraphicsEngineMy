@@ -3,26 +3,29 @@
 
 void GL20DepthTexture::Init()
 {
-    glGenFramebuffers(1, &depthMapFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+    glGenFramebuffers(MAX_LIGHT_COUNT, depthMapFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO[0]);
 
-    glGenTextures(1, &depthMap);
-    glBindTexture(GL_TEXTURE_2D, depthMap);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
-                 SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
-                    GL_REPEAT
-                    //GL_CLAMP
-                    );
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
-                    GL_REPEAT
-                    //GL_CLAMP
-                    );
+    glGenTextures(MAX_LIGHT_COUNT, depthMap);
+    for (int i = 0; i < 2; i++) {
+        glBindTexture(GL_TEXTURE_2D, depthMap[i]);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap[i], 0);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
+                     SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+                        GL_REPEAT
+                        //GL_CLAMP
+                        );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+                        GL_REPEAT
+                        //GL_CLAMP
+                        );
+    }
 
 
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+
     // TODO: bad error catching
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         std::cerr << "GL FrameBuffer isn't complete" << std::endl;
@@ -39,29 +42,37 @@ void GL20DepthTexture::Init()
 
 void GL20DepthTexture::Deinit()
 {
-    glDeleteTextures(1, &depthMap);
-    glDeleteFramebuffers(1, &depthMapFBO);
+    glDeleteTextures(MAX_LIGHT_COUNT, depthMap);
+    glDeleteFramebuffers(MAX_LIGHT_COUNT, depthMapFBO);
 }
 
 void GL20DepthTexture::SetRenderTarget(RenderTarget location)
 {
+    static int currTexture = 0;
+
     switch (location) {
 
     case DEPTH_TEXTURE:
 
         if (previousLocation == SCREEN) {
-            tempViewport = m_scene.GetCamera().GetViewport();
-            tempHeight = Screen::GetHeight();
-            tempWidth = Screen::GetWidth();
-        }
+            currTexture = 0;
+            if (previousLocation == SCREEN) {
+                tempViewport = m_scene.GetCamera().GetViewport();
+                tempHeight = Screen::GetHeight();
+                tempWidth = Screen::GetWidth();
+            }
 
-        // 1. first render to depth map
-        m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
-        Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
-        //glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
-        //glActiveTexture(GL_TEXTURE0);
-        glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-        glClear(GL_DEPTH_BUFFER_BIT);
+            // 1. first render to depth map
+            m_scene.GetCamera().SetViewport(Rect(0., 0., 1., 1.));
+            Screen::SetResolution(SHADOW_WIDTH, SHADOW_HEIGHT);
+            //glActiveTexture(GL_TEXTURE0);
+            glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO[currTexture]);
+            glClear(GL_DEPTH_BUFFER_BIT);
+        }
+        else {
+            glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO[++currTexture]);
+            glClear(GL_DEPTH_BUFFER_BIT);
+        }
 
         previousLocation = DEPTH_TEXTURE;
         break;
@@ -71,10 +82,9 @@ void GL20DepthTexture::SetRenderTarget(RenderTarget location)
         // 2. then render scene as normal with shadow mapping (using depth map)
         m_scene.GetCamera().SetViewport(tempViewport);
         Screen::SetResolution(tempWidth, tempHeight);
-        //glViewport(0, 0, Screen::GetWidth(), Screen::GetHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, depthMap);
+        glBindTexture(GL_TEXTURE_2D, depthMap[1]);
         glClearDepth(1.0f);
 
         previousLocation = SCREEN;
