@@ -79,7 +79,7 @@ public:
 
             scene.AddObject( pObject1 );
         }
-//
+
 //		 Источник света #1
         {
             AbstractLight * pLight = new LightDirectional();
@@ -88,6 +88,19 @@ public:
             Object * pLightObject   = new Object();
             pLightObject->m_pTransform	= new Transform(20,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
                                                         0,-90,0, 1,1,1);
+            pLightObject->AddComponent(pLight);
+            //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
+
+            scene.AddLight(pLight);
+        }
+        //		 Источник света #1
+        {
+            AbstractLight * pLight = new LightDirectional();
+            pLight->SetColor(0.5,0,0);
+            pLight->SetIntensity(1);
+            Object * pLightObject   = new Object();
+            pLightObject->m_pTransform	= new Transform(20,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+                                                        0,-80,0, 1,1,1);
             pLightObject->AddComponent(pLight);
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 

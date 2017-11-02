@@ -11,49 +11,28 @@
 
 void LightDirectional::RecalcLightSpaceMatrix()
 {
-    Matrix4x4 biasMatrix = {
-        0.5, 0.0, 0.0, 0.0,
-        0.0, 0.5, 0.0, 0.0,
-        0.0, 0.0, 0.5, 0.0,
-        0.5, 0.5, 0.5, 1.0
-    };
-    Matrix4x4 reflectMat = {
-        1., 0., 0., 0.,
-        0., 1., 0., 0.,
-        0., 0.,-1., 0.,
-        0., 0., 0., 1.
-    };
+//    Matrix4x4 biasMatrix = {
+//        0.5, 0.0, 0.0, 0.0,
+//        0.0, 0.5, 0.0, 0.0,
+//        0.0, 0.0, 0.5, 0.0,
+//        0.5, 0.5, 0.5, 1.0
+//    };
+//    Matrix4x4 reflectMat = {
+//        1., 0., 0., 0.,
+//        0., 1., 0., 0.,
+//        0., 0.,-1., 0.,
+//        0., 0., 0., 1.
+//    };
 
     Camera & camera = Application::Instance().GetScene().GetCamera();
 
-//    bool temp = camera.isPerspective;
-//    camera.isPerspective = false;
-
-    Transform * objectTrans = GetConstObjectPtr()->m_pTransform;
-    Vector3 forward = this->GetDirection();
-    forward.Normalize();
-
-    Matrix4x4 depthViewMatrix = Matrix4x4::LookAtLH(//Vector3(20, 0, 0)
-                                                    -20 * forward
-                                                    , forward,
-                                                    objectTrans->GetUp()) * biasMatrix.Transpose();
-    //depthViewMatrix = objectTrans->GetMatView();
-            //GetConstObjectPtr()->m_pTransform->GetMatView();
-//    Matrix4x4 depthViewMatrix;
-//    depthViewMatrix = glm::lookAt(
-//                glm::vec3(20, 0, 0),
-//                                glm::vec3(0,0,0), glm::vec3(0,1,0));
-//    depthViewMatrix = (depthViewMatrix * reflectMat).Transpose();
-
-
     auto temp = camera.GetLightSide();
     camera.SetLightSide(this);
-    const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(this->GetObjectPtr());
     const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
     const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
     m_spaceMatrix = MathUtils::GetMatrixWorldViewProjT(Matrix4x4::Identity(), matView,
                                                                         matProj);
     camera.SetLightSide(temp);
-   // m_spaceMatrix = biasMatrix * m_spaceMatrix;
+    m_spaceMatrix = m_spaceMatrix;
 
 }

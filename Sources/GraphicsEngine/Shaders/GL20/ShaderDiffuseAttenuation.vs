@@ -1,9 +1,12 @@
 #version 130
 
+const int MAX_LIGHT_COUNT = 10;
+
 // Shader parameters
 uniform mat4 matrixWorldViewProjT;
 uniform vec4 timeT;
-uniform mat4 lightSpaceMatrix;
+uniform mat4 lightSpaceMatrix[MAX_LIGHT_COUNT];
+uniform vec4 lightsCount;
 
 // Vertex structure
 attribute vec3 position;
@@ -13,12 +16,7 @@ attribute vec3 normal;
 // local variables (between shaders)
 varying vec3 localPosition;
 varying vec3 localNormal;
-
-//layout (location = 1) in vec2 aTexCoords;
-attribute vec2 aTexCoords;
-
-varying vec2 TexCoords;
-varying vec4 FragPosLightSpace;
+varying vec4 FragPosLightSpace[MAX_LIGHT_COUNT];
 
 
 void main()
@@ -28,6 +26,6 @@ void main()
 	localPosition	= position + timeT.xyz;
 	localNormal		= normal;
 
-        TexCoords = aTexCoords;
-        FragPosLightSpace =  vec4(localPosition, 1.0) * lightSpaceMatrix;
+        for (int i = 0; float(i) < lightsCount.x; i++)
+            FragPosLightSpace[i] =  vec4(localPosition, 1.0) * lightSpaceMatrix[i];
 }

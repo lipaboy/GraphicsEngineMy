@@ -11,8 +11,6 @@ public:
 
     virtual Matrix4x4 const & GetLightSpaceMatrix() const { return m_spaceMatrix; }
 
-    //virtual void SetLightSpaceMatrix(const Matrix4x4& mat) { m_spaceMatrix = mat;  }
-
     virtual Vector4 GetType() const { return Vector4(LIGHT_DIRECTIONAL, 0, 0, 0); }
 
     void Update() { RecalcLightSpaceMatrix(); }

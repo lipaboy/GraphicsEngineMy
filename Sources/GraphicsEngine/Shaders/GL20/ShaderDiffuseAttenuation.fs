@@ -8,7 +8,7 @@ struct Light
 	vec4	color;		// (цвет.r, цвет.g, цвет.b, интенсивность)
 };
 
-const int MAX_LIGHT_COUNT = 3;
+const int MAX_LIGHT_COUNT = 10;
 
 // Shader parameters
 uniform mat4 matWorldNormal;
@@ -17,24 +17,11 @@ uniform vec4 materialColor;
 uniform vec4 lightsCount;
 uniform vec4 cameraPosition;
 uniform Light lights[MAX_LIGHT_COUNT];
+uniform sampler2D depthMap;
 
 varying vec3 localPosition;
 varying vec3 localNormal;
-
-varying vec2 TexCoords;
-varying vec4 FragPosLightSpace;
-
-uniform vec4 near_plane;
-uniform vec4 far_plane;
-
-uniform sampler2D depthMap;
-
-// required when using a perspective projection matrix
-float LinearizeDepth(float depth)
-{
-    float z = depth * 2.0 - 1.0; // Back to NDC
-    return (2.0 * near_plane.x * far_plane.x) / (far_plane.x + near_plane.x - z * (far_plane.x - near_plane.x));
-}
+varying vec4 FragPosLightSpace[MAX_LIGHT_COUNT];
 
 float ShadowCalculation(vec4 fragPosLightSpace)
 {
@@ -129,21 +116,9 @@ void main()
             }
             col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
                         * intensity * attenuation;
+            float shadow = ShadowCalculation(FragPosLightSpace[i]);
+            col *= (1.0 - shadow);
         }
 
-        vec3 depthValue = texture(depthMap, TexCoords).rgb;
-        float depthFloat = depthValue.x;
-
-        float shadow = ShadowCalculation(FragPosLightSpace);
-        // TODO: you need to check lightSpaceMatrix on correction
-        vec3 lighting = (1.0 - shadow) * col;
-        float visibility = 1.0;
-        if ( texture( depthMap, FragPosLightSpace.xy ).z  <  FragPosLightSpace.z){
-            visibility = 0.5;
-        }
-
-        //gl_FragColor = vec4(col * vec3(LinearizeDepth(depthFloat) / far_plane.x), 1.0); // perspective
-        //gl_FragColor = vec4(vec3(col) * depthFloat, 1.0); // orthographic
-        gl_FragColor = vec4(lighting, 1.0);
-        //gl_FragColor = vec4(col * visibility, 1.0);
+        gl_FragColor = vec4(col, 1.0);
 }

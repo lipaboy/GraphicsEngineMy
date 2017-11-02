@@ -52,10 +52,12 @@ void MaterialLightReflect::SetMaterial()
     // Получили список всех источников света в сцене
     const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
     const Vector4 cameraPosition = Vector4(SceneUtils::GetEyePosition(), 1);
-    const size_t MAX_LIGHT_COUNT = 3;
-    const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;     //?????
-    //const size_t count = lights.size();
 
+    // This constraint needs because you can have only static arrays in shader
+    const size_t MAX_LIGHT_COUNT = 10;
+    const size_t count = lights.size() < MAX_LIGHT_COUNT ? lights.size() : MAX_LIGHT_COUNT;
+
+    // Need for making move objects on scene
     using namespace std::chrono;
     milliseconds ms = duration_cast< milliseconds >(
         system_clock::now().time_since_epoch()
@@ -63,16 +65,24 @@ void MaterialLightReflect::SetMaterial()
 
     //---------------------Light space matrix-----------------------//
 
-    Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
-    lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
+   // Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+   // lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
     
     SetMaterialBegin();
     {
         SetVertexShaderBegin();
         SetVertexShaderMatrix4x4("matrixWorldViewProjT", matWorldViewProjT);
-        SetVertexShaderVector4("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
-           0 * std::cos((double)ms.count() / 800), 0, 0));
-        SetVertexShaderMatrix4x4("lightSpaceMatrix", lightSpaceMatrix);
+        SetVertexShaderVector4  ("timeT", Vector4( 0 * std::sin((double)ms.count() / 800),
+                    0 * std::cos((double)ms.count() / 800), 0, 0));
+        SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
+        int i = 0;
+        std::list<const AbstractLight *>::const_iterator iter;
+        for (iter = lights.begin(); iter != lights.end(); ++iter, ++i)
+        {
+            const AbstractLight * pLight = *iter;
+            std::string lightStr = "lightSpaceMatrix[" + std::to_string(static_cast<long long>(i)) + "]";
+            SetVertexShaderMatrix4x4(lightStr.c_str(), pLight->GetLightSpaceMatrix() * matWorldT);
+        }
         SetVertexShaderEnd();
 
         SetPixelShaderBegin();      // == fragment shader
@@ -82,15 +92,9 @@ void MaterialLightReflect::SetMaterial()
         SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
         SetPixelShaderVector4	("cameraPosition",		cameraPosition);
 
-        //glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
-        //maybe to GLuint ??
-        SetPixelShaderVector4 ("near_plane", Vector4(0.5, 1, 1, 1));
-        SetPixelShaderVector4 ("far_plane", Vector4(100, 1, 1, 1));
-
-
         // Передаём параметры каждого источника света
-        int i = 0;
-        std::list<const AbstractLight *>::const_iterator iter;
+        i = 0;
+        //std::list<const AbstractLight *>::const_iterator iter;
         for (iter = lights.begin(); iter != lights.end(); ++iter, ++i)
         {
             const AbstractLight * pLight = *iter;
@@ -107,6 +111,7 @@ void MaterialLightReflect::SetMaterial()
             SetPixelShaderVector4( (lightStr + ".position").c_str(),	lightPosition );
             SetPixelShaderVector4( (lightStr + ".direction").c_str(),	lightDirection );
             SetPixelShaderVector4( (lightStr + ".color").c_str(),		lightColor );
+            //SetPixelShaderM( (lightStr + ".color").c_str(),		lightColor );
         }
 
         SetPixelShaderEnd();

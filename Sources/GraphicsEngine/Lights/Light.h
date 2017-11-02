@@ -22,8 +22,6 @@ public:
     virtual ~AbstractLight() {}
 
     virtual Matrix4x4 const & GetLightSpaceMatrix() const = 0;
-
-    //virtual void SetLightSpaceMatrix(const Matrix4x4& mat) = 0;
 	
     virtual Vector4 GetType() const = 0;
 
