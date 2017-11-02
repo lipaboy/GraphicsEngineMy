@@ -4,6 +4,7 @@
 void GL20DepthTexture::Init()
 {
     glGenFramebuffers(1, &depthMapFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 
     glGenTextures(1, &depthMap);
     glBindTexture(GL_TEXTURE_2D, depthMap);
@@ -20,7 +21,7 @@ void GL20DepthTexture::Init()
                     //GL_CLAMP
                     );
 
-    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
     // TODO: bad error catching
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
@@ -33,7 +34,13 @@ void GL20DepthTexture::Init()
 
     tempWidth = Screen::GetWidth();
     tempHeight = Screen::GetHeight();
-   // tempViewport = m_scene.GetCamera().GetViewport();
+    // tempViewport = m_scene.GetCamera().GetViewport();
+}
+
+void GL20DepthTexture::Deinit()
+{
+    glDeleteTextures(1, &depthMap);
+    glDeleteFramebuffers(1, &depthMapFBO);
 }
 
 void GL20DepthTexture::SetRenderTarget(RenderTarget location)

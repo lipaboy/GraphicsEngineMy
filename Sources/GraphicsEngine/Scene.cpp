@@ -34,6 +34,8 @@ void Scene::Deinit()
 
 	// ”дал¤ем камеру
 	m_pCamera = NULL;
+
+    pRenderTextureImpl -> Deinit();
 }
 
 void Scene::AddObject(Object * pObject)

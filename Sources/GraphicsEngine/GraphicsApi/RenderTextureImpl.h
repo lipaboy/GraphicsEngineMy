@@ -10,6 +10,7 @@ class RenderTextureImpl
 {
 public:
     virtual void Init() = 0;
+    virtual void Deinit() = 0;
 
     virtual void SetRenderTarget(RenderTarget location) = 0;
 

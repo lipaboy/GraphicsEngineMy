@@ -18,8 +18,7 @@ public:
     GL20DepthTexture() : m_scene(Application::Instance().GetScene()) {}
 
     void Init();
-    // TODO: add glDeleteFramebuffer
-    //void Deinit();
+    void Deinit();
 
     void SetRenderTarget(RenderTarget location);
     RenderTarget GetRenderTarget() const { return previousLocation; }
