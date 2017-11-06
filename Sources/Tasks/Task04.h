@@ -61,7 +61,7 @@ public:
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,2*50,0) );
-            pObject1->AddComponent(new CameraController());
+            //pObject1->AddComponent(new CameraController());
 
             scene.AddObject( pObject1 );
         }
