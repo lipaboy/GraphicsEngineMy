@@ -80,18 +80,8 @@ void Camera::RecalculateMatrixProj()
     else if (LIGHT_DIRECTIONAL == lightSide->GetType().x) {
         // TODO: make it for Left hand sys coords
 #ifdef CAN_USE_OPEN_GL
-        // left, right, bottom, top, near, far
         float val = 20 ;
         m_matProj = Matrix4x4::OrhographicLH(val, val, m_nearPlane, m_farPlane);
-        //m_matProj = glm::ortho<float>(-val,val,-val,val
-                                                           // ,-10, 15
-                                   //   ,m_nearPlane, m_farPlane
-                                    //  );
-        //m_matProj = m_matProj.Transpose();
-
-       // m_matProj = lightView->GetSpaceMatrix();
-
-       // m_matProj = depthProjectionMatrix;
 #endif
     }
 }

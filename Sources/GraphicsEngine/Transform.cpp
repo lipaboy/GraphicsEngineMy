@@ -182,7 +182,6 @@ void Transform::Recalc()
 
         m_matWorld = matScale * matRot *
                 _matRotOp.Transpose()
-                //* _matRotOp
                 * matTrans;
 		
 		// If has parent then use parent matrix

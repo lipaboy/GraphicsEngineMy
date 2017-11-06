@@ -86,7 +86,8 @@ SOURCES += \
     ../Sources/lipaboyLibrary/src/maths/matrix4x4.cpp \
     ../Sources/lipaboyLibrary/src/maths/vector4d.cpp \
     ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.cpp \
-    ../Sources/GraphicsEngine/Lights/LightDirectional.cpp
+    ../Sources/GraphicsEngine/Lights/LightDirectional.cpp \
+    ../Sources/GraphicsEngine/Lights/LightSpot.cpp
 
 
 DISTFILES += \
@@ -222,4 +223,5 @@ HEADERS += \
     ../Sources/lipaboyLibrary/src/maths/vector4d.h \
     ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.h \
     ../Sources/GraphicsEngine/Lights/Light.h \
-    ../Sources/GraphicsEngine/Lights/LightDirectional.h
+    ../Sources/GraphicsEngine/Lights/LightDirectional.h \
+    ../Sources/GraphicsEngine/Lights/LightSpot.h

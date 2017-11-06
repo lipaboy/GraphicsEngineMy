@@ -20,6 +20,7 @@ protected:
 
 private:
     Matrix4x4 m_spaceMatrix;
+
 };
 
 #endif // LIGHTDIRECTIONAL_H

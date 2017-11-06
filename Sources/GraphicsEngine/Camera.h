@@ -28,22 +28,21 @@ public:
 	const Matrix4x4 & GetMatrixView();
 	const Matrix4x4 & GetMatrixProj();
 
-    // My code
     // Camera will be looking from light position
     void SetLightSide(AbstractLight const * light) { lightSide = light; }
     void SetCameraSide() { lightSide = nullptr; }
     const AbstractLight * GetLightSide() const { return lightSide; }
 
-   // bool isPerspective = true;
-    const AbstractLight * lightSide = nullptr;
+       // I don't know: need it or not?
+//    const Object * GetConstObjectPtr() const
+//    { return (nullptr == lightSide) ? m_pObject : lightSide->GetConstObjectPtr(); }
 
 private:
-//public:
-
     // TODO: May be move it to Update virtual method??
 	void RecalculateMatrixProj();
 
 private:
+    const AbstractLight * lightSide = nullptr;
 
 	// Вертикальный угол обзора в градусах
 	float m_fovY;
