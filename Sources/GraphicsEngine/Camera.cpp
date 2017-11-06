@@ -75,12 +75,11 @@ void Camera::RecalculateMatrixProj()
 
 	float aspect = (sw * vw) / (sh * vh);
 	
-    if (nullptr == lightSide)
+    if (nullptr == lightSide || LIGHT_SPOT == lightSide->GetType().x)
         m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
     else if (LIGHT_DIRECTIONAL == lightSide->GetType().x) {
-        // TODO: make it for Left hand sys coords
 #ifdef CAN_USE_OPEN_GL
-        float val = 20 ;
+        float val = 20;
         m_matProj = Matrix4x4::OrhographicLH(val, val, m_nearPlane, m_farPlane);
 #endif
     }

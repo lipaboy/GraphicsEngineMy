@@ -19,6 +19,8 @@ protected:
 
 private:
     Matrix4x4 m_spaceMatrix;
+    double innerCone = 0.7;
+    double outerCone = 0.9;
 };
 
 #endif // LIGHTSPOT_H

@@ -19,7 +19,7 @@ void LightDirectional::RecalcLightSpaceMatrix()
 //        0., 0., 0., 1.
 //    };
 
-     Camera & camera = Application::Instance().GetScene().GetCamera();
+    Camera & camera = Application::Instance().GetScene().GetCamera();
 
     auto temp = camera.GetLightSide();
     camera.SetLightSide(this);

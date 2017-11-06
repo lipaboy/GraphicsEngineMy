@@ -3,6 +3,7 @@
 #include "GraphicsEngine/GraphicsEngine.h"
 #include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/Lights/LightDirectional.h"
+#include "GraphicsEngine/Lights/LightSpot.h"
 
 #include "GraphicsEngine/Materials/MaterialTask01.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
@@ -68,7 +69,7 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-80,0, 6,6,6);
+            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-80,0, 16,16,16);
             pObject1->m_pMesh		= //new MeshSphere(20);
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
@@ -80,13 +81,27 @@ public:
             scene.AddObject( pObject1 );
         }
 
+        {
+            Object * pObject1 = new Object();
+            pObject1->m_pTransform	= new Transform(0,3,0, 45,0,0, 3,3,3);
+            pObject1->m_pMesh		= //new MeshSphere(20);
+                    new MeshCylinder(20);      //why system coordinates is changing when I replace Sphere on Cube???
+            pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+                new MaterialDiffuseAttenuation());
+                //new MaterialDiffuseSpecular();
+            //pObject1->AddComponent( new ObjectRotator(0,100,100) );
+
+
+            scene.AddObject( pObject1 );
+        }
+
 //		 Источник света #1
         {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(1,1,0);
+            AbstractLight * pLight = new LightSpot();
+            pLight->SetColor(.1,.1,1);
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(40,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+            pLightObject->m_pTransform	= new Transform(10,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
                                                         0,-90,0, 1,1,1);
             pLightObject->AddComponent(pLight);
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));

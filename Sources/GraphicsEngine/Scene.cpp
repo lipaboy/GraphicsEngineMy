@@ -105,7 +105,6 @@ void Scene::Render() {
 
     pRenderTextureImpl -> SetRenderTarget(DEPTH_TEXTURE);
     {
-        // Render
         Render1();
     }
 

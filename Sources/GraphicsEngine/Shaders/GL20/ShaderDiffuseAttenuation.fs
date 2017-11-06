@@ -115,6 +115,7 @@ void main()
                     , 0.0, 1.0);
 
             }
+            attenuation = 0.9;
             col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
                         * intensity * attenuation;
             float shadow = ShadowCalculation(FragPosLightSpace[i], lightDir, vertexNormal);
