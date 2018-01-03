@@ -59,12 +59,6 @@ const Matrix4x4 & Camera::GetMatrixProj()
 	return m_matProj;
 }
 
-#ifdef CAN_USE_OPEN_GL
-#include <glm/mat4x4.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#endif
-
 void Camera::RecalculateMatrixProj()
 {
 	float sw = Screen::GetWidth();
@@ -78,9 +72,7 @@ void Camera::RecalculateMatrixProj()
     if (nullptr == lightSide || LIGHT_SPOT == lightSide->GetType().x)
         m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
     else if (LIGHT_DIRECTIONAL == lightSide->GetType().x) {
-#ifdef CAN_USE_OPEN_GL
         float val = 20;
         m_matProj = Matrix4x4::OrhographicLH(val, val, m_nearPlane, m_farPlane);
-#endif
     }
 }

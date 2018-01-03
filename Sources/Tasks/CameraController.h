@@ -27,18 +27,20 @@ public:
 		{
             Vector3 forward	= pTransform->GetForward();
             Vector3 right	= pTransform->GetRight();
-            Vector3 up = pTransform->GetUp();
+            //Vector3 up = pTransform->GetUp();
 			double dt = Time::GetDeltaTime();
 
             double speed = 1.0 * .5 * 2 * 10;
             //* (1.0 / 20)
 			Vector3 direction;
 
+            //Input::GetKey(KEY_)
 			if (Input::GetKey(KEY_CODE_W) || Input::GetKey(KEY_CODE_UP_ARROW))
 			{
 				// TODO: Task08
 				// Move forward
                 //pTransform->RotateAroundCenter(-right.Normalize() * speed);
+
                 direction = forward * speed;
 			}
 			else if (Input::GetKey(KEY_CODE_S) || Input::GetKey(KEY_CODE_DOWN_ARROW))
@@ -64,12 +66,14 @@ public:
                 direction = -right * speed;
 			}
 
-			if (Input::GetKey(KEY_CODE_LEFT_SHIFT) || Input::GetKey(KEY_CODE_RIGHT_SHIFT))
+            if (Input::GetKey(KEY_CODE_LEFT_SHIFT))
 			{
 				// TODO: Task08
 				// Move speed up (multiply speed by 10)
                 speed *= 10;
 			}
+            if (Input::GetKey(KEY_CODE_RIGHT_SHIFT))
+                speed /= 10;
 
 			pTransform->Translate( speed * dt * direction );
 		}

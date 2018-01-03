@@ -76,8 +76,6 @@ public:
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,100,100) );
-
-
             scene.AddObject( pObject1 );
         }
 
@@ -90,8 +88,6 @@ public:
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
             //pObject1->AddComponent( new ObjectRotator(0,100,100) );
-
-
             scene.AddObject( pObject1 );
         }
 
@@ -107,6 +103,18 @@ public:
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
             scene.AddLight(pLight);
+
+            Object * pLightFigure = new Object();
+
+            pLightFigure->m_pTransform	= new Transform(*(pLightObject->m_pTransform));
+            pLightFigure->m_pMesh		= new MeshSphere(20);
+                    //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+            pLightFigure->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+                //new MaterialDiffuseAttenuation()
+                new MaterialDiffuseSpecular()
+            );
+
+            scene.AddObject( pLightFigure );
         }
 //        //		 Источник света #2
 //        {
@@ -155,6 +163,7 @@ public:
             pTriangle->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(0,1,0));
             scene.AddObject(pTriangle);
         }
+        // Oz
         {
             Object * pTriangle   = new Object();
             pTriangle->m_pTransform	= new Transform(0,0,0,
