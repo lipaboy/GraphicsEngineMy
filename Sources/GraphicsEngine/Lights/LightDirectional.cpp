@@ -3,12 +3,6 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
-#ifdef CAN_USE_OPEN_GL
-#include <glm/mat4x4.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#endif
-
 void LightDirectional::RecalcLightSpaceMatrix()
 {
     // Transform from LH to RH or may be opposite
