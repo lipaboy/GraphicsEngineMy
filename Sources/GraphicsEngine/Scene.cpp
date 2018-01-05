@@ -110,7 +110,7 @@ void Scene::Render() {
 
     pRenderTextureImpl -> SetRenderTarget(SCREEN);
     camera.SetCameraSide();
-    {   
+    {
         Render1();
     }
 }

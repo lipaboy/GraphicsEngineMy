@@ -50,6 +50,22 @@ public:
 	const Matrix4x4 & GetMatWorld();
 	const Matrix4x4 & GetMatView();
 
+//    Transform const & operator= (Transform const & other) {
+//        m_pParent = other.m_pParent;
+//        m_position = other.m_position;
+//        m_eulerAngles = other.m_eulerAngles;
+//        m_scale = other.m_scale;
+//        m_eulerAnglesAroundCenter = other.m_eulerAnglesAroundCenter;
+//        matRotOp = other.matRotOp;
+//        m_forward = other.m_forward;
+//        m_right = other.m_right;
+//        m_up = other.m_up;
+//        m_matWorld = other.m_matWorld;
+//        m_matView = other.m_matView;
+//        m_shouldRecalc = true;
+//        return *this;
+//    }
+
 private:
 
 	void Recalc();

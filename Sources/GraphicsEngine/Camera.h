@@ -14,9 +14,9 @@ public:
 	// Установка вертикального угла обзора (в градусах)
 	void SetFovY		(float fovY);
 	// Установка ближней отсекающей плоскости
-	void SetNearPlane	(float nearPlane);
+    void SetNearPlane	(float getNearPlane);
 	// Установка дальней отсекающей плоскости
-	void SetFarPlane	(float farPlane);
+    void SetFarPlane	(float getFarPlane);
 
 	/**
 	* @brief Where on the screen is the camera rendered in normalized coordinates
@@ -36,6 +36,10 @@ public:
        // I don't know: need it or not?
 //    const Object * GetConstObjectPtr() const
 //    { return (nullptr == lightSide) ? m_pObject : lightSide->GetConstObjectPtr(); }
+
+    float getNearPlane()    const { return m_nearPlane; }
+
+    float getFarPlane()     const { return m_farPlane;  }
 
 private:
     // TODO: May be move it to Update virtual method??

@@ -67,7 +67,7 @@ void GL20GraphicsEngine::Init()
 {
 	pGL20Engine = this;
 
-	Screen::SetResolution(512, 512);
+    Screen::SetResolution(1024, 720);
 		
 	// https://msdn.microsoft.com/en-us/library/windows/desktop/ms683156(v=vs.85).aspx
 	// https://msdn.microsoft.com/en-us/library/windows/desktop/bb776391(v=vs.85).aspx

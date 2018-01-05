@@ -69,8 +69,11 @@ void Camera::RecalculateMatrixProj()
 
 	float aspect = (sw * vw) / (sh * vh);
 	
-    if (nullptr == lightSide || LIGHT_SPOT == lightSide->GetType().x)
+    if (nullptr == lightSide)
         m_matProj = Matrix4x4::PerspectiveFovLH( m_fovY, aspect, m_nearPlane, m_farPlane );
+    else if (LIGHT_SPOT == lightSide->GetType().x) {
+        m_matProj = Matrix4x4::PerspectiveFovLH( 90., aspect, m_nearPlane, m_farPlane );
+    }
     else if (LIGHT_DIRECTIONAL == lightSide->GetType().x) {
         float val = 20;
         m_matProj = Matrix4x4::OrhographicLH(val, val, m_nearPlane, m_farPlane);

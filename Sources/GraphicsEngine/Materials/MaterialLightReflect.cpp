@@ -15,12 +15,7 @@
 //}
 
 //#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngine.h"
-#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
-#ifdef CAN_USE_OPEN_GL
-#include <glm/mat4x4.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#endif
+//#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 
 // TODO: Реализовать переключение Graphics API при нажатии на кнопки (1 - DirectX 11, 2 - OpenGL 2.0, 9 - DirectX 9)
 // и отладить на этом механизм использования функций Init() и Deinit()
@@ -63,10 +58,7 @@ void MaterialLightReflect::SetMaterial()
         system_clock::now().time_since_epoch()
         );
 
-    //---------------------Light space matrix-----------------------//
-
-   // Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
-   // lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
+    Camera & camera = Application::Instance().GetScene().GetCamera();
     
     SetMaterialBegin();
     {
@@ -91,6 +83,8 @@ void MaterialLightReflect::SetMaterial()
         SetPixelShaderVector4	("materialColor",	Vector4(ambientColor, 1));
         SetPixelShaderVector4	("lightsCount",		Vector4(count, 1, 1, 1));
         SetPixelShaderVector4	("cameraPosition",		cameraPosition);
+        SetPixelShaderVector4("farPlane", Vector4(camera.getFarPlane(), 0., 0., 0.));
+        SetPixelShaderVector4("nearPlane", Vector4(camera.getNearPlane(), 0., 0., 0.));
 
         // Передаём параметры каждого источника света
         i = 0;

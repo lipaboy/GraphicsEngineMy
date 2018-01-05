@@ -93,8 +93,9 @@ public:
 
 //		 Источник света #1
         {
+            //AbstractLight * pLight = new LightDirectional();
             AbstractLight * pLight = new LightSpot();
-            pLight->SetColor(.1,.1,1);
+            pLight->SetColor(.9,.9,0);
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();
             pLightObject->m_pTransform	= new Transform(10,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
@@ -102,19 +103,21 @@ public:
             pLightObject->AddComponent(pLight);
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
+
+
             scene.AddLight(pLight);
 
-            Object * pLightFigure = new Object();
+//            Object * pLightFigure = new Object();
 
-            pLightFigure->m_pTransform	= new Transform(*(pLightObject->m_pTransform));
-            pLightFigure->m_pMesh		= new MeshSphere(20);
-                    //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-            pLightFigure->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
-                //new MaterialDiffuseAttenuation()
-                new MaterialDiffuseSpecular()
-            );
+//            pLightFigure->m_pTransform	= new Transform(*(pLightObject->m_pTransform));
+//            pLightFigure->m_pMesh		= new MeshSphere(20);
+//                    //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+//            pLightFigure->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+//                new MaterialDiffuseAttenuation()
+//                //new MaterialDiffuseSpecular()
+//            );
 
-            scene.AddObject( pLightFigure );
+//            scene.AddObject( pLightFigure );
         }
 //        //		 Источник света #2
 //        {

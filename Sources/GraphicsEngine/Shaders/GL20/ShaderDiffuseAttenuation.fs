@@ -17,11 +17,20 @@ uniform vec4 materialColor;
 uniform vec4 lightsCount;
 uniform vec4 cameraPosition;
 uniform Light lights[MAX_LIGHT_COUNT];
+uniform vec4 farPlane;
+uniform vec4 nearPlane;
 uniform sampler2D depthMap;
 
 varying vec3 localPosition;
 varying vec3 localNormal;
 varying vec4 FragPosLightSpace[MAX_LIGHT_COUNT];
+
+
+float LinearizeDepth(float depth)
+{
+    float z = depth * 2.0 - 1.0; // Back to NDC
+    return (2.0 * nearPlane.x * farPlane.x) / (farPlane.x + nearPlane.x - z * (farPlane.x - nearPlane.x));
+}
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 vertexNormal)
 {
@@ -40,6 +49,11 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 lightDir, vec3 vertexNormal
     // check whether current frag pos is in shadow
     float bias = max(0.0005 * (1.0 - dot(vertexNormal, lightDir)), 0.0005);
     float shadow = (currentDepth - bias) > closestDepth ? 0.6 : 0.0;
+
+    float depthValue = shadow;
+        // I don't need linearization because into Camera has already contained perspective projection
+    //shadow = LinearizeDepth(depthValue) / farPlane.x; // perspective
+    shadow = depthValue;      // orthographic
 
     return shadow;
 }
@@ -86,10 +100,11 @@ void main()
 
             // Attenuation component
             float distanceToLight = distance(vertexPos, lights[i].position.xyz);
-            const float a = 0.1;
-            const float b = 0.2;
-            const float c = 0.1;
+            const float a = 0.01;
+            const float b = 0.02;
+            const float c = 0.01;
             attenuation = 1.0 / (a + b * distanceToLight + c * pow(distanceToLight, 2));
+                          //  0.9;    // for debugging
 
             // Directional light
             if (abs(type - 1.0) < epsilon)
@@ -115,11 +130,11 @@ void main()
                     , 0.0, 1.0);
 
             }
-            attenuation = 0.9;
             col += materialColor.rgb * calcDiffuse(lightCol, lightDir, vertexNormal)
                         * intensity * attenuation;
             float shadow = ShadowCalculation(FragPosLightSpace[i], lightDir, vertexNormal);
             col *= (1.0 - shadow);
+            //col = vec3(1.0 - shadow);
         }
 
         gl_FragColor = vec4(col, 1.0);

@@ -125,6 +125,7 @@ void Transform::RotateByOperator(Vector3 const & asixRotation, double angle)
     matRotOp = LipaboyLib::RotateOperator(LipaboyLib::Vector3D(asixRotation.x, asixRotation.y,
                                                         asixRotation.z), angle).getMatrix()
             * matRotOp;
+    m_shouldRecalc = true;
 }
 
 void Transform::Rotate( float x, float y, float z )

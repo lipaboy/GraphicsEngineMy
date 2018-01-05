@@ -16,12 +16,6 @@ void MaterialShadowMappingDepth::Deinit()
      Material::Deinit();
 }
 
-#ifdef CAN_USE_OPEN_GL
-#include <glm/mat4x4.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#endif
-
 void MaterialShadowMappingDepth::SetMaterial()
 {
     // Заполняем матрицы World, View, Proj
@@ -29,12 +23,13 @@ void MaterialShadowMappingDepth::SetMaterial()
     const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
     const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
 
-    const Matrix4x4 matWorldViewProjT	= MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
+    const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 
     const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
     Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
     lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
     //lights.front()->SetLightSpaceMatrix(matWorldViewProjT);
+    Camera & camera = Application::Instance().GetScene().GetCamera();
 
     SetMaterialBegin();
     {
@@ -44,6 +39,8 @@ void MaterialShadowMappingDepth::SetMaterial()
 
         // Empty
         SetPixelShaderBegin();      // == fragment shader
+        SetPixelShaderVector4("farPlane", Vector4(camera.getFarPlane(), 0., 0., 0.));
+        SetPixelShaderVector4("nearPlane", Vector4(camera.getNearPlane(), 0., 0., 0.));
         SetPixelShaderEnd();
     }
     SetMaterialEnd();
