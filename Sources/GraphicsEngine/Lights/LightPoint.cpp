@@ -1,19 +1,19 @@
-#include "LightSpot.h"
+#include "LightPoint.h"
+
 #include "GraphicsEngine/Camera.h"
 #include "GraphicsEngine/SceneUtils.h"
 #include "GraphicsEngine/MathUtils.h"
 
-#include "GraphicsEngine/Meshes/MeshCylinder.h"
+#include "GraphicsEngine/Meshes/MeshSphere.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
 
-#include <QDebug>
-
-LightSpot::LightSpot() : AbstractLight() {
+LightPoint::LightPoint()
+{
     pLightFigure = new Object();
 
     pLightFigure->m_pTransform	= new Transform();
-    pLightFigure->m_pMesh		= new MeshCylinder(20);
+    pLightFigure->m_pMesh		= new MeshSphere(20);
             //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
     pLightFigure->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
         new MaterialUnlit()
@@ -24,21 +24,16 @@ LightSpot::LightSpot() : AbstractLight() {
     scene.AddObject(pLightFigure);
 }
 
-void LightSpot::Update() {
-    static Matrix4x4 saveMat;
-
-    saveMat = m_spaceMatrix;
+void LightPoint::Update() {
     RecalcLightSpaceMatrix();
 
     Transform *pFigureTr = pLightFigure->m_pTransform;
     Transform *pLightTr = this->GetConstObjectPtr()->m_pTransform;
 
     *pFigureTr = *pLightTr;
-    pFigureTr->RotateByOperator(Vector3(0, 0, 1), PI / 2.);
-    pFigureTr->RotateByOperator(Vector3(1, 0, 0), PI / 2.);
 }
 
-void LightSpot::RecalcLightSpaceMatrix()
+void LightPoint::RecalcLightSpaceMatrix()
 {
     Camera & camera = Application::Instance().GetScene().GetCamera();
 

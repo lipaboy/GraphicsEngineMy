@@ -4,6 +4,7 @@
 #include "GraphicsEngine/Lights/Light.h"
 #include "GraphicsEngine/Lights/LightDirectional.h"
 #include "GraphicsEngine/Lights/LightSpot.h"
+#include "GraphicsEngine/Lights/LightPoint.h"
 
 #include "GraphicsEngine/Materials/MaterialTask01.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
@@ -43,8 +44,7 @@ public:
 			Object * pCameraObj = new Object();
             pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-20), Vector3(0, 0, 0));
 			Camera * pCamera = new Camera();
-			pCameraObj->AddComponent( pCamera );
-            //pCameraObj->AddComponent( new ObjectRotator(100,0,0) );
+            pCameraObj->AddComponent( pCamera );
             pCameraObj->AddComponent(new CameraController());
 
 			scene.SetCamera( pCamera );
@@ -60,8 +60,6 @@ public:
             pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
-            //pObject1->AddComponent( new ObjectRotator(0,2*50,0) );
-            //pObject1->AddComponent(new CameraController());
 
             scene.AddObject( pObject1 );
         }
@@ -70,26 +68,64 @@ public:
         {
             Object * pObject1 = new Object();
             pObject1->m_pTransform	= new Transform(-3,0,0, 0,-80,0, 16,16,16);
-            pObject1->m_pMesh		= //new MeshSphere(20);
+            pObject1->m_pMesh		=
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
-            //pObject1->AddComponent( new ObjectRotator(0,100,100) );
             scene.AddObject( pObject1 );
         }
 
+        // объект #3 - Cylinder
         {
             Object * pObject1 = new Object();
             pObject1->m_pTransform	= new Transform(0,3,0, 45,0,0, 3,3,3);
-            pObject1->m_pMesh		= //new MeshSphere(20);
+            pObject1->m_pMesh		=
                     new MeshCylinder(20);      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
                 new MaterialDiffuseAttenuation());
                 //new MaterialDiffuseSpecular();
-            //pObject1->AddComponent( new ObjectRotator(0,100,100) );
             scene.AddObject( pObject1 );
         }
+
+
+        //объект #4 - Сфера
+       {
+           Object * pObject1 = new Object();
+
+           pObject1->m_pTransform	= new Transform(10,0,12, 0,0,0, 3,3,3);
+           pObject1->m_pMesh		= new MeshSphere(20);
+                   //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
+           pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+               new MaterialDiffuseAttenuation());
+               //new MaterialDiffuseSpecular();
+
+           scene.AddObject( pObject1 );
+       }
+
+       // объект #5 - Quad
+       {
+           Object * pObject1 = new Object();
+           pObject1->m_pTransform	= new Transform(18,0,18, 0,10,0, 16,16,16);
+           pObject1->m_pMesh		=
+                   new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
+           pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+               new MaterialDiffuseAttenuation());
+               //new MaterialDiffuseSpecular();
+           scene.AddObject( pObject1 );
+       }
+
+       // объект #6 - Cylinder
+       {
+           Object * pObject1 = new Object();
+           pObject1->m_pTransform	= new Transform(14,3,12, 45,0,0, 3,3,3);
+           pObject1->m_pMesh		=
+                   new MeshCylinder(20);      //why system coordinates is changing when I replace Sphere on Cube???
+           pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
+               new MaterialDiffuseAttenuation());
+               //new MaterialDiffuseSpecular();
+           scene.AddObject( pObject1 );
+       }
 
 //		 Источник света #1
         {
@@ -99,39 +135,13 @@ public:
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();
             pLightObject->m_pTransform	= new Transform(10,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        0,-90,0, 1,1,1);
+                                                        0,0,0, 1,1,1);
+            //pLightObject->m_pTransform->Rotate();
             pLightObject->AddComponent(pLight);
             //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
 
-
-
             scene.AddLight(pLight);
-
-//            Object * pLightFigure = new Object();
-
-//            pLightFigure->m_pTransform	= new Transform(*(pLightObject->m_pTransform));
-//            pLightFigure->m_pMesh		= new MeshSphere(20);
-//                    //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-//            pLightFigure->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
-//                new MaterialDiffuseAttenuation()
-//                //new MaterialDiffuseSpecular()
-//            );
-
-//            scene.AddObject( pLightFigure );
         }
-//        //		 Источник света #2
-//        {
-//            AbstractLight * pLight = new LightDirectional();
-//            pLight->SetColor(0.5,0,0);
-//            pLight->SetIntensity(1);
-//            Object * pLightObject   = new Object();
-//            pLightObject->m_pTransform	= new Transform(20,0,0, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-//                                                        0,-80,0, 1,1,1);
-//            pLightObject->AddComponent(pLight);
-//            //pLightObject->AddComponent(new ObjectRotator(0, 0, 100));
-
-//            scene.AddLight(pLight);
-//        }
 //-------------------------------------------
         // Ox
         {

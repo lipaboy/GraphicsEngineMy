@@ -98,8 +98,16 @@ protected:
                 // Rotate pTransform
                 Vector3 currPos = Input::GetMousePosition();
                 Vector3 vec = (currPos - mousePos) * speedAngle;
-                pObjectTransform->RotateAroundCenter(Vector3(-vec.y, -vec.x, 0));
-                mousePos = currPos;
+                //pObjectTransform->Rotate(Vector3(-vec.y, -vec.x, 0));
+               // pObjectTransform->RotateByOperator(Vector3(-vec.y, -vec.x, 0), PI / 200.);
+                if (std::abs(vec.x) > 1e-6) {
+                    pObjectTransform->Rotate(Vector3(0, vec.x, 0));
+                    mousePos = currPos;
+                }
+                if (std::abs(vec.y) > 1e-6) {
+                    pObjectTransform->Rotate(Vector3(vec.y, 0, 0));
+                    mousePos = currPos;
+                }
             } else {
                 mousePos = Input::GetMousePosition();
             }

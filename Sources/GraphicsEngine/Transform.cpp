@@ -180,10 +180,9 @@ void Transform::Recalc()
         Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
         Matrix4x4 _matRotOp;
         _matRotOp = matRotOp;
+        matRot = matRot * _matRotOp.Transpose();
 
-        m_matWorld = matScale * matRot *
-                _matRotOp.Transpose()
-                * matTrans;
+        m_matWorld = matScale * matRot * matTrans;
 		
 		// If has parent then use parent matrix
 		if (NULL != m_pParent)
@@ -213,8 +212,9 @@ void Transform::Recalc()
 	{
 		m_matView = Matrix4x4::LookAtLH(m_position, m_position + m_forward, m_up);
         // What for? And do it need for light space matrix
-        Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
-        m_matView = matRotAroundCenter * m_matView;
+
+        //Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
+        //m_matView = matRotAroundCenter * m_matView;
 	}
 
 	m_shouldRecalc = false;

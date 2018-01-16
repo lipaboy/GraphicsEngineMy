@@ -99,6 +99,47 @@ struct Matrix4x4
 		return result;
 	}
 
+    Matrix4x4 operator - (const Matrix4x4 & other) const {
+        Matrix4x4 sub;
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                sub.m[i][j] = m[i][j] - other.m[i][j];
+            }
+        }
+
+        return sub;
+    }
+
+    double diff (const Matrix4x4 & other) const {
+        double diff;
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                diff += std::abs(m[i][j] - other.m[i][j]);
+            }
+        }
+
+        return diff;
+    }
+
+    bool operator == (const Matrix4x4 & other) const {
+        bool isEqual = true;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (std::abs(m[i][j] - other.m[i][j]) > 1e-6) {
+                    isEqual = false;
+                    break;
+                }
+            }
+            if (!isEqual)
+                break;
+        }
+        return isEqual;
+    }
+
+    bool operator != (const Matrix4x4 & other) const { return !((*this) == other); }
+
     static Matrix4x4 Identity()
 	{
 		Matrix4x4 result;
