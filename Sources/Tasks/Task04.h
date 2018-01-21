@@ -131,6 +131,7 @@ public:
         {
             //AbstractLight * pLight = new LightDirectional();
             AbstractLight * pLight = new LightSpot();
+            //AbstractLight * pLight = new LightPoint();
             pLight->SetColor(.9,.9,0);
             pLight->SetIntensity(1);
             Object * pLightObject   = new Object();

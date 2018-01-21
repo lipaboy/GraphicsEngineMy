@@ -3,7 +3,8 @@
 
 enum RenderTarget {
     SCREEN,
-    DEPTH_TEXTURE
+    DEPTH_FLAT_TEXTURE,
+    DEPTH_CUBEMAP_TEXTURE
 };
 
 class RenderTextureImpl
