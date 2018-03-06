@@ -88,7 +88,8 @@ SOURCES += \
     ../Sources/GraphicsEngine/Materials/MaterialShadowMappingDepth.cpp \
     ../Sources/GraphicsEngine/Lights/LightDirectional.cpp \
     ../Sources/GraphicsEngine/Lights/LightSpot.cpp \
-    ../Sources/GraphicsEngine/Lights/LightPoint.cpp
+    ../Sources/GraphicsEngine/Lights/LightPoint.cpp \
+    ../Sources/GraphicsEngine/Meshes/mesh_pylos_board.cpp
 
 
 DISTFILES += \
@@ -227,4 +228,5 @@ HEADERS += \
     ../Sources/GraphicsEngine/Lights/LightDirectional.h \
     ../Sources/GraphicsEngine/Lights/LightSpot.h \
     ../Sources/GraphicsEngine/Lights/LightPoint.h \
-    ../Sources/Tasks/pylostask.h
+    ../Sources/Tasks/pylostask.h \
+    ../Sources/GraphicsEngine/Meshes/mesh_pylos_board.h

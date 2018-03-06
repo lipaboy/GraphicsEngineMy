@@ -100,10 +100,12 @@ void Scene::Render() {
     Camera & camera = GetCamera();
     const std::list<const AbstractLight *> & lights = GetLights();
 
-    pRenderTextureImpl -> SetRenderTarget(DEPTH_FLAT_TEXTURE);
-    camera.SetLightSide(lights.front());
-    {
-        Render1();
+    if (!lights.empty()) {
+        pRenderTextureImpl -> SetRenderTarget(DEPTH_FLAT_TEXTURE);
+        camera.SetLightSide(lights.front());
+        {
+            Render1();
+        }
     }
 
     pRenderTextureImpl -> SetRenderTarget(SCREEN);

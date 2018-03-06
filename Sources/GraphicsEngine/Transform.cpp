@@ -175,21 +175,29 @@ void Transform::Recalc()
 {
 	// ѕересчитаем матрицу World
 	{
-		Matrix4x4 matTrans	= Matrix4x4::Translation(m_position);
-		Matrix4x4 matRot	= Matrix4x4::Rotation(m_eulerAngles);
+        Vector3 anglesWithoutY(m_eulerAngles.x, 0, m_eulerAngles.z);
+        Matrix4x4 matTrans	= Matrix4x4::Translation(m_position);
+        Matrix4x4 matRotWithoutY	= Matrix4x4::Rotation(anglesWithoutY);
+        Matrix4x4 matRotY	= Matrix4x4::Rotation(Vector3(0, m_eulerAngles.y, 0));
+        Matrix4x4 matRotKek = Matrix4x4::Rotation(m_eulerAngles);
         Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
         Matrix4x4 _matRotOp;
         _matRotOp = matRotOp;
-        matRot = matRot * _matRotOp.Transpose();
+        matRotWithoutY = matRotWithoutY * _matRotOp.Transpose();
 
-        m_matWorld = matScale * matRot * matTrans;
-		
-		// If has parent then use parent matrix
-		if (NULL != m_pParent)
-		{
-			Matrix4x4 matWorldParent = m_pParent->GetMatWorld();
-			m_matWorld = m_matWorld * matWorldParent;
-		}
+        // castile for checking if not camera
+        if (0&& m_pParent != this) {
+            m_matWorld = matScale * matRotKek * matTrans;
+            // If has parent then use parent matrix
+            if (NULL != m_pParent)
+            {
+                Matrix4x4 matWorldParent = m_pParent->GetMatWorld();
+                m_matWorld = m_matWorld * matWorldParent;
+            }
+        }
+        else {
+            m_matWorld = matScale * matRotWithoutY * matTrans * matRotY;
+        }
 	}
 
 	// ѕересчитаем вектора m_forward, m_right, m_up
@@ -213,8 +221,8 @@ void Transform::Recalc()
 		m_matView = Matrix4x4::LookAtLH(m_position, m_position + m_forward, m_up);
         // What for? And do it need for light space matrix
 
-        //Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
-        //m_matView = matRotAroundCenter * m_matView;
+       // Matrix4x4 matRotAroundCenter = Matrix4x4::Rotation(m_eulerAnglesAroundCenter);
+       // m_matView = matRotAroundCenter * m_matView;
 	}
 
 	m_shouldRecalc = false;

@@ -9,6 +9,8 @@
 #include "GraphicsEngine/Materials/MaterialSand.h"
 #include "GraphicsEngine/Lights/Light.h"
 
+#include "Tasks/CameraController.h"
+
 
 class Task05_01: public Task
 {
@@ -25,6 +27,7 @@ public:
 			Camera * pCamera = new Camera();
 			pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 1.0f,-7.0f), Vector3(25.0f, 0.0f, 0.0f) );			
 			pCameraObj->AddComponent( pCamera );
+            pCameraObj->AddComponent( new CameraController(5) );
 
 			scene.SetCamera( pCamera );
 		}

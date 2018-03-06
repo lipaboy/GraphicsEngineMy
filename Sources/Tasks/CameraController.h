@@ -13,12 +13,16 @@ class CameraController : public Component
     Transform * pTransform;
     Transform * pLightTransform;
     bool isCamera = true;
+    int _cameraSpeed = 10;
 
 public:
-	CameraController()
-	{
+    CameraController() {
         mousePos = Vector3::Zero();
 	}
+
+    CameraController(int speed) : CameraController() {
+        _cameraSpeed = speed;
+    }
 
 	virtual ~CameraController() {}
 
@@ -37,10 +41,10 @@ protected:
         {
             Vector3 forward	= pObjectTransform->GetForward();
             Vector3 right	= pObjectTransform->GetRight();
-            //Vector3 up = pTransform->GetUp();
+            Vector3 up = pObjectTransform->GetUp();
             double dt = Time::GetDeltaTime();
 
-            double speed = (isCamera) ? 1.0 * .5 * 2 * 10
+            double speed = (isCamera) ? _cameraSpeed
                                       : 1.0 * 3;
             //* (1.0 / 20)
             Vector3 direction;
@@ -76,6 +80,10 @@ protected:
                 //pTransform->RotateAroundCenter(-up.Normalize() * speed );
                 direction = -right * speed;
             }
+            else if (Input::GetKey(KEY_CODE_Q))
+                direction = up * speed;
+            else if (Input::GetKey(KEY_CODE_E))
+                direction = -up * speed;
 
             if (Input::GetKey(KEY_CODE_LEFT_SHIFT))
             {

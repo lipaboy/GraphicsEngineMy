@@ -60,7 +60,7 @@ void GL20DepthTexture::Init()
 //    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 //    depthCubemapFBO = 0;
-//    glGenFramebuffers(1, &depthCubemapFBO);
+//    glGenFramebuffers(1, &depthCubemapFBO);   // 1 - count of framebuffers that must be generated
 //    // attach depth texture as FBO's depth buffer
 //    glBindFramebuffer(GL_FRAMEBUFFER, depthCubemapFBO);
 
