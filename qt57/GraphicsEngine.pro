@@ -226,4 +226,5 @@ HEADERS += \
     ../Sources/GraphicsEngine/Lights/Light.h \
     ../Sources/GraphicsEngine/Lights/LightDirectional.h \
     ../Sources/GraphicsEngine/Lights/LightSpot.h \
-    ../Sources/GraphicsEngine/Lights/LightPoint.h
+    ../Sources/GraphicsEngine/Lights/LightPoint.h \
+    ../Sources/Tasks/pylostask.h
