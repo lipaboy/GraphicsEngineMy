@@ -4,6 +4,7 @@
 #include "Tasks/Task04.h"
 #include "Tasks/Task05_01.h"
 #include "Tasks/Task08.h"
+#include "Tasks/domino.h"
 
 // The application's entry point
 int main(int argc, char ** argv)
@@ -15,8 +16,9 @@ int main(int argc, char ** argv)
 		app.argv = argv;
 	}
 
-    //Task * pTask = new Task01();
-    Task * pTask = new Task04();
+//    Task * pTask = new Task01();
+//    Task * pTask = new Task04();
+    Task * pTask = new Domino();
     //Task * pTask = new Task05_01();
     //Task * pTask = new Task08();
 	{

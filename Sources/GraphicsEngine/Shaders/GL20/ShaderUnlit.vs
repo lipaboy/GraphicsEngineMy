@@ -17,7 +17,7 @@ uniform mat4 matrixWorldViewProjT;
 
 void main()
 {
-	//gl_Position = matrixWorldViewProjT * vec4(position, 1.0);	// OpenGL
-	gl_Position = vec4(position, 1.0) * matrixWorldViewProjT;	// DirectX
+        //gl_Position = matrixWorldViewProjT * vec4(position, 1.0);	// DirectX
+        gl_Position = vec4(position, 1.0) * matrixWorldViewProjT;	// OpenGL
 	gl_FrontColor = color * constColor;
 }

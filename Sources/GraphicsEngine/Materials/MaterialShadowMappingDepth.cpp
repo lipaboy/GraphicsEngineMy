@@ -26,16 +26,22 @@ void MaterialShadowMappingDepth::SetMaterial()
     const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 
     const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
-    Matrix4x4 lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
-    lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
-    //lights.front()->SetLightSpaceMatrix(matWorldViewProjT);
+    Matrix4x4 lightSpaceMatrix;
+    if (lights.size() > 0) {
+        lightSpaceMatrix = lights.front()->GetLightSpaceMatrix();
+        lightSpaceMatrix = lightSpaceMatrix * matWorld.Transpose();
+        //lights.front()->SetLightSpaceMatrix(matWorldViewProjT);
+    }
+
     Camera & camera = Application::Instance().GetScene().GetCamera();
 
     SetMaterialBegin();
     {
-        SetVertexShaderBegin();
-        SetVertexShaderMatrix4x4("lightSpaceMatrix", lightSpaceMatrix);
-        SetVertexShaderEnd();
+        if (lights.size() > 0) {
+            SetVertexShaderBegin();
+            SetVertexShaderMatrix4x4("lightSpaceMatrix", lightSpaceMatrix);
+            SetVertexShaderEnd();
+        }
 
         // Empty
         SetPixelShaderBegin();      // == fragment shader
