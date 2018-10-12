@@ -5,7 +5,6 @@
 #include "Tasks/Task05_01.h"
 #include "Tasks/Task08.h"
 
-
 // The application's entry point
 int main(int argc, char ** argv)
 {
