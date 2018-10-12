@@ -28,6 +28,8 @@
 
 #include "CameraController.h"
 
+#include <cmath>
+
 
 class Domino: public Task
 {
@@ -40,12 +42,15 @@ public:
     virtual void Init()
     {
         Scene & scene = Application::Instance().GetScene();
+        Vector3 defaultDirection(1, 0, 0);
+
         Vector3 floorPosition(-3, -8, 0);
         Vector3 floorNormal(0, 1, 0);
-        Vector3 dominoSize(2, 4, 1);
+        Vector3 dominoSize(1, 4, 2);
         Vector3 dominoPosition = floorPosition + Vector3(0, dominoSize.y / 2., 0);
+        Vector3 dominoDirection(2, 0, -2);
 
-        // Камера
+        // Camera
         {
             Object * pCameraObj = new Object();
             pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0, -20), Vector3(20, 0, 0));
@@ -56,7 +61,7 @@ public:
             scene.SetCamera( pCamera );
         }
 
-        // объект #2 - Quad
+        // object #2 - Quad
         {
             Object * pObject1 = new Object();
             pObject1->m_pTransform	= new Transform(floorPosition, Vector3(0,90,0), Vector3(16,16,16));
@@ -72,37 +77,47 @@ public:
             scene.AddObject( pObject1 );
         }
 
-        //объект #4 - Domino
-       {
-           Object * pDomino = new Object();
+        // object #4 - Domino
+        {
+            Object * pDomino = new Object();
 
-           pDomino->m_pTransform = new Transform(dominoPosition, Vector3(0,0,0), dominoSize);
-           pDomino->m_pTransform -> RotateByOperator(floorNormal, PI / 2 + PI / 8);
-           pDomino->m_pMesh		= //new MeshSphere(20);
+            auto crossVec = Vector3::Cross(defaultDirection, dominoDirection);
+            // #crutch: calculating the direction of rotating
+            double angle = (crossVec.y > 0) * std::asin(crossVec.Length()
+                    / dominoDirection.Length()
+                    / defaultDirection.Length());
+//            angle = 0;
+            pDomino->m_pTransform = new Transform(dominoPosition, Vector3(0,0,0), dominoSize);
+            pDomino->m_pTransform -> RotateByOperator(floorNormal, angle);
+            pDomino->m_pMesh		= //new MeshSphere(20);
                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-           pDomino->m_pMaterial = std::shared_ptr<Material>(
+            pDomino->m_pMaterial = std::shared_ptr<Material>(
                        new MaterialUnlit()
-//                       new MaterialTexture("Earth_NormalMap.jpg", TEXTURE_FILTER_MODE_POINT)
-//                       new MaterialDiffuseAttenuation()
-//                        new MaterialDiffuseSpecular(1,1,1)
+            //                       new MaterialTexture("Earth_NormalMap.jpg", TEXTURE_FILTER_MODE_POINT)
+            //                       new MaterialDiffuseAttenuation()
+            //                        new MaterialDiffuseSpecular(1,1,1)
                        );
-//           pDomino->AddComponent(new DominoFalling(Vector3()));
+            //           pDomino->AddComponent(new DominoFalling(Vector3()));
 
-           scene.AddObject( pDomino );
-       }
+            scene.AddObject( pDomino );
+        }
 
-       // объект #5 - Quad
-       {
-           Object * pObject1 = new Object();
-           pObject1->m_pTransform	= new Transform(18,0,18, 0,10,0, 16,16,16);
-           pObject1->m_pMesh		=
+        //---------------------------------------------------//
+        //--------------------"Background"--------------------//
+        //---------------------------------------------------//
+
+        // object #5 - Quad
+        {
+            Object * pObject1 = new Object();
+            pObject1->m_pTransform	= new Transform(18,0,18, 0,10,0, 16,16,16);
+            pObject1->m_pMesh		=
                    new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
-           pObject1->m_pMaterial = std::shared_ptr<Material>(
-//                       new MaterialUnlit()
+            pObject1->m_pMaterial = std::shared_ptr<Material>(
+            //                       new MaterialUnlit()
                        new MaterialDiffuseAttenuation()
                        );
-           scene.AddObject( pObject1 );
-       }
+            scene.AddObject( pObject1 );
+        }
 
         // sun
         {
