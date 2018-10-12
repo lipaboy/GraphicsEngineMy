@@ -4,25 +4,26 @@
 #include "GraphicsEngine/SceneUtils.h"
 
 
-MaterialSand::MaterialSand(TextureFilterMode filterMode)
+MaterialTexture::MaterialTexture(std::string const & filename, TextureFilterMode filterMode)
 {
 	m_vsFileName = "ShaderSand";
 	m_psFileName = "ShaderSand";
 
 	m_pTexture1 = NULL;
 	m_filterMode = filterMode;
+    filename_ = filename;
 }
 
-void MaterialSand::Init(Object * pObject)
+void MaterialTexture::Init(Object * pObject)
 {
 	Material::Init(pObject);
 
-	m_pTexture1 = new Texture2D("sand.jpg");
+    m_pTexture1 = new Texture2D(filename_.c_str());
 			
 	m_pTexture1->SetFilterMode(m_filterMode);	
 }
 
-void MaterialSand::Deinit()
+void MaterialTexture::Deinit()
 {
 	delete m_pTexture1;
 	m_pTexture1 = NULL;
@@ -30,7 +31,7 @@ void MaterialSand::Deinit()
 	Material::Deinit();
 }
 
-void MaterialSand::SetMaterial()
+void MaterialTexture::SetMaterial()
 {
 	const Matrix4x4 & matWorld	= SceneUtils::GetMatrixWorld(m_pObject);
 	const Matrix4x4 & matView	= SceneUtils::GetMatrixView();

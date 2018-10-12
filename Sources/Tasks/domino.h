@@ -12,6 +12,7 @@
 #include "GraphicsEngine/Materials/MaterialDiffuse.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseSpecular.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
+#include "GraphicsEngine/Materials/MaterialSand.h"
 
 #include "GraphicsEngine/Meshes/MeshTriangle.h"
 #include "GraphicsEngine/Meshes/MeshQuad.h"
@@ -39,11 +40,13 @@ public:
     virtual void Init()
     {
         Scene & scene = Application::Instance().GetScene();
+        Vector3 floorPosition(-3, -8, 0);
+        Vector3 dominoSize(2, 4, 1);
 
         // Камера
         {
             Object * pCameraObj = new Object();
-            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0.0f,-20), Vector3(0, 0, 0));
+            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0, -20), Vector3(20, 0, 0));
             Camera * pCamera = new Camera();
             pCameraObj->AddComponent( pCamera );
             pCameraObj->AddComponent(new CameraController());
@@ -54,29 +57,33 @@ public:
         // объект #2 - Quad
         {
             Object * pObject1 = new Object();
-            pObject1->m_pTransform	= new Transform(-3,0,0, 0,-80,0, 16,16,16);
+            pObject1->m_pTransform	= new Transform(floorPosition, Vector3(0,90,0), Vector3(16,16,16));
+            pObject1->m_pTransform -> RotateByOperator(Vector3(0, 0, 1), -PI / 2);
             pObject1->m_pMesh		=
                     new MeshQuad();      //why system coordinates is changing when I replace Sphere on Cube???
             pObject1->m_pMaterial = std::shared_ptr<Material>(
 //                        new MaterialUnlit()
-                        new MaterialDiffuseAttenuation()
+//                        new MaterialDiffuseAttenuation()
+                        new MaterialTexture("sand.jpg", TEXTURE_FILTER_MODE_POINT)
+//                        new MaterialDiffuseSpecular(1,.5,1)
                         );
             scene.AddObject( pObject1 );
         }
 
-
-
-
-        //объект #4 - Cube
+        //объект #4 - Domino
        {
            Object * pObject1 = new Object();
 
-           pObject1->m_pTransform	= new Transform(10,0,12, 0,0,0, 3,3,3);
+           pObject1->m_pTransform	= new Transform(floorPosition + Vector3(0, dominoSize.y / 2., 0),
+                                                    Vector3(0,110,0),
+                                                    dominoSize);
            pObject1->m_pMesh		= //new MeshSphere(20);
                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
            pObject1->m_pMaterial = std::shared_ptr<Material>(
-//                       new MaterialUnlit()
-                       new MaterialDiffuseAttenuation()
+                       new MaterialUnlit()
+//                       new MaterialTexture("Earth_NormalMap.jpg", TEXTURE_FILTER_MODE_POINT)
+//                       new MaterialDiffuseAttenuation()
+//                        new MaterialDiffuseSpecular(1,1,1)
                        );
 
            scene.AddObject( pObject1 );
@@ -102,7 +109,8 @@ public:
             pLight->SetIntensity(1);
 
             Object * pLightObject = new Object();
-            pLightObject->m_pTransform	= new Transform(6,0,10, 0,-45,0, 1,1,1);
+            pLightObject->m_pTransform	= new Transform(16,16,16, 0,0,0, 1,1,1);
+//            pLightObject->m_pTransform -> RotateByOperator(Vector3(0, 0, 1), PI / 2);
             pLightObject->AddComponent(pLight);
 
             scene.AddLight(pLight);

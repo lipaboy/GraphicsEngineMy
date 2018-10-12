@@ -2,11 +2,13 @@
 #include "GraphicsEngine/Materials/Material.h"
 #include "GraphicsEngine/Texture2D.h"
 
+#include <string>
 
-class MaterialSand : public Material
+
+class MaterialTexture : public Material
 {
 public:
-	MaterialSand(TextureFilterMode filterMode);
+    MaterialTexture(std::string const & filename, TextureFilterMode filterMode);
 
 	virtual void Init(Object * pObject);
 	virtual void Deinit();
@@ -16,4 +18,5 @@ public:
 private:
 	Texture2D *	m_pTexture1;
 	TextureFilterMode m_filterMode;
+    std::string filename_;
 };
