@@ -41,7 +41,9 @@ public:
     {
         Scene & scene = Application::Instance().GetScene();
         Vector3 floorPosition(-3, -8, 0);
+        Vector3 floorNormal(0, 1, 0);
         Vector3 dominoSize(2, 4, 1);
+        Vector3 dominoPosition = floorPosition + Vector3(0, dominoSize.y / 2., 0);
 
         // Камера
         {
@@ -72,21 +74,21 @@ public:
 
         //объект #4 - Domino
        {
-           Object * pObject1 = new Object();
+           Object * pDomino = new Object();
 
-           pObject1->m_pTransform	= new Transform(floorPosition + Vector3(0, dominoSize.y / 2., 0),
-                                                    Vector3(0,110,0),
-                                                    dominoSize);
-           pObject1->m_pMesh		= //new MeshSphere(20);
+           pDomino->m_pTransform = new Transform(dominoPosition, Vector3(0,0,0), dominoSize);
+           pDomino->m_pTransform -> RotateByOperator(floorNormal, PI / 2 + PI / 8);
+           pDomino->m_pMesh		= //new MeshSphere(20);
                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
-           pObject1->m_pMaterial = std::shared_ptr<Material>(
+           pDomino->m_pMaterial = std::shared_ptr<Material>(
                        new MaterialUnlit()
 //                       new MaterialTexture("Earth_NormalMap.jpg", TEXTURE_FILTER_MODE_POINT)
 //                       new MaterialDiffuseAttenuation()
 //                        new MaterialDiffuseSpecular(1,1,1)
                        );
+//           pDomino->AddComponent(new DominoFalling(Vector3()));
 
-           scene.AddObject( pObject1 );
+           scene.AddObject( pDomino );
        }
 
        // объект #5 - Quad

@@ -9,7 +9,7 @@ class Component
 public:
 	Component() 
 	{
-		m_pObject = NULL;
+        m_pObject = nullptr;
 	}
 
 	virtual ~Component() {}
