@@ -9,9 +9,7 @@
 
 class CameraController : public Component
 {
-	Vector3 mousePos;
-    Transform * pTransform;
-    Transform * pLightTransform;
+    Vector3 mousePos;
     bool isCamera = true;
 
 public:
@@ -37,7 +35,7 @@ protected:
         {
             Vector3 forward	= pObjectTransform->GetForward();
             Vector3 right	= pObjectTransform->GetRight();
-            //Vector3 up = pTransform->GetUp();
+            Vector3 up = pObjectTransform->GetUp();
             double dt = Time::GetDeltaTime();
 
             double speed = (isCamera) ? 1.0 * .5 * 2 * 10
@@ -45,44 +43,41 @@ protected:
             //* (1.0 / 20)
             Vector3 direction;
 
-            //Input::GetKey(KEY_)
             if (Input::GetKey(KEY_CODE_W) || Input::GetKey(KEY_CODE_UP_ARROW))
             {
-                // TODO: Task08
                 // Move forward
-                //pTransform->RotateAroundCenter(-right.Normalize() * speed);
-
                 direction = forward * speed;
             }
             else if (Input::GetKey(KEY_CODE_S) || Input::GetKey(KEY_CODE_DOWN_ARROW))
             {
-                // TODO: Task08
                 // Move backward
-               // pTransform->RotateAroundCenter(right.Normalize() * speed);
                 direction = -forward * speed;
             }
 
             if (Input::GetKey(KEY_CODE_D) || Input::GetKey(KEY_CODE_RIGHT_ARROW))
             {
-                // TODO: Task08
                 // Move right
-                //pTransform->RotateAroundCenter(up.Normalize() * speed );
                 direction = right * speed;
             }
             else if (Input::GetKey(KEY_CODE_A) || Input::GetKey(KEY_CODE_LEFT_ARROW))
             {
-                // TODO: Task08
                 // Move left
-                //pTransform->RotateAroundCenter(-up.Normalize() * speed );
                 direction = -right * speed;
             }
 
-            if (Input::GetKey(KEY_CODE_LEFT_SHIFT))
+            if (Input::GetKey(KEY_CODE_Q))
             {
-                // TODO: Task08
-                // Move speed up (multiply speed by 10)
-                speed *= 10;
+                // Lift up
+                direction = up * speed;
             }
+            else if (Input::GetKey(KEY_CODE_E))
+            {
+                // Lift down
+                direction = -up * speed;
+            }
+
+            if (Input::GetKey(KEY_CODE_LEFT_SHIFT))
+                speed *= 10;
             if (Input::GetKey(KEY_CODE_RIGHT_SHIFT))
                 speed /= 10;
 

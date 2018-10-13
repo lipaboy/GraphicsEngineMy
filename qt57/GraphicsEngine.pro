@@ -227,4 +227,5 @@ HEADERS += \
     ../Sources/GraphicsEngine/Lights/LightDirectional.h \
     ../Sources/GraphicsEngine/Lights/LightSpot.h \
     ../Sources/GraphicsEngine/Lights/LightPoint.h \
-    ../Sources/Tasks/domino.h
+    ../Sources/Tasks/domino.h \
+    ../Sources/domino/domino_falling.h

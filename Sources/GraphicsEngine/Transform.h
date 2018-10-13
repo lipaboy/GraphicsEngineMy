@@ -48,23 +48,7 @@ public:
 	const Vector3 & GetScale() const;
 
 	const Matrix4x4 & GetMatWorld();
-	const Matrix4x4 & GetMatView();
-
-//    Transform const & operator= (Transform const & other) {
-//        m_pParent = other.m_pParent;
-//        m_position = other.m_position;
-//        m_eulerAngles = other.m_eulerAngles;
-//        m_scale = other.m_scale;
-//        m_eulerAnglesAroundCenter = other.m_eulerAnglesAroundCenter;
-//        matRotOp = other.matRotOp;
-//        m_forward = other.m_forward;
-//        m_right = other.m_right;
-//        m_up = other.m_up;
-//        m_matWorld = other.m_matWorld;
-//        m_matView = other.m_matView;
-//        m_shouldRecalc = true;
-//        return *this;
-//    }
+    const Matrix4x4 & GetMatView();
 
 private:
 
@@ -78,6 +62,10 @@ private:
     // Rotate around center
     Vector3 m_eulerAnglesAroundCenter = Vector3(0, 0, 0);
     lipaboy_lib::Matrix4x4 matRotOp = lipaboy_lib::Matrix4x4::getEye();
+//    lipaboy_lib::Matrix4x4 matRotDomino = lipaboy_lib::Matrix4x4::getEye();
+public:
+    Vector3 preliminaryTranslation = Vector3(0, 0, 0);
+private:
 
 	// Вектор "вперёд" в глобальной с.к. (равен (0,0,1) в локальной с.к.)
 	Vector3 m_forward;

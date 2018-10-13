@@ -30,6 +30,7 @@
 
 #include <cmath>
 
+#include "domino/domino_falling.h"
 
 class Domino: public Task
 {
@@ -46,9 +47,19 @@ public:
 
         Vector3 floorPosition(-3, -8, 0);
         Vector3 floorNormal(0, 1, 0);
-        Vector3 dominoSize(1, 4, 2);
-        Vector3 dominoPosition = floorPosition + Vector3(0, dominoSize.y / 2., 0);
+        // width, height, length
+        Vector3 dominoSize(4, 4, 2);
+        Vector3 dominoPosition = floorPosition + Vector3(0, dominoSize.y / 2., 0)
+                + Vector3(0, dominoSize.y, 0);
         Vector3 dominoDirection(2, 0, -2);
+
+        // Calculation the angle of domino rotation
+
+        auto crossVec = Vector3::Cross(defaultDirection, dominoDirection);
+        // #crutch: calculating the direction of rotating
+        double dominoRotationAngle = (crossVec.y > 0) * std::asin(crossVec.Length()
+                / dominoDirection.Length()
+                / defaultDirection.Length());
 
         // Camera
         {
@@ -80,15 +91,9 @@ public:
         // object #4 - Domino
         {
             Object * pDomino = new Object();
-
-            auto crossVec = Vector3::Cross(defaultDirection, dominoDirection);
-            // #crutch: calculating the direction of rotating
-            double angle = (crossVec.y > 0) * std::asin(crossVec.Length()
-                    / dominoDirection.Length()
-                    / defaultDirection.Length());
-//            angle = 0;
             pDomino->m_pTransform = new Transform(dominoPosition, Vector3(0,0,0), dominoSize);
-            pDomino->m_pTransform -> RotateByOperator(floorNormal, angle);
+            pDomino->m_pTransform -> RotateByOperator(floorNormal, dominoRotationAngle);
+
             pDomino->m_pMesh		= //new MeshSphere(20);
                    new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
             pDomino->m_pMaterial = std::shared_ptr<Material>(
@@ -97,17 +102,51 @@ public:
             //                       new MaterialDiffuseAttenuation()
             //                        new MaterialDiffuseSpecular(1,1,1)
                        );
+
+            pDomino->m_pTransform -> preliminaryTranslation = Vector3(-dominoSize.x / 2, dominoSize.y / 2, 0);
             double angularSpeed
                     = 0;
-//                        = PI / 20 / 1; // (PI / 20) radian per 1 second
+//                      = PI / 10 / 1; // (PI / 20) radian per 1 second
             pDomino->AddComponent(new DominoFalling(dominoDirection, floorNormal,
                                                     angularSpeed, dominoSize.y, dominoSize.x));
 
             scene.AddObject( pDomino );
         }
 
+        // axis of rotation
+        {
+            using lipaboy_lib::RotateOperator;
+            using lipaboy_lib::Vector3D;
+            using lipaboy_lib::createVector3D;
+
+            Object * pRotAsix   = new Object();
+
+            Vector3D asixRotBase(dominoSize.x / 2, -dominoSize.y / 2, 0);
+            Vector3 asixRotVect(
+                        RotateOperator(createVector3D<Vector3>(floorNormal),
+                                       dominoRotationAngle).rotate(asixRotBase)
+                        );
+            pRotAsix->m_pTransform	= new Transform(dominoPosition + asixRotVect,
+                                                    Vector3(0,0,0), Vector3(.2,dominoSize.z,.2));
+            pRotAsix->m_pTransform -> RotateByOperator(dominoDirection, PI / 2);
+            pRotAsix->m_pMesh = new MeshCylinder(20);
+            pRotAsix->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(1,0,0));
+            scene.AddObject(pRotAsix);
+
+            // vertical asix
+
+            Object * pRotVerticalAsix   = new Object();
+            pRotVerticalAsix->m_pTransform	= new Transform(*pRotAsix->m_pTransform);
+            pRotVerticalAsix->m_pTransform -> RotateByOperator(dominoDirection, PI / 2);
+            pRotVerticalAsix->m_pTransform -> SetScale(Vector3(.05, dominoSize.z * 1.3, .05));
+            pRotVerticalAsix->m_pTransform -> Translate(Vector3(0, dominoSize.y / 2, 0));
+            pRotVerticalAsix->m_pMesh = new MeshCylinder(20);
+            pRotVerticalAsix->m_pMaterial = std::shared_ptr<Material>(new MaterialDiffuseSpecular(1,0,0));
+            scene.AddObject(pRotVerticalAsix);
+        }
+
         //---------------------------------------------------//
-        //--------------------"Background"--------------------//
+        //--------------------"Background"-------------------//
         //---------------------------------------------------//
 
         // object #5 - Quad
@@ -136,6 +175,7 @@ public:
 
             scene.AddLight(pLight);
         }
+
 
 
 
@@ -226,5 +266,6 @@ public:
        // if (Input::GetKey(KEY_CODE_A))
     }
 };
+
 
 

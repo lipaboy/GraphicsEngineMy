@@ -180,12 +180,15 @@ void Transform::Recalc()
         Matrix4x4 matScale	= Matrix4x4::Scaling(m_scale);
         Matrix4x4 _matRotOp;
         _matRotOp = matRotOp;
-        matRot = matRot * _matRotOp.Transpose();
+
+        Matrix4x4 matPreliminaryTrans	= Matrix4x4::Translation( preliminaryTranslation);
+        Matrix4x4 matPreliminaryTransOp	= Matrix4x4::Translation(-preliminaryTranslation);
+        matRot = matRot * matPreliminaryTrans * _matRotOp.Transpose() * matPreliminaryTransOp;
 
         m_matWorld = matScale * matRot * matTrans;
 		
 		// If has parent then use parent matrix
-		if (NULL != m_pParent)
+        if (nullptr != m_pParent)
 		{
 			Matrix4x4 matWorldParent = m_pParent->GetMatWorld();
 			m_matWorld = m_matWorld * matWorldParent;

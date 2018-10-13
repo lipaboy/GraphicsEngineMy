@@ -3,6 +3,8 @@
 #include "GraphicsEngine/Math.h"
 #include "GraphicsEngine/PlatformApi/Platform.h"
 
+#include "lipaboyLibrary/src/maths/vector3d.h"
+
 #ifdef CAN_USE_OPEN_GL
 #include <glm/vec3.hpp>
 #endif
@@ -31,6 +33,12 @@ public:
 	{
 
 	}
+
+    Vector3(const lipaboy_lib::Vector3D & vec)
+    : x(vec.x()), y(vec.y()), z(vec.z())
+    {
+
+    }
 
 #ifdef CAN_USE_OPEN_GL
     glm::vec3 toGlmVec3() const {
@@ -120,3 +128,5 @@ Vector3 operator + (const Vector3 & vec1, const Vector3 & vec2);
 Vector3 operator - (const Vector3 & vec1, const Vector3 & vec2);
 Vector3 operator * (const Vector3 & vec, const double k);
 Vector3 operator * (const double k, const Vector3 & vec);
+
+
