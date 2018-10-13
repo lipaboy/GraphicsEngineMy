@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+namespace graphics_engine {
+
 enum KeyCode
 {
 	KEY_CODE_NONE = 0,
@@ -43,3 +45,5 @@ enum KeyCode
 	KEY_CODE_RIGHT_ALT		= 307,
 	KEY_CODE_LEFT_ALT		= 308,
 };
+
+}

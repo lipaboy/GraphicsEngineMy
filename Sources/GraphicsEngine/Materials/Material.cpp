@@ -1,6 +1,7 @@
 ﻿#include "Material.h"
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+namespace graphics_engine {
 
 void Material::Init(Object * pObject)
 {
@@ -88,4 +89,6 @@ void Material::SetMaterialEnd()
 void Material::ResetMaterial()
 {
 	m_pImpl->ResetMaterial();
+}
+
 }

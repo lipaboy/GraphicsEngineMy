@@ -1,8 +1,9 @@
-#ifndef LIGHTDIRECTIONAL_H
-#define LIGHTDIRECTIONAL_H
+#pragma once
 
 #include "Light.h"
 #include "GraphicsEngine/Matrix4x4.h"
+
+namespace graphics_engine {
 
 class LightDirectional : public AbstractLight
 {
@@ -23,4 +24,4 @@ private:
 
 };
 
-#endif // LIGHTDIRECTIONAL_H
+}

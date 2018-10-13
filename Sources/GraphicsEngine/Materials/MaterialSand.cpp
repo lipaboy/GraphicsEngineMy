@@ -3,6 +3,7 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+namespace graphics_engine {
 
 MaterialTexture::MaterialTexture(std::string const & filename, TextureFilterMode filterMode)
 {
@@ -51,4 +52,6 @@ void MaterialTexture::SetMaterial()
 		SetPixelShaderEnd();
 	}
 	SetMaterialEnd();
+}
+
 }

@@ -1,10 +1,11 @@
-#ifndef MATERIALSHADOWMAPPINGDEPTH_H
-#define MATERIALSHADOWMAPPINGDEPTH_H
+#pragma once
 
 #include "Material.h"
 
 #include "GraphicsEngine/SceneUtils.h"
 #include "GraphicsEngine/MathUtils.h"
+
+namespace graphics_engine {
 
 class MaterialShadowMappingDepth : public Material
 {
@@ -17,4 +18,4 @@ public:
     virtual void SetMaterial();
 };
 
-#endif // MATERIALSHADOWMAPPINGDEPTH_H
+}

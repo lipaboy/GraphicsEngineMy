@@ -15,6 +15,7 @@
 #include "Tasks/Task.h"
 #include "Tasks/ObjectRotator.h"
 
+namespace graphics_engine {
 
 class Task01: public Task
 {
@@ -87,3 +88,5 @@ public:
 		
 	}
 };
+
+}

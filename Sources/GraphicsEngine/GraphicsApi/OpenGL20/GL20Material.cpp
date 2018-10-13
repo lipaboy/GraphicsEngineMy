@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+namespace graphics_engine {
+
 GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)
 {
 	m_isInited = false;
@@ -286,4 +288,6 @@ void GL20Material::LogError(const char * text, const char * filePath)
         std::cerr << title.c_str() << std::endl;
         std::cerr << text << std::endl;
 	}
+}
+
 }

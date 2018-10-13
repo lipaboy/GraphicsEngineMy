@@ -6,6 +6,7 @@
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11.h"
 #include "GraphicsEngine/GraphicsApi/MeshImpl.h"
 
+namespace graphics_engine {
 
 class DX11Mesh : public MeshImpl
 {
@@ -49,5 +50,7 @@ private:
 	D3D_PRIMITIVE_TOPOLOGY	m_primitiveType;
 	UINT					m_primitiveCount;	
 };
+
+}
 
 #endif

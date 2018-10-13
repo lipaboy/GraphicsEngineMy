@@ -1,9 +1,10 @@
 ﻿#include "DX11Material.h"
 
-#ifdef CAN_USE_DIRECT_X
-
 #include "GraphicsEngine/Application.h"
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 DX11Material::DX11Material(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)
 {
@@ -104,3 +105,5 @@ void DX11Material::ResetMaterial()
 }
 
 #endif
+
+}

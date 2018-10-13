@@ -3,6 +3,7 @@
 #include <vector>
 #include "GraphicsEngine/Vector3.h"
 
+namespace graphics_engine {
 
 //struct TriangleInObjFile
 //{
@@ -33,3 +34,5 @@
 //	std::vector<int>				m_indices;
 //	std::vector<TriangleInObjFile>	m_triangles;
 //};
+
+}

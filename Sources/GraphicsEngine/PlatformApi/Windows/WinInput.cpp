@@ -3,6 +3,7 @@
 
 #ifdef CAN_USE_DIRECT_X
 
+namespace graphics_engine {
 
 unsigned int WinInput::m_translationTable[512];
 const WPARAM WinInput::VK_A = 'A';
@@ -135,6 +136,8 @@ void WinInput::DispatchMouseButton(int winEvent, int winEventValue, int mouseBut
 	{	
 		InternalInput::SetMouseButton(mouseButton, pressed);
 	}
+}
+
 }
 
 #endif

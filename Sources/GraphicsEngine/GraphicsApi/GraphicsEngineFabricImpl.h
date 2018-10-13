@@ -12,6 +12,8 @@
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 #include <memory>
 
+namespace graphics_engine {
+
 // Interface to create objects listed below.
 // This class is Abstract factory, derived classes implement this interface.
 // Separates objects usage from objects creation (a concrete implementation in DX9, DX11, GL20).
@@ -40,3 +42,5 @@ public:
 
 	virtual FixedFunctionPipelineImpl * CreateFixedFunctionPipeline() = 0;
 };
+
+}

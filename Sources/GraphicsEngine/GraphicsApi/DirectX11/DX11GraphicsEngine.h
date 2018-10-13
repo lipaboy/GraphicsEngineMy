@@ -1,13 +1,15 @@
 ﻿#pragma once
 
 #include "GraphicsEngine/PlatformApi/Platform.h"
-#ifdef CAN_USE_DIRECT_X
 
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11.h"
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 #include "GraphicsEngine/PlatformApi/Windows/WinWindow.h"
 #include "GraphicsEngine/Matrix4x4.h"
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 class DX11GraphicsEngine : public GraphicsEngineImpl
 {	
@@ -52,3 +54,5 @@ private:
 };
 
 #endif
+
+}

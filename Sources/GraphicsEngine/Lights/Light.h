@@ -4,6 +4,7 @@
 #include "GraphicsEngine/Transform.h"
 #include "GraphicsEngine/Math.h"
 
+namespace graphics_engine {
 
 enum LightType
 {
@@ -66,3 +67,5 @@ protected:
 
 
 };
+
+}

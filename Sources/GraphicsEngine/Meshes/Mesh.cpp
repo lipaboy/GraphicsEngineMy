@@ -2,6 +2,7 @@
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 #include <cstddef>
 
+namespace graphics_engine {
 
 Mesh::Mesh()
 {
@@ -27,4 +28,6 @@ void Mesh::Deinit()
 void Mesh::Render()
 {
 	meshImpl->Render();
+}
+
 }

@@ -1,8 +1,9 @@
 ﻿#pragma once
 #include <stdlib.h>
 
-class Object;
+namespace graphics_engine {
 
+class Object;
 
 class Component
 {
@@ -34,3 +35,5 @@ public:
 protected:
 	Object * m_pObject;
 };
+
+}

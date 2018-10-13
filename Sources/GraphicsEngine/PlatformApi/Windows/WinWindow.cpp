@@ -5,6 +5,7 @@
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/PlatformApi/Windows/WinInput.h"
 
+namespace graphics_engine {
 
 WinWindow * pWinWindow = NULL;
 
@@ -132,6 +133,8 @@ void WinWindow::DispatchMessages()
 bool WinWindow::IsRunning()
 {
 	return (m_msg.message != WM_QUIT);
+}
+
 }
 
 #endif

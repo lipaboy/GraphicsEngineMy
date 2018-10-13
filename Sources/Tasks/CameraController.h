@@ -7,6 +7,8 @@
 #include "GraphicsEngine/Vector3.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+namespace graphics_engine {
+
 class CameraController : public Component
 {
     Vector3 mousePos;
@@ -109,3 +111,5 @@ protected:
         }
     }
 };
+
+}

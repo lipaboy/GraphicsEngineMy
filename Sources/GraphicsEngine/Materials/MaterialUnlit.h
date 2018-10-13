@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GraphicsEngine/Materials/Material.h"
 
+namespace graphics_engine {
 
 // Unlit значит "неосвещаемый",
 // т.е. этот материал не освещается источниками света
@@ -14,3 +15,5 @@ public:
 	
 	virtual void SetMaterial();
 };
+
+}

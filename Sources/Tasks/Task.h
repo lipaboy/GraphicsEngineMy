@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+namespace graphics_engine {
 
 class Task
 {
@@ -9,3 +10,5 @@ public:
 	virtual void Init()		{ }
 	virtual void Update()	{ }
 };
+
+}

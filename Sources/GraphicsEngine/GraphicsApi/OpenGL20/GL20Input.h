@@ -3,6 +3,7 @@
 #include "GraphicsEngine/PlatformApi/Platform.h"
 #ifdef CAN_USE_OPEN_GL
 
+namespace graphics_engine {
 
 class GL20Input
 {
@@ -30,5 +31,7 @@ private:
 	static const unsigned int KEY_A_LOWER_CASE; // a key 'a' in OS
 	static const unsigned int KEY_Z_LOWER_CASE; // a key 'z' in OS
 };
+
+}
 
 #endif

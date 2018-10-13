@@ -9,6 +9,8 @@
 #include <glm/vec3.hpp>
 #endif
 
+namespace graphics_engine {
+
 class Vector3
 {
 public:
@@ -130,3 +132,4 @@ Vector3 operator * (const Vector3 & vec, const double k);
 Vector3 operator * (const double k, const Vector3 & vec);
 
 
+}

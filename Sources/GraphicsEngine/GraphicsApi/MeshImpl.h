@@ -4,6 +4,8 @@
 #include "GraphicsEngine/Vector4.h"
 
 
+namespace graphics_engine {
+
 enum MeshTopology
 {
 	MESH_TOPOLOGY_TRIANGLE_LIST,
@@ -31,3 +33,5 @@ public:
 	
 	virtual void Apply() = 0;
 };
+
+}

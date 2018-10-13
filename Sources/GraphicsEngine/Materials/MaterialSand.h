@@ -4,6 +4,7 @@
 
 #include <string>
 
+namespace graphics_engine {
 
 class MaterialTexture : public Material
 {
@@ -20,3 +21,5 @@ private:
 	TextureFilterMode m_filterMode;
     std::string filename_;
 };
+
+}

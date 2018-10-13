@@ -9,6 +9,8 @@
 
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+namespace graphics_engine {
+
 void Scene::Init()
 {
 	m_pCamera = NULL;
@@ -149,4 +151,6 @@ void Scene::Render1()
 		pMesh->Render();
 		pMaterial->ResetMaterial();
 	}
+}
+
 }

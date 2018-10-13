@@ -1,5 +1,6 @@
 ﻿#include "MeshQuad.h"
 
+namespace graphics_engine {
 
 void MeshQuad::Init()
 {
@@ -49,4 +50,6 @@ void MeshQuad::Init()
 void MeshQuad::Deinit()
 {
 	Mesh::Deinit();
+}
+
 }

@@ -2,6 +2,7 @@
 #include "GraphicsEngine/Materials/Material.h"
 #include "GraphicsEngine/GraphicsApi/FixedFunctionPipelineImpl.h"
 
+namespace graphics_engine {
 
 class MaterialTask01 : public Material
 {
@@ -13,3 +14,5 @@ public:
 private:
 	FixedFunctionPipelineImpl * pImpl;
 };
+
+}

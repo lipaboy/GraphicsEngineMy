@@ -7,7 +7,11 @@
 #include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
 
+#ifdef QT_H
 #include <QDebug>
+#endif
+
+namespace graphics_engine {
 
 LightSpot::LightSpot() : AbstractLight() {
     pLightFigure = new Object();
@@ -52,4 +56,6 @@ void LightSpot::RecalcLightSpaceMatrix()
                                                        matView, matProj);
     camera.SetLightSide(temp);
     m_spaceMatrix = m_spaceMatrix;
+}
+
 }

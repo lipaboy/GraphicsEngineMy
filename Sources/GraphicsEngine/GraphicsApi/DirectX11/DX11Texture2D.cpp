@@ -5,6 +5,7 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngineContext.h"
 
+namespace graphics_engine {
 
 DX11Texture2D::DX11Texture2D(const char * filepath)
 {
@@ -80,6 +81,8 @@ void DX11Texture2D::SetTexture(int textureRegister) const
 {
 	m_pDeviceContext->PSSetShaderResources( textureRegister, 1, &m_pTexture );
     m_pDeviceContext->PSSetSamplers( textureRegister, 1, &m_pSamplerState );
+}
+
 }
 
 #endif

@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+namespace graphics_engine {
 
 class Math
 {
@@ -27,3 +28,5 @@ public:
 		return value;
 	}
 };
+
+}

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 
+namespace graphics_engine {
 
 class File
 {
@@ -68,3 +69,5 @@ public:
 		return ReadAllText( filePath.c_str() );
 	}
 };
+
+}

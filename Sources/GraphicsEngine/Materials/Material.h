@@ -3,6 +3,7 @@
 #include "GraphicsEngine/Texture2D.h"
 #include <string>
 
+namespace graphics_engine {
 
 class Object;
 //#define NULL 0
@@ -43,3 +44,5 @@ protected:
 private:
 	MaterialImpl *	m_pImpl;
 };
+
+}

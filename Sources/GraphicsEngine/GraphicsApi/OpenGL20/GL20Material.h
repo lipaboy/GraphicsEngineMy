@@ -4,6 +4,7 @@
 #include "GraphicsEngine/Matrix4x4.h"
 #include <string>
 
+namespace graphics_engine {
 
 class GL20Material : public MaterialImpl
 {
@@ -51,3 +52,5 @@ private:
 	std::string		m_vsPath;
 	std::string		m_fsPath;
 };
+
+}

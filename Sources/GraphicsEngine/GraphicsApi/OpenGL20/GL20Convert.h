@@ -2,6 +2,7 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 #include "GraphicsEngine/Matrix4x4.h"
 
+namespace graphics_engine {
 
 class GL20Convert
 {
@@ -26,3 +27,5 @@ public:
 		}
 	}
 };
+
+}

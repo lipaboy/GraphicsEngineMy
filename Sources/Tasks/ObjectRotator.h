@@ -8,6 +8,8 @@
 
 #include "lipaboyLibrary/src/maths/vector2d.h"
 
+namespace graphics_engine {
+
 using lipaboy_lib::Vector2D;
 
 class ObjectRotator : public Component
@@ -42,4 +44,4 @@ public:
 //------------------------------------------------------//
 //------------------------------------------------------//
 
-
+}

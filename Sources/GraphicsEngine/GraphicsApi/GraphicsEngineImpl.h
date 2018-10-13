@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GraphicsEngine/Rect.h"
 
+namespace graphics_engine {
 
 class GraphicsEngineImpl
 {
@@ -16,3 +17,5 @@ public:
 	virtual void SetViewport(Rect rect) = 0;
 	virtual void SetResolution(int width, int height) = 0;
 };
+
+}

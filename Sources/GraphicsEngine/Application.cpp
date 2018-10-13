@@ -1,6 +1,7 @@
 ﻿#include "Application.h"
 #include "GraphicsEngine/Directory.h"
 
+namespace graphics_engine {
 
 Application & Application::Instance()
 {
@@ -57,4 +58,6 @@ const std::string & Application::GetShadersDirectory()
 const std::string & Application::GetDataDirectory()
 {
 	return m_dataDirectory;
+}
+
 }

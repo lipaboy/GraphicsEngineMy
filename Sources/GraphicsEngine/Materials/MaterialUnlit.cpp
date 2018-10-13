@@ -3,6 +3,7 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+namespace graphics_engine {
 
 MaterialUnlit::MaterialUnlit()
 {
@@ -45,4 +46,6 @@ void MaterialUnlit::SetMaterial()
 		SetPixelShaderEnd();
 	}
 	SetMaterialEnd();
+}
+
 }

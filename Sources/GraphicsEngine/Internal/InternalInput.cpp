@@ -1,6 +1,7 @@
 ﻿#include "InternalInput.h"
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+namespace graphics_engine {
 
 bool	InternalInput::m_keys[512];
 bool	InternalInput::m_keysDown[512];
@@ -130,4 +131,6 @@ bool InternalInput::GetMouseButtonUp(int button)
 	if (button < 0 || button >= 3) return false;
 
 	return m_mouseButtonsUp[button];
+}
+
 }

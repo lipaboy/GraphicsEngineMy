@@ -9,6 +9,7 @@
 #include "GraphicsEngine/Camera.h"
 #include "GraphicsEngine/Lights/Light.h"
 
+namespace graphics_engine {
 
 class GL20GraphicsEngine : public GraphicsEngineImpl
 {
@@ -41,3 +42,5 @@ private:
 
 	Scene & m_scene;
 };
+
+}

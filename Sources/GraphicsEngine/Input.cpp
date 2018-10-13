@@ -1,6 +1,7 @@
 ﻿#include "Input.h"
 #include "GraphicsEngine/Internal/InternalInput.h"
 
+namespace graphics_engine {
 
 bool Input::GetKey(KeyCode keyCode)
 {
@@ -35,4 +36,6 @@ bool Input::GetMouseButtonDown(int button)
 bool Input::GetMouseButtonUp(int button)
 {
 	return InternalInput::GetMouseButtonUp(button);
+}
+
 }

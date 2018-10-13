@@ -2,6 +2,7 @@
 #include "GraphicsEngine/Matrix4x4.h"
 #include "GraphicsEngine/Texture2D.h"
 
+namespace graphics_engine {
 
 class MaterialImpl
 {
@@ -30,3 +31,5 @@ public:
 
 	virtual void ResetMaterial() = 0;
 };
+
+}

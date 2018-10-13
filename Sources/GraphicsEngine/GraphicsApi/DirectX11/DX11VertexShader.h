@@ -7,6 +7,7 @@
 #include "GraphicsEngine/GraphicsApi/VertexShaderImpl.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11ConstantBuffer.h"
 
+namespace graphics_engine {
 
 class DX11VertexShader : public VertexShaderImpl
 {
@@ -36,5 +37,7 @@ private:
 	DX11ConstantBuffer		m_constantBuffer;
 	int						m_startRegister;
 };
+
+}
 
 #endif

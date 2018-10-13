@@ -6,6 +6,7 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/File.h"
 
+namespace graphics_engine {
 
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
@@ -145,6 +146,8 @@ void DX11VertexShader::SetShaderEnd()
 	m_constantBuffer.SetShaderEnd();
 
 	m_pImmediateContext->VSSetShader( m_pVertexShader, NULL, 0 );
+}
+
 }
 
 #endif

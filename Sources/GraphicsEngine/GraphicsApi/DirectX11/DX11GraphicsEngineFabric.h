@@ -1,10 +1,12 @@
 ﻿#pragma once
 
 #include "GraphicsEngine/PlatformApi/Platform.h"
-#ifdef CAN_USE_DIRECT_X
 
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineFabricImpl.h"
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 // Class implements an interface GraphicsEngineFabricImpl in DirectX9.
 // Class creates objects listed below if DirectX9 is chosen as Graphics API
@@ -32,3 +34,5 @@ public:
 };
 
 #endif
+
+}

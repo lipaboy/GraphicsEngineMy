@@ -7,6 +7,7 @@
 #include "GraphicsEngine/GraphicsApi/PixelShaderImpl.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11ConstantBuffer.h"
 
+namespace graphics_engine {
 
 class DX11PixelShader : public PixelShaderImpl
 {
@@ -39,5 +40,7 @@ private:
 	
 	int m_textureRegister;
 };
+
+}
 
 #endif

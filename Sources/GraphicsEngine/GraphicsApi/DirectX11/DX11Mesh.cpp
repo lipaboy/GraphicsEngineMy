@@ -5,6 +5,7 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngineContext.h"
 
+namespace graphics_engine {
 
 struct DX11CUSTOMVERTEX
 {
@@ -186,6 +187,8 @@ HRESULT	DX11Mesh::CreateIndexBuffer(void * pIndices, UINT size, int indexCount, 
         return hr;
 	
 	return S_OK;
+}
+
 }
 
 #endif

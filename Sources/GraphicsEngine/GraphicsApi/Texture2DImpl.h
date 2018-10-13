@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+namespace graphics_engine {
 
 enum TextureFilterMode
 {
@@ -21,3 +22,5 @@ class Texture2DImpl
 public:
 	virtual void SetFilterMode(TextureFilterMode filterMode) = 0;
 };
+
+}

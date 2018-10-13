@@ -6,6 +6,8 @@
 
 #include <memory>
 
+namespace graphics_engine {
+
 class Camera : public Component
 {
 public:
@@ -37,9 +39,9 @@ public:
 //    const Object * GetConstObjectPtr() const
 //    { return (nullptr == lightSide) ? m_pObject : lightSide->GetConstObjectPtr(); }
 
-    float getNearPlane()    const { return m_nearPlane; }
+    double getNearPlane()    const { return m_nearPlane; }
 
-    float getFarPlane()     const { return m_farPlane;  }
+    double getFarPlane()     const { return m_farPlane;  }
 
 private:
     // TODO: May be move it to Update virtual method??
@@ -49,9 +51,9 @@ private:
     const AbstractLight * lightSide = nullptr;
 
 	// Вертикальный угол обзора в градусах
-	float m_fovY;
-	float m_nearPlane;
-	float m_farPlane;
+    double m_fovY;
+    double m_nearPlane;
+    double m_farPlane;
 
 	Matrix4x4 m_matProj;
 
@@ -59,3 +61,5 @@ private:
 
 
 };
+
+}

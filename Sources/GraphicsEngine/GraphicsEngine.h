@@ -2,6 +2,8 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineContext.h"
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 
+namespace graphics_engine {
+
 class GraphicsEngine
 {
 public:
@@ -21,3 +23,5 @@ private:
 	GraphicsEngine( const GraphicsEngine & );
 	static GraphicsEngine * pEngine;
 };
+
+}

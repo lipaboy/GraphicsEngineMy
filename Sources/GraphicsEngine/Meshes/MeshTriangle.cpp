@@ -1,5 +1,6 @@
 ﻿#include "MeshTriangle.h"
 
+namespace graphics_engine {
 
 void MeshTriangle::Init()
 {
@@ -44,4 +45,6 @@ void MeshTriangle::Init()
 void MeshTriangle::Deinit()
 {
 	Mesh::Deinit();
+}
+
 }

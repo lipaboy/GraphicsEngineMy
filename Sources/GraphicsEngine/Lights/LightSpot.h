@@ -1,7 +1,8 @@
-#ifndef LIGHTSPOT_H
-#define LIGHTSPOT_H
+#pragma once
 
 #include "Light.h"
+
+namespace graphics_engine {
 
 class LightSpot : public AbstractLight
 {
@@ -24,4 +25,4 @@ private:
     double outerCone = 0.9;
 };
 
-#endif // LIGHTSPOT_H
+}

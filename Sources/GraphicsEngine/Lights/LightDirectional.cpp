@@ -3,6 +3,8 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+namespace graphics_engine {
+
 void LightDirectional::RecalcLightSpaceMatrix()
 {
     // Transform from LH to RH or may be opposite
@@ -26,5 +28,7 @@ void LightDirectional::RecalcLightSpaceMatrix()
                                                        matView, matProj);
     camera.SetLightSide(temp);
     m_spaceMatrix = m_spaceMatrix;
+
+}
 
 }

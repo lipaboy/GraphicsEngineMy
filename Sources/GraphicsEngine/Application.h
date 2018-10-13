@@ -3,6 +3,7 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineContext.h"
 #include <string>
 
+namespace graphics_engine {
 
 // TODO: Посмотреть шаблон Singleton<class T>, возможно его нужно использовать
 // чтобы не писать методы и поля Singleton-а в каждом таком классе.
@@ -35,3 +36,5 @@ private:
 	std::string	m_shadersDirectory;
 	std::string	m_dataDirectory;
 };
+
+}

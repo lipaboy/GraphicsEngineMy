@@ -2,6 +2,7 @@
 #include "GraphicsEngine/KeyCode.h"
 #include "GraphicsEngine/Vector3.h"
 
+namespace graphics_engine {
 
 /**
 * @brief Input class is the implementation for the user input, e.g. keyboard and mouse.
@@ -105,3 +106,5 @@ private:
 	static bool m_mouseButtonsDown[];
 	static bool m_mouseButtonsUp[];
 };
+
+}

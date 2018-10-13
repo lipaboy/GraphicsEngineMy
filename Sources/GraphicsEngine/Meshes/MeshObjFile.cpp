@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 
+namespace graphics_engine {
 
 //// A structure for our custom vertex type
 //struct CUSTOMVERTEX
@@ -222,3 +223,5 @@
 //
 //	return true;
 //}
+
+}

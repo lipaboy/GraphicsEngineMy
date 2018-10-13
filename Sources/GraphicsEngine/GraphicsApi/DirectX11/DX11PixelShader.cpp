@@ -7,6 +7,8 @@
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/File.h"
 
+namespace graphics_engine {
+
 //--------------------------------------------------------------------------------------
 // Helper for compiling shaders with D3DX11
 //--------------------------------------------------------------------------------------
@@ -137,6 +139,8 @@ void DX11PixelShader::SetShaderEnd()
 	m_constantBuffer.SetShaderEnd();
 
 	m_pImmediateContext->PSSetShader( m_pPixelShader, NULL, 0 );
+}
+
 }
 
 #endif

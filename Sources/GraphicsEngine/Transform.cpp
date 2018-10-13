@@ -1,6 +1,8 @@
 ﻿#include "Transform.h"
 #include <stddef.h>
 
+namespace graphics_engine {
+
 Transform::Transform()
 :	m_pParent		(NULL),
 	m_position		(0, 0, 0),
@@ -221,4 +223,6 @@ void Transform::Recalc()
 	}
 
 	m_shouldRecalc = false;
+}
+
 }

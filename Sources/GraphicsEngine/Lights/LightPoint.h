@@ -1,7 +1,8 @@
-#ifndef LIGHTPOINT_H
-#define LIGHTPOINT_H
+#pragma once
 
 #include "Light.h"
+
+namespace graphics_engine {
 
 class LightPoint : public AbstractLight
 {
@@ -22,4 +23,4 @@ private:
     Matrix4x4 m_spaceMatrix;
 };
 
-#endif // LIGHTPOINT_H
+}

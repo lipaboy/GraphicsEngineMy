@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineFabricImpl.h"
 
+namespace graphics_engine {
 
 // Class provides interface to create objects listed below.
 // Separates objects usage from objects creation (a concrete implementation in DX9, DX11, GL20).
@@ -33,3 +34,5 @@ public:
 private:
 	static GraphicsEngineFabricImpl * pImpl;
 };
+
+}

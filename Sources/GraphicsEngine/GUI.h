@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+namespace graphics_engine {
 
 struct GUIElement
 {
@@ -24,3 +25,5 @@ private:
     static std::vector<GUIElement> elements;
 	static GUIImpl * pImpl;
 };
+
+}

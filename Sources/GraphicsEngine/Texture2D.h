@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "GraphicsEngine/GraphicsApi/Texture2DImpl.h"
 
-
+namespace graphics_engine {
 
 class Texture2D
 {
@@ -15,3 +15,5 @@ public:
 private:
 	Texture2DImpl * pImpl;
 };
+
+}

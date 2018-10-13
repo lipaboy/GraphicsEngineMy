@@ -11,6 +11,7 @@
 #include "Tasks/Task.h"
 #include "Tasks/CameraController.h"
 
+namespace graphics_engine {
 
 /**
 * @brief Shows how to process user's input (keyboard and mouse).
@@ -53,3 +54,5 @@ public:
 		
 	}
 };
+
+}

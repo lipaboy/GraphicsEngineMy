@@ -1,5 +1,7 @@
 #include "MaterialShadowMappingDepth.h"
 
+namespace graphics_engine {
+
 MaterialShadowMappingDepth::MaterialShadowMappingDepth()
 {
     m_vsFileName = "ShaderShadowMap";
@@ -23,7 +25,7 @@ void MaterialShadowMappingDepth::SetMaterial()
     const Matrix4x4 & matView	= SceneUtils::GetMatrixView();
     const Matrix4x4 & matProj	= SceneUtils::GetMatrixProj();
 
-    const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
+//    const Matrix4x4 matWorldViewProjT = MathUtils::GetMatrixWorldViewProjT(matWorld, matView, matProj);
 
     const std::list<const AbstractLight *> & lights = SceneUtils::GetLights();
     Matrix4x4 lightSpaceMatrix;
@@ -50,4 +52,6 @@ void MaterialShadowMappingDepth::SetMaterial()
         SetPixelShaderEnd();
     }
     SetMaterialEnd();
+}
+
 }

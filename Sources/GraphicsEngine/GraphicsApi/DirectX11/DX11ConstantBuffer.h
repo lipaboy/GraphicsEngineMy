@@ -1,12 +1,13 @@
 ﻿#pragma once
 
 #include "GraphicsEngine/PlatformApi/Platform.h"
-#ifdef CAN_USE_DIRECT_X
-
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11.h"
 #include "GraphicsEngine/Matrix4x4.h"
 #include <vector>
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 class DX11ConstantBuffer
 {
@@ -35,3 +36,5 @@ private:
 };
 
 #endif
+
+}

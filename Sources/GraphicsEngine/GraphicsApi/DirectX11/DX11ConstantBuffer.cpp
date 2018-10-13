@@ -1,7 +1,8 @@
 ﻿#include "DX11ConstantBuffer.h"
 
-#ifdef CAN_USE_DIRECT_X
+namespace graphics_engine {
 
+#ifdef CAN_USE_DIRECT_X
 
 void DX11ConstantBuffer::Init(ID3D11Device * pDevice, ID3D11DeviceContext *	pImmediateContext, bool isVertexShader)
 {
@@ -120,3 +121,5 @@ void DX11ConstantBuffer::SetShaderEnd()
 }
 
 #endif
+
+}

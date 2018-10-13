@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+namespace graphics_engine {
 
 bool Directory::Exists(const char * path)
 {
@@ -16,3 +17,6 @@ bool Directory::Exists(const char * path)
     else
         return 0;
 }
+
+}
+

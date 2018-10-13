@@ -1,5 +1,6 @@
 ﻿#include "GL20Mesh.h"
 
+namespace graphics_engine {
 
 GL20Mesh::GL20Mesh()
 {
@@ -117,4 +118,6 @@ void GL20Mesh::CreateUV0()
 	glGenBuffers(1, &m_bufferUV0);
 	glBindBuffer(GL_ARRAY_BUFFER, m_bufferUV0);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vector3) * m_uv0.size(), &m_uv0[0], GL_STATIC_DRAW);
+}
+
 }

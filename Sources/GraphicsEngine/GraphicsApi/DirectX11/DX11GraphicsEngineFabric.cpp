@@ -1,7 +1,5 @@
 ﻿#include "DX11GraphicsEngineFabric.h"
 
-#ifdef CAN_USE_DIRECT_X
-
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngine.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GUI.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11Material.h"
@@ -11,6 +9,9 @@
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11Texture2D.h"
 //#include "GraphicsEngine/GraphicsApi/DirectX9/FixedFunctionPipelineDX9.h"
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 GraphicsEngineImpl * DX11GraphicsEngineFabric::CreateEngine()
 {
@@ -64,3 +65,5 @@ FixedFunctionPipelineImpl * DX11GraphicsEngineFabric::CreateFixedFunctionPipelin
 }
 
 #endif
+
+}

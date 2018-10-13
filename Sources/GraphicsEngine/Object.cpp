@@ -5,11 +5,12 @@
 #include "Meshes/Mesh.h"
 #include "Transform.h"
 
+namespace graphics_engine {
 
 Object::Object()
 {
-	m_pTransform	= NULL;
-	m_pMesh			= NULL;
+    m_pTransform	= nullptr;
+    m_pMesh			= nullptr;
     m_pMaterial		= nullptr;
     m_pDepthMaterial= nullptr;
 }
@@ -22,7 +23,7 @@ Object::~Object()
 		for (iter = m_components.begin(); iter != m_components.end(); iter++)
 		{
 			Component * pComponent = (*iter);
-			if (NULL != pComponent)
+            if (nullptr != pComponent)
 			{
 				delete pComponent;
 			}
@@ -38,17 +39,17 @@ Object::~Object()
         m_pMaterial = nullptr;
 	}
 
-	if (NULL != m_pMesh)
+    if (nullptr != m_pMesh)
 	{
 		m_pMesh->Deinit();
 		delete m_pMesh;
-		m_pMesh = NULL;
+        m_pMesh = nullptr;
 	}
 
-	if (NULL != m_pTransform)
+    if (nullptr != m_pTransform)
 	{
 		delete m_pTransform;
-		m_pTransform = NULL;
+        m_pTransform = nullptr;
 	}	
 
     if (nullptr != m_pDepthMaterial) {
@@ -59,7 +60,7 @@ Object::~Object()
 
 void Object::Init()
 {
-	if (NULL != m_pMesh)
+    if (nullptr != m_pMesh)
 	{
 		m_pMesh->Init();
 	}
@@ -86,9 +87,11 @@ void Object::Update() const
 	for (iter = m_components.begin(); iter != m_components.end(); iter++)
 	{
 		Component * pComponent = (*iter);
-		if (NULL != pComponent)
+        if (nullptr != pComponent)
 		{
 			pComponent->Update();
 		}
 	}
+}
+
 }

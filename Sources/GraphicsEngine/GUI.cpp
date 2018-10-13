@@ -1,6 +1,7 @@
 ﻿#include "GUI.h"
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+namespace graphics_engine {
 
 std::vector<GUIElement>	GUI::elements;
 GUIImpl *						GUI::pImpl = NULL;
@@ -40,4 +41,6 @@ void GUI::Update()
 	}
 
 	elements.clear();
+}
+
 }

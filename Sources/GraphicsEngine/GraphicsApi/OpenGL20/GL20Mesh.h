@@ -2,6 +2,7 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 #include "GraphicsEngine/GraphicsApi/MeshImpl.h"
 
+namespace graphics_engine {
 
 class GL20Mesh : public MeshImpl
 {
@@ -41,3 +42,5 @@ private:
 	GLenum	m_primitiveType;
 	GLsizei	m_indicesCount;
 };
+
+}

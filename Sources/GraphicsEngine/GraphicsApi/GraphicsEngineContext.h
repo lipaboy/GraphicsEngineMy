@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 
+namespace graphics_engine {
 
 class GraphicsEngineContext
 {
@@ -13,3 +14,5 @@ public:
 
 	GraphicsEngineImpl * m_pImpl;
 };
+
+}

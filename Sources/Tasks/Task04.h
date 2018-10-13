@@ -26,6 +26,7 @@
 
 #include "CameraController.h"
 
+namespace graphics_engine {
 
 class Task04: public Task
 {
@@ -226,3 +227,5 @@ public:
        // if (Input::GetKey(KEY_CODE_A))
 	}
 };
+
+}

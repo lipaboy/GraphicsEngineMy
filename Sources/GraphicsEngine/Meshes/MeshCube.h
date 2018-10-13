@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Mesh.h"
 
+namespace graphics_engine {
 
 class MeshCube : public Mesh
 {
@@ -17,3 +18,5 @@ private:
 
 	int m_levelCount;	
 };
+
+}

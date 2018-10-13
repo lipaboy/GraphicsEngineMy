@@ -2,6 +2,7 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 #include "GraphicsEngine/GraphicsApi/Texture2DImpl.h"
 
+namespace graphics_engine {
 
 class GL20Texture2D : public Texture2DImpl
 {
@@ -24,3 +25,5 @@ private:
 
 	bool m_useAniso;
 };
+
+}

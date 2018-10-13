@@ -1,7 +1,8 @@
-#ifndef MATERIALLIGHTREFLECT_H
-#define MATERIALLIGHTREFLECT_H
+#pragma once
 
 #include "GraphicsEngine/Materials/Material.h"
+
+namespace graphics_engine {
 
 //TODO: make it abstract class
 
@@ -23,4 +24,4 @@ private:
     Vector3 ambientColor;
 };
 
-#endif // MATERIALLIGHTREFLECT_H
+}

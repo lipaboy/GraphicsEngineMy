@@ -1,5 +1,6 @@
-#ifndef RENDERTEXTUREIMPL_H
-#define RENDERTEXTUREIMPL_H
+#pragma once
+
+namespace graphics_engine {
 
 enum RenderTarget {
     SCREEN,
@@ -18,4 +19,4 @@ public:
     virtual RenderTarget GetRenderTarget() const = 0;
 };
 
-#endif // RENDERTEXTURE_H
+}

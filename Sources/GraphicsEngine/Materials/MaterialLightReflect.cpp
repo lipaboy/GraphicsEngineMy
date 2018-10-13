@@ -9,6 +9,8 @@
 #include <chrono>
 #include <cmath>
 
+namespace graphics_engine {
+
 //MaterialLightReflect::MaterialDiffuse()
 //{
 //    setShaderFilename();
@@ -111,4 +113,6 @@ void MaterialLightReflect::SetMaterial()
         SetPixelShaderEnd();
     }
     SetMaterialEnd();
+}
+
 }

@@ -1,5 +1,6 @@
 ﻿#include "GraphicsEngine/Vector3.h"
 
+namespace graphics_engine {
 
 Vector3 operator + (const Vector3 & vec1, const Vector3 & vec2)
 {
@@ -33,4 +34,6 @@ Vector3 operator * (const double k, const Vector3 & vec)
 	Vector3 result(vec * k);
 
 	return result;
+}
+
 }

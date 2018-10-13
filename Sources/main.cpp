@@ -6,6 +6,8 @@
 #include "Tasks/Task08.h"
 #include "Tasks/domino.h"
 
+using namespace graphics_engine;
+
 // The application's entry point
 int main(int argc, char ** argv)
 {

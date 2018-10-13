@@ -4,6 +4,8 @@
 #include "GraphicsEngine/Camera.h"
 #include "GraphicsEngine/Transform.h"
 
+namespace graphics_engine {
+
 class SceneUtils
 {
 public:
@@ -49,3 +51,5 @@ public:
 		return scene.GetLights();
 	}
 };
+
+}

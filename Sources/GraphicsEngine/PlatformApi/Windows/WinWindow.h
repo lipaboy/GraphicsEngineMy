@@ -6,6 +6,7 @@
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineImpl.h"
 #include <Windows.h>
 
+namespace graphics_engine {
 
 // Appication window implementation in Windows OS
 class WinWindow
@@ -34,5 +35,7 @@ private:
 
 	GraphicsEngineImpl * m_pWindowsEngineImpl;
 };
+
+}
 
 #endif

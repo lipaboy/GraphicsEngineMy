@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 #include "GraphicsEngine/PlatformApi/Platform.h"
-#ifdef CAN_USE_DIRECT_X
-
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11.h"
 #include "GraphicsEngine/GraphicsApi/GraphicsEngineContext.h"
 
+namespace graphics_engine {
 
+#ifdef CAN_USE_DIRECT_X
 
 class DX11GraphicsEngineContext : public GraphicsEngineContext
 {
@@ -23,3 +23,5 @@ public:
 };
 
 #endif
+
+}

@@ -3,6 +3,7 @@
 #include "GraphicsEngine/Application.h"
 #include <cstddef>
 
+namespace graphics_engine {
 
 Texture2D::Texture2D(const char * filepath)
 {
@@ -26,4 +27,6 @@ void Texture2D::SetFilterMode(TextureFilterMode filterMode)
 const Texture2DImpl * Texture2D::GetImplPointer() const
 {
 	return pImpl;
+}
+
 }

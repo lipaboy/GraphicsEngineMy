@@ -1,10 +1,11 @@
 ﻿#include "DX11GraphicsEngine.h"
 
-#ifdef CAN_USE_DIRECT_X
-
 #include "GraphicsEngine/Application.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngineContext.h"
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 // Called every time the application receives a message
 LRESULT CALLBACK DX11WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
@@ -315,3 +316,5 @@ HRESULT DX11GraphicsEngine::InitDevice()
 }
 
 #endif
+
+}

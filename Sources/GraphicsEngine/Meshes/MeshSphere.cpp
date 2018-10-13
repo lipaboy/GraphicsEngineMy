@@ -2,6 +2,7 @@
 #include "GraphicsEngine/MathConstants.h"
 #include <stdlib.h>
 
+namespace graphics_engine {
 
 void GetVertexOnSphere(int i, int iMax, int j, int jMax, Vector3 & v, Vector3 & n, Vector4 & c, Vector3 & uv0)
 {
@@ -108,4 +109,6 @@ void MeshSphere::Init()
 void MeshSphere::Deinit()
 {
 	Mesh::Deinit();
+}
+
 }

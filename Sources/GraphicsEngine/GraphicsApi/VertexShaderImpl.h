@@ -3,6 +3,7 @@
 #include "GraphicsEngine/Vector4.h"
 #include "GraphicsEngine/Matrix4x4.h"
 
+namespace graphics_engine {
 
 class VertexShaderImpl
 {
@@ -17,3 +18,5 @@ public:
 	
 	virtual void SetShaderEnd() = 0;
 };
+
+}

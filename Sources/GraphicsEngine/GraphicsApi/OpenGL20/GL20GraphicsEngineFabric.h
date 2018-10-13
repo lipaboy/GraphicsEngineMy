@@ -5,6 +5,8 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20DepthTexture.h"
 #include <memory>
 
+namespace graphics_engine {
+
 // Class implements an interface GraphicsEngineFabricImpl in OpenGL20.
 // Class creates objects listed below if OpenGL20 is chosen as Graphics API
 // Design Patterns: Abstract Factory (role - Concrete Factory).
@@ -31,3 +33,5 @@ public:
 	
 	FixedFunctionPipelineImpl * CreateFixedFunctionPipeline();
 };
+
+}

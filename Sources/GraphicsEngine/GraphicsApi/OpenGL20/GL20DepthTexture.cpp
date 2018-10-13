@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QDebug>
 
+namespace graphics_engine {
 
 void GL20DepthTexture::Init()
 {
@@ -138,7 +139,5 @@ void GL20DepthTexture::SetRenderTarget(RenderTarget location)
     }
 }
 
-
-
-
+}
 

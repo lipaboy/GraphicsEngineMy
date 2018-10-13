@@ -8,6 +8,7 @@
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Texture2D.h"
 //#include "GraphicsEngine/GraphicsApi/DirectX9/FixedFunctionPipelineDX9.h"
 
+namespace graphics_engine {
 
 GraphicsEngineImpl * GL20GraphicsEngineFabric::CreateEngine()
 {
@@ -39,27 +40,29 @@ MaterialImpl * GL20GraphicsEngineFabric::CreateMaterial(const char * vertexShade
 	return new GL20Material(vertexShaderFilePath, fragmentShaderFilePath);
 }
 
-VertexShaderImpl * GL20GraphicsEngineFabric::CreateVertexShader(const char * filepath)
+VertexShaderImpl * GL20GraphicsEngineFabric::CreateVertexShader(const char *)
 {
-	return NULL;
+    return nullptr;
 }
 
-VertexShaderImpl * GL20GraphicsEngineFabric::CreateVertexShader(const unsigned long * pFunction)
+VertexShaderImpl * GL20GraphicsEngineFabric::CreateVertexShader(const unsigned long *)
 {
-	return NULL;
+    return nullptr;
 }
 
-PixelShaderImpl * GL20GraphicsEngineFabric::CreatePixelShader(const char * filepath)
+PixelShaderImpl * GL20GraphicsEngineFabric::CreatePixelShader(const char *)
 {
-	return NULL;
+    return nullptr;
 }
 
-PixelShaderImpl * GL20GraphicsEngineFabric::CreatePixelShader(const unsigned long * pFunction)
+PixelShaderImpl * GL20GraphicsEngineFabric::CreatePixelShader(const unsigned long *)
 {
-	return NULL;
+    return nullptr;
 }
 
 FixedFunctionPipelineImpl * GL20GraphicsEngineFabric::CreateFixedFunctionPipeline()
 {
-	return NULL;
+    return nullptr;
+}
+
 }

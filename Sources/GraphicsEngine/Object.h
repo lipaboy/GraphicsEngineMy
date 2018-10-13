@@ -2,6 +2,7 @@
 #include <list>
 #include <memory>
 
+namespace graphics_engine {
 
 class Mesh;
 class Component;
@@ -35,3 +36,5 @@ public:
 	// Содержит объекты пользователя
 	std::list<Component *> m_components;
 };
+
+}

@@ -32,6 +32,8 @@
 
 #include "domino/domino_falling.h"
 
+namespace graphics_engine {
+
 class Domino: public Task
 {
 private:
@@ -267,5 +269,5 @@ public:
     }
 };
 
-
+}
 

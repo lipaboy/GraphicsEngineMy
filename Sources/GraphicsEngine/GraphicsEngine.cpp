@@ -3,6 +3,7 @@
 #include "GraphicsEngine/Time.h"
 #include <cstddef>
 
+namespace graphics_engine {
 
 GraphicsEngine * GraphicsEngine::pEngine = NULL;
 
@@ -41,4 +42,6 @@ void GraphicsEngine::Render()
 bool GraphicsEngine::IsRunning()
 {
 	return pGraphicsEngineImpl->IsRunning();
+}
+
 }

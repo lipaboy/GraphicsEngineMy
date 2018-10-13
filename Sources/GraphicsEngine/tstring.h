@@ -1,5 +1,6 @@
 ﻿#include <string>
 
+namespace graphics_engine {
 
 #ifdef UNICODE
 	typedef std::wstring tstring;
@@ -12,3 +13,5 @@
 #else
 	
 #endif
+
+}

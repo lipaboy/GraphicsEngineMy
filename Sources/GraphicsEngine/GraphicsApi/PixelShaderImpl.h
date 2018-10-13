@@ -4,6 +4,7 @@
 #include "GraphicsEngine/Matrix4x4.h"
 #include "GraphicsEngine/Texture2D.h"
 
+namespace graphics_engine {
 
 class PixelShaderImpl
 {
@@ -21,3 +22,5 @@ public:
 
 	virtual void SetShaderEnd() = 0;
 };
+
+}

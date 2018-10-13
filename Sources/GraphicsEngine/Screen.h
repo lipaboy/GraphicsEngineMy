@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+namespace graphics_engine {
 
 class Screen
 {
@@ -17,3 +18,5 @@ private:
 	static int m_width;
 	static int m_height;
 };
+
+}

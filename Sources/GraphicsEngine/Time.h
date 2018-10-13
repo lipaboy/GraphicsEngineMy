@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+namespace graphics_engine {
 
 class Time
 {
@@ -45,3 +46,5 @@ private:
 
 	static int frameCount;
 };
+
+}

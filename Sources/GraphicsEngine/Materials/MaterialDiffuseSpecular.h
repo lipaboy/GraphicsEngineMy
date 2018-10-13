@@ -1,7 +1,8 @@
-#ifndef MATERIALSPECULAR_H
-#define MATERIALSPECULAR_H
+#pragma once
 
 #include "MaterialLightReflect.h"
+
+namespace graphics_engine {
 
 class MaterialDiffuseSpecular : public MaterialLightReflect
 {
@@ -12,4 +13,5 @@ public:
     virtual void Deinit() { MaterialLightReflect::Deinit(); }
 };
 
-#endif // MATERIALSPECULAR_H
+}
+

@@ -9,6 +9,7 @@
 #include "GraphicsEngine/Materials/MaterialSand.h"
 #include "GraphicsEngine/Lights/Light.h"
 
+namespace graphics_engine {
 
 class Task05_01: public Task
 {
@@ -46,3 +47,5 @@ public:
 		
 	}
 };
+
+}

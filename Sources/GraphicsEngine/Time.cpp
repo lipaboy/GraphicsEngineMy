@@ -1,6 +1,7 @@
 ﻿#include "Time.h"
 #include <time.h>
 
+namespace graphics_engine {
 
 bool Time::isInited = false;
 
@@ -31,4 +32,6 @@ void Time::Update()
 	prevFrameTime = curFrameTime;
 
 	++frameCount;
+}
+
 }

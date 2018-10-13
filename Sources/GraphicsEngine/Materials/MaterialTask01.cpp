@@ -4,6 +4,7 @@
 #include "GraphicsEngine/SceneUtils.h"
 #include "GraphicsEngine/GraphicsEngineFabric.h"
 
+namespace graphics_engine {
 
 void MaterialTask01::Init(Object * pObject)
 {
@@ -17,7 +18,7 @@ void MaterialTask01::Deinit()
 {
 	pImpl->Deinit();
 	delete pImpl;
-	pImpl = NULL;
+    pImpl = nullptr;
 
 	Material::Deinit();
 }
@@ -40,4 +41,6 @@ void MaterialTask01::SetMaterial()
 	pImpl->SetMatrixProjection( matProj );
 	pImpl->SetMatrixView( matView );
 	pImpl->SetMatrixWorld( matWorld );
+}
+
 }

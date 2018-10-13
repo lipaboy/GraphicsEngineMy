@@ -5,6 +5,8 @@
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 #include <memory>
 
+namespace graphics_engine {
+
 class Camera;
 class AbstractLight;
 
@@ -40,3 +42,5 @@ private:
     // Save temporary data
 
 };
+
+}

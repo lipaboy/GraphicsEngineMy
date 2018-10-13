@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "GraphicsEngine/PlatformApi/Platform.h"
-#ifdef CAN_USE_DIRECT_X
 
 #include "GraphicsEngine/GraphicsApi/MaterialImpl.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11VertexShader.h"
@@ -9,6 +8,9 @@
 #include "GraphicsEngine/Matrix4x4.h"
 #include <string>
 
+namespace graphics_engine {
+
+#ifdef CAN_USE_DIRECT_X
 
 class DX11Material : public MaterialImpl
 {
@@ -46,3 +48,5 @@ private:
 };
 
 #endif
+
+}

@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <Windowsx.h>
 
+namespace graphics_engine {
 
 class WinInput
 {
@@ -28,5 +29,7 @@ private:
 	static const WPARAM VK_A; // a key 'A' in Windows OS
 	static const WPARAM VK_Z; // a key 'Z' in Windows OS
 };
+
+}
 
 #endif

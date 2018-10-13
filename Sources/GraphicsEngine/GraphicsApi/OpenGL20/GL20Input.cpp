@@ -4,6 +4,7 @@
 
 #ifdef CAN_USE_OPEN_GL
 
+namespace graphics_engine {
 
 unsigned int GL20Input::m_translationTable1[256];
 unsigned int GL20Input::m_translationTable2[256];
@@ -85,6 +86,8 @@ void GL20Input::SetMouseButtonsEvent(int button, int state, int x, int y)
 void GL20Input::SetMouseMotionEvent(int x, int y)
 {
 	InternalInput::SetMousePosition(x, y);
+}
+
 }
 
 #endif

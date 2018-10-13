@@ -1,7 +1,8 @@
-#ifndef MATERIALDIFFUSEATTENUATION_H
-#define MATERIALDIFFUSEATTENUATION_H
+#pragma once
 
 #include "MaterialLightReflect.h"
+
+namespace graphics_engine {
 
 class MaterialDiffuseAttenuation : public MaterialLightReflect
 {
@@ -12,4 +13,4 @@ public:
     virtual void Deinit() { MaterialLightReflect::Deinit(); }
 };
 
-#endif // MATERIALDIFFUSEATTENUATION_H
+}

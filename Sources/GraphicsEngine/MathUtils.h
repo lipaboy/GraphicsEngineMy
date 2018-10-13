@@ -2,6 +2,8 @@
 
 #include "Matrix4x4.h"
 
+namespace graphics_engine {
+
 class MathUtils
 {
 public:
@@ -30,3 +32,5 @@ public:
 		return matInverse;
 	}
 };
+
+}

@@ -4,14 +4,13 @@
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20Input.h"
 
+namespace graphics_engine {
 
-
-
-GL20GraphicsEngine * pGL20Engine = NULL;
+GL20GraphicsEngine * pGL20Engine = nullptr;
 
 void GL20Render()
 {
-	if (NULL != pGL20Engine)
+    if (nullptr != pGL20Engine)
 	{
 		pGL20Engine->Render1();
 	}
@@ -19,30 +18,30 @@ void GL20Render()
 
 void GL20Reshape(int w, int h)
 {
-	if (NULL != pGL20Engine)
+    if (nullptr != pGL20Engine)
 	{
 		pGL20Engine->Reshape(w, h);
 	}
 }
 
-void GL20LetterKeyDownFunc(unsigned char key, int x, int y)
+void GL20LetterKeyDownFunc(unsigned char key, int, int)
 {
 	GL20Input::SetLetterKeyDown(key);
 }
 
-void GL20LetterKeyUpFunc(unsigned char key, int x, int y)
+void GL20LetterKeyUpFunc(unsigned char key, int, int)
 {
 	GL20Input::SetLetterKeyUp(key);
 }
 
-void GL20SpecialKeyDownFunc(int key, int x, int y)
+void GL20SpecialKeyDownFunc(int key, int, int)
 {
-	GL20Input::SetSpecialKeyDown(key);
+    GL20Input::SetSpecialKeyDown(static_cast<unsigned char>(key));
 }
 
-void GL20SpecialKeyUpFunc(int key, int x, int y)
+void GL20SpecialKeyUpFunc(int key, int, int)
 {
-	GL20Input::SetSpecialKeyUp(key);
+    GL20Input::SetSpecialKeyUp(static_cast<unsigned char>(key));
 }
 
 void GL20MouseButtonsFunc(int button, int state, int x, int y)
@@ -57,8 +56,8 @@ void GL20MouseMotionFunc(int x, int y)
 }
 
 GL20GraphicsEngine::GL20GraphicsEngine()
-	:	m_scene(Application::Instance().GetScene()),
-		m_pWindowTitle("Graphics Engine (OpenGL 2.0)")
+    : m_pWindowTitle("Graphics Engine (OpenGL 2.0)"),
+      m_scene(Application::Instance().GetScene())
 {
 
 }
@@ -254,4 +253,6 @@ void GL20GraphicsEngine::Render1()
 void GL20GraphicsEngine::Reshape(int w, int h)
 {
 	SetResolution(w, h);
+}
+
 }

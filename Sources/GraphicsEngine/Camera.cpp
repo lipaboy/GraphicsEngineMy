@@ -4,7 +4,7 @@
 #include "GraphicsEngine/Math.h"
 #include "GraphicsEngine/Screen.h"
 
-
+namespace graphics_engine {
 
 Camera::Camera()
 {
@@ -81,4 +81,6 @@ void Camera::RecalculateMatrixProj()
         float val = 20;
         m_matProj = Matrix4x4::OrhographicLH(val, val, m_nearPlane, m_farPlane);
     }
+}
+
 }

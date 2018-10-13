@@ -5,15 +5,19 @@
 #include "GraphicsEngine/GraphicsApi/DirectX9/DX9GraphicsEngineFabric.h"
 #include "GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngineFabric.h"
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngineFabric.h"
+#endif
+#ifdef PLATFORM_LINUX
+#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngineFabric.h"
+#endif
 
+namespace graphics_engine {
+
+#ifdef PLATFORM_WINDOWS
 //GraphicsEngineFabricImpl * GraphicsEngineFabric::pImpl = new DX9GraphicsEngineFabric();
 //GraphicsEngineFabricImpl * GraphicsEngineFabric::pImpl = new DX11GraphicsEngineFabric();
 GraphicsEngineFabricImpl * GraphicsEngineFabric::pImpl = new GL20GraphicsEngineFabric();
 #endif
-
 #ifdef PLATFORM_LINUX
-#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngineFabric.h"
-
 GraphicsEngineFabricImpl * GraphicsEngineFabric::pImpl = new GL20GraphicsEngineFabric();
 #endif
 
@@ -72,3 +76,6 @@ FixedFunctionPipelineImpl * GraphicsEngineFabric::CreateFixedFunctionPipeline()
 {
 	return pImpl->CreateFixedFunctionPipeline();
 }
+
+}
+

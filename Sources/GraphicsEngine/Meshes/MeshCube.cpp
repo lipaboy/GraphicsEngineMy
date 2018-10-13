@@ -1,6 +1,7 @@
 ﻿#include "MeshCube.h"
 #include <stdlib.h>
 
+namespace graphics_engine {
 
 MeshCube::MeshCube(int levelCount)
 {
@@ -31,110 +32,110 @@ void MeshCube::InitCubeSimple()
 {
 	std::vector<Vector3> vertices;
 	{
-		vertices.push_back( Vector3(-0.5f,-0.5f,-0.5f) ); // 0	
-		vertices.push_back( Vector3(-0.5f, 0.5f,-0.5f) ); // 1
-		vertices.push_back( Vector3( 0.5f,-0.5f,-0.5f) ); // 2
-		vertices.push_back( Vector3( 0.5f, 0.5f,-0.5f) ); // 3
+        vertices.push_back( Vector3(-0.5,-0.5,-0.5) ); // 0
+        vertices.push_back( Vector3(-0.5, 0.5,-0.5) ); // 1
+        vertices.push_back( Vector3( 0.5,-0.5,-0.5) ); // 2
+        vertices.push_back( Vector3( 0.5, 0.5,-0.5) ); // 3
 
-		vertices.push_back( Vector3( 0.5f,-0.5f,-0.5f) ); // 4
-		vertices.push_back( Vector3( 0.5f, 0.5f,-0.5f) ); // 5	
-		vertices.push_back( Vector3( 0.5f,-0.5f, 0.5f) ); // 6
-		vertices.push_back( Vector3( 0.5f, 0.5f, 0.5f) ); // 7
+        vertices.push_back( Vector3( 0.5,-0.5,-0.5) ); // 4
+        vertices.push_back( Vector3( 0.5, 0.5,-0.5) ); // 5
+        vertices.push_back( Vector3( 0.5,-0.5, 0.5) ); // 6
+        vertices.push_back( Vector3( 0.5, 0.5, 0.5) ); // 7
 
-		vertices.push_back( Vector3( 0.5f,-0.5f, 0.5f) ); // 8
-		vertices.push_back( Vector3( 0.5f, 0.5f, 0.5f) ); // 9
-		vertices.push_back( Vector3(-0.5f,-0.5f, 0.5f) ); // 10
-		vertices.push_back( Vector3(-0.5f, 0.5f, 0.5f) ); // 11
+        vertices.push_back( Vector3( 0.5,-0.5, 0.5) ); // 8
+        vertices.push_back( Vector3( 0.5, 0.5, 0.5) ); // 9
+        vertices.push_back( Vector3(-0.5,-0.5, 0.5) ); // 10
+        vertices.push_back( Vector3(-0.5, 0.5, 0.5) ); // 11
 
-		vertices.push_back( Vector3(-0.5f,-0.5f, 0.5f) ); // 12
-		vertices.push_back( Vector3(-0.5f, 0.5f, 0.5f) ); // 13
-		vertices.push_back( Vector3(-0.5f,-0.5f,-0.5f) ); // 13
-		vertices.push_back( Vector3(-0.5f, 0.5f,-0.5f) ); // 15
+        vertices.push_back( Vector3(-0.5,-0.5, 0.5) ); // 12
+        vertices.push_back( Vector3(-0.5, 0.5, 0.5) ); // 13
+        vertices.push_back( Vector3(-0.5,-0.5,-0.5) ); // 13
+        vertices.push_back( Vector3(-0.5, 0.5,-0.5) ); // 15
 
-		vertices.push_back( Vector3(-0.5f, 0.5f,-0.5f) ); // 16
-		vertices.push_back( Vector3(-0.5f, 0.5f, 0.5f) ); // 17
-		vertices.push_back( Vector3( 0.5f, 0.5f,-0.5f) ); // 18
-		vertices.push_back( Vector3( 0.5f, 0.5f, 0.5f) ); // 19
+        vertices.push_back( Vector3(-0.5, 0.5,-0.5) ); // 16
+        vertices.push_back( Vector3(-0.5, 0.5, 0.5) ); // 17
+        vertices.push_back( Vector3( 0.5, 0.5,-0.5) ); // 18
+        vertices.push_back( Vector3( 0.5, 0.5, 0.5) ); // 19
 
-		vertices.push_back( Vector3( 0.5f, 0.5f, 0.5f) ); // 20
-		vertices.push_back( Vector3( 0.5f,-0.5f, 0.5f) ); // 21
+        vertices.push_back( Vector3( 0.5, 0.5, 0.5) ); // 20
+        vertices.push_back( Vector3( 0.5,-0.5, 0.5) ); // 21
 		
-		vertices.push_back( Vector3( 0.5f,-0.5f, 0.5f) ); // 22
-		vertices.push_back( Vector3(-0.5f,-0.5f, 0.5f) ); // 23
-		vertices.push_back( Vector3( 0.5f,-0.5f,-0.5f) ); // 24
-		vertices.push_back( Vector3(-0.5f,-0.5f,-0.5f) ); // 25
+        vertices.push_back( Vector3( 0.5,-0.5, 0.5) ); // 22
+        vertices.push_back( Vector3(-0.5,-0.5, 0.5) ); // 23
+        vertices.push_back( Vector3( 0.5,-0.5,-0.5) ); // 24
+        vertices.push_back( Vector3(-0.5,-0.5,-0.5) ); // 25
 	}
 
 	std::vector<Vector4> colors;
 	{
-		colors.push_back( Vector4(1.0f, 0.0f, 0.0f, 1.0f) ); // 0	
-		colors.push_back( Vector4(1.0f, 0.0f, 0.0f, 1.0f) ); // 1
-		colors.push_back( Vector4(1.0f, 0.0f, 0.0f, 1.0f) ); // 2
-		colors.push_back( Vector4(1.0f, 0.0f, 0.0f, 1.0f) ); // 3
+        colors.push_back( Vector4(1.0, 0.0, 0.0, 1.0) ); // 0
+        colors.push_back( Vector4(1.0, 0.0, 0.0, 1.0) ); // 1
+        colors.push_back( Vector4(1.0, 0.0, 0.0, 1.0) ); // 2
+        colors.push_back( Vector4(1.0, 0.0, 0.0, 1.0) ); // 3
 
-		colors.push_back( Vector4(0.0f, 1.0f, 0.0f, 1.0f) ); // 4
-		colors.push_back( Vector4(0.0f, 1.0f, 0.0f, 1.0f) ); // 5	
-		colors.push_back( Vector4(0.0f, 1.0f, 0.0f, 1.0f) ); // 6
-		colors.push_back( Vector4(0.0f, 1.0f, 0.0f, 1.0f) ); // 7
+        colors.push_back( Vector4(0.0, 1.0, 0.0, 1.0) ); // 4
+        colors.push_back( Vector4(0.0, 1.0, 0.0, 1.0) ); // 5
+        colors.push_back( Vector4(0.0, 1.0, 0.0, 1.0) ); // 6
+        colors.push_back( Vector4(0.0, 1.0, 0.0, 1.0) ); // 7
 
-		colors.push_back( Vector4(0.0f, 0.0f, 1.0f, 1.0f) ); // 8
-		colors.push_back( Vector4(0.0f, 0.0f, 1.0f, 1.0f) ); // 9
-		colors.push_back( Vector4(0.0f, 0.0f, 1.0f, 1.0f) ); // 10
-		colors.push_back( Vector4(0.0f, 0.0f, 1.0f, 1.0f) ); // 11
+        colors.push_back( Vector4(0.0, 0.0, 1.0, 1.0) ); // 8
+        colors.push_back( Vector4(0.0, 0.0, 1.0, 1.0) ); // 9
+        colors.push_back( Vector4(0.0, 0.0, 1.0, 1.0) ); // 10
+        colors.push_back( Vector4(0.0, 0.0, 1.0, 1.0) ); // 11
 
-		colors.push_back( Vector4(1.0f, 1.0f, 0.0f, 1.0f) ); // 12
-		colors.push_back( Vector4(1.0f, 1.0f, 0.0f, 1.0f) ); // 13
-		colors.push_back( Vector4(1.0f, 1.0f, 0.0f, 1.0f) ); // 13
-		colors.push_back( Vector4(1.0f, 1.0f, 0.0f, 1.0f) ); // 15
+        colors.push_back( Vector4(1.0, 1.0, 0.0, 1.0) ); // 12
+        colors.push_back( Vector4(1.0, 1.0, 0.0, 1.0) ); // 13
+        colors.push_back( Vector4(1.0, 1.0, 0.0, 1.0) ); // 13
+        colors.push_back( Vector4(1.0, 1.0, 0.0, 1.0) ); // 15
 
-		colors.push_back( Vector4(0.0f, 1.0f, 1.0f, 1.0f) ); // 16
-		colors.push_back( Vector4(0.0f, 1.0f, 1.0f, 1.0f) ); // 17
-		colors.push_back( Vector4(0.0f, 1.0f, 1.0f, 1.0f) ); // 18
-		colors.push_back( Vector4(0.0f, 1.0f, 1.0f, 1.0f) ); // 19
+        colors.push_back( Vector4(0.0, 1.0, 1.0, 1.0) ); // 16
+        colors.push_back( Vector4(0.0, 1.0, 1.0, 1.0) ); // 17
+        colors.push_back( Vector4(0.0, 1.0, 1.0, 1.0) ); // 18
+        colors.push_back( Vector4(0.0, 1.0, 1.0, 1.0) ); // 19
 
-		colors.push_back( Vector4(0.0f, 1.0f, 1.0f, 1.0f) ); // 20
-		colors.push_back( Vector4(1.0f, 0.0f, 1.0f, 1.0f) ); // 21
+        colors.push_back( Vector4(0.0, 1.0, 1.0, 1.0) ); // 20
+        colors.push_back( Vector4(1.0, 0.0, 1.0, 1.0) ); // 21
 		
-		colors.push_back( Vector4(1.0f, 0.0f, 1.0f, 1.0f) ); // 22
-		colors.push_back( Vector4(1.0f, 0.0f, 1.0f, 1.0f) ); // 23
-		colors.push_back( Vector4(1.0f, 0.0f, 1.0f, 1.0f) ); // 24
-		colors.push_back( Vector4(1.0f, 0.0f, 1.0f, 1.0f) ); // 25
+        colors.push_back( Vector4(1.0, 0.0, 1.0, 1.0) ); // 22
+        colors.push_back( Vector4(1.0, 0.0, 1.0, 1.0) ); // 23
+        colors.push_back( Vector4(1.0, 0.0, 1.0, 1.0) ); // 24
+        colors.push_back( Vector4(1.0, 0.0, 1.0, 1.0) ); // 25
 	}
 
 	std::vector<Vector3> normals;
 	{
-        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 0
-        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 1
-        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 2
-        normals.push_back( Vector3( 0.0f, 0.0f, -1.0f) ); // 3
+        normals.push_back( Vector3( 0.0, 0.0, -1.0) ); // 0
+        normals.push_back( Vector3( 0.0, 0.0, -1.0) ); // 1
+        normals.push_back( Vector3( 0.0, 0.0, -1.0) ); // 2
+        normals.push_back( Vector3( 0.0, 0.0, -1.0) ); // 3
 
-        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 4
-        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 5
-        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 6
-        normals.push_back( Vector3( 1.0f, 0.0f,  0.0f) ); // 7
+        normals.push_back( Vector3( 1.0, 0.0,  0.0) ); // 4
+        normals.push_back( Vector3( 1.0, 0.0,  0.0) ); // 5
+        normals.push_back( Vector3( 1.0, 0.0,  0.0) ); // 6
+        normals.push_back( Vector3( 1.0, 0.0,  0.0) ); // 7
 
-		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 8
-		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 9
-		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 10
-		normals.push_back( Vector3( 0.0f, 0.0f,  1.0f) ); // 11
+        normals.push_back( Vector3( 0.0, 0.0,  1.0) ); // 8
+        normals.push_back( Vector3( 0.0, 0.0,  1.0) ); // 9
+        normals.push_back( Vector3( 0.0, 0.0,  1.0) ); // 10
+        normals.push_back( Vector3( 0.0, 0.0,  1.0) ); // 11
 
-		normals.push_back( Vector3(-1.0f, 0.0f,  0.0f) ); // 12
-		normals.push_back( Vector3(-1.0f, 0.0f,  0.0f) ); // 13
-		normals.push_back( Vector3(-1.0f, 0.0f,  0.0f) ); // 13
-		normals.push_back( Vector3(-1.0f, 0.0f,  0.0f) ); // 15
+        normals.push_back( Vector3(-1.0, 0.0,  0.0) ); // 12
+        normals.push_back( Vector3(-1.0, 0.0,  0.0) ); // 13
+        normals.push_back( Vector3(-1.0, 0.0,  0.0) ); // 13
+        normals.push_back( Vector3(-1.0, 0.0,  0.0) ); // 15
 
-		normals.push_back( Vector3( 0.0f, 1.0f,  0.0f) ); // 16
-		normals.push_back( Vector3( 0.0f, 1.0f,  0.0f) ); // 17
-		normals.push_back( Vector3( 0.0f, 1.0f,  0.0f) ); // 18
-		normals.push_back( Vector3( 0.0f, 1.0f,  0.0f) ); // 19
+        normals.push_back( Vector3( 0.0, 1.0,  0.0) ); // 16
+        normals.push_back( Vector3( 0.0, 1.0,  0.0) ); // 17
+        normals.push_back( Vector3( 0.0, 1.0,  0.0) ); // 18
+        normals.push_back( Vector3( 0.0, 1.0,  0.0) ); // 19
 
-		normals.push_back( Vector3( 0.0f, 1.0f,  0.0f) ); // 20
-		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 21
+        normals.push_back( Vector3( 0.0, 1.0,  0.0) ); // 20
+        normals.push_back( Vector3( 0.0,-1.0,  0.0) ); // 21
 		
-		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 22
-		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 23
-		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 24
-		normals.push_back( Vector3( 0.0f,-1.0f,  0.0f) ); // 25
+        normals.push_back( Vector3( 0.0,-1.0,  0.0) ); // 22
+        normals.push_back( Vector3( 0.0,-1.0,  0.0) ); // 23
+        normals.push_back( Vector3( 0.0,-1.0,  0.0) ); // 24
+        normals.push_back( Vector3( 0.0,-1.0,  0.0) ); // 25
 
 //        for (auto it = normals.begin(); it != normals.end(); it++)
 //            *it = -(*it);
@@ -222,11 +223,11 @@ void FillPlane(const Vector3 & bottomLeft, const Vector3 & right, const Vector3 
 			int idx = vertexShift + vertexInRowCount * j + i;
 			Vector4 color;
 			{
-				double r = (rand() % 255) / 255.0f;
-				double g = (rand() % 255) / 255.0f;
-				double b = (rand() % 255) / 255.0f;
-				double a = 1.0f;
-				color = Vector4(r, g, b, 1);
+                double r = (rand() % 255) / 255.0;
+                double g = (rand() % 255) / 255.0;
+                double b = (rand() % 255) / 255.0;
+                double a = 1.0;
+                color = Vector4(r, g, b, a);
 			}
 			
 			SetVertexOnPlane(idx, i, iMax, j, jMax, bottomLeft, right, up, vertices, normals, colors, color);
@@ -407,4 +408,6 @@ void MeshCube::InitCubeDetailedList()
 	meshImpl->SetIndices(indices, MESH_TOPOLOGY_TRIANGLE_LIST);
 
 	meshImpl->Apply();
+}
+
 }

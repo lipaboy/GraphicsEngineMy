@@ -10,6 +10,8 @@
 #include "lipaboyLibrary/src/maths/vector2d.h"
 #include "lipaboyLibrary/src/maths/rotateoperator.h"
 
+namespace graphics_engine {
+
 using lipaboy_lib::Vector2D;
 
 class DominoFalling : public Component
@@ -94,3 +96,4 @@ private:
     double speed = 1.;
 };
 
+}

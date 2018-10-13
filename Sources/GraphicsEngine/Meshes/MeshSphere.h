@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Mesh.h"
 
+namespace graphics_engine {
 
 // Design Patterns: Bridge (role - RefinedAbstraction).
 class MeshSphere : public Mesh
@@ -15,3 +16,5 @@ public:
 private:
 	int m_levelCount;	
 };
+
+}

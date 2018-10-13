@@ -11,6 +11,8 @@
 
 #include "lipaboyLibrary/src/maths/matrix4x4.h"
 
+namespace graphics_engine {
+
 struct Matrix4x4
 {
 	union {
@@ -437,3 +439,5 @@ struct Matrix4x4
 		return result;
 	}
 };
+
+}

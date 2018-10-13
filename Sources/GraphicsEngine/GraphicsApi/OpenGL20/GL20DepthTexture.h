@@ -1,5 +1,4 @@
-#ifndef GL20DEPTHTEXTURE_H
-#define GL20DEPTHTEXTURE_H
+#pragma once
 
 #include "GraphicsEngine/GraphicsApi/OpenGL20/GL20.h"
 #include "GraphicsEngine/Rect.h"
@@ -7,6 +6,8 @@
 #include "GraphicsEngine/GraphicsApi/RenderTextureImpl.h"
 #include "GraphicsEngine/Screen.h"
 #include "GraphicsEngine/Application.h"
+
+namespace graphics_engine {
 
 class GL20DepthTexture : public RenderTextureImpl
 {
@@ -36,5 +37,4 @@ public:
     RenderTarget previousLocation = SCREEN;
 };
 
-
-#endif // GL20DEPTHTEXTURE_H
+}

@@ -4,6 +4,8 @@
 #include "GraphicsEngine/MathUtils.h"
 #include "GraphicsEngine/SceneUtils.h"
 
+namespace graphics_engine {
+
 MaterialDiffuse::MaterialDiffuse()
 {
     m_vsFileName = "ShaderDiffuse";
@@ -23,4 +25,6 @@ void MaterialDiffuse::Init(Object * pObject)
 void MaterialDiffuse::Deinit()
 {
     MaterialLightReflect::Deinit();
+}
+
 }

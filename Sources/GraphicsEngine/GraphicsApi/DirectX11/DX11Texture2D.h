@@ -7,6 +7,7 @@
 #include "GraphicsEngine/GraphicsApi/Texture2DImpl.h"
 #include <Windows.h>
 
+namespace graphics_engine {
 
 class DX11Texture2D : public Texture2DImpl
 {
@@ -22,5 +23,7 @@ private:
 	ID3D11ShaderResourceView *	m_pTexture;
 	ID3D11SamplerState *		m_pSamplerState;
 };
+
+}
 
 #endif

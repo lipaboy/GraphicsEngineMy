@@ -4,6 +4,8 @@
 
 #include "lipaboyLibrary/src/maths/rotateoperator.h"
 
+namespace graphics_engine {
+
 class Transform
 {
 public:
@@ -79,3 +81,5 @@ private:
 
 	bool m_shouldRecalc;
 };
+
+}

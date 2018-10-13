@@ -8,6 +8,8 @@
 #include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
 #include "GraphicsEngine/Materials/MaterialUnlit.h"
 
+namespace graphics_engine {
+
 LightPoint::LightPoint()
 {
     pLightFigure = new Object();
@@ -47,4 +49,6 @@ void LightPoint::RecalcLightSpaceMatrix()
                                                        matView, matProj);
     camera.SetLightSide(temp);
     m_spaceMatrix = m_spaceMatrix;
+}
+
 }

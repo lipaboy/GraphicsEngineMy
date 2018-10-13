@@ -1,5 +1,9 @@
 ﻿#pragma once
 
+#include <cmath>
+#include "GraphicsEngine/Vector3.h"
+
+namespace graphics_engine {
 
 class Vector4
 {
@@ -111,14 +115,14 @@ public:
 
 	void Normalize()
 	{
-		double length = sqrt(x*x + y*y + z*z + w*w);
+        double length = std::sqrt(x*x + y*y + z*z + w*w);
 
 		*this *= (1.0 / length);
 	}
 
 	double Norma()
 	{
-		double length = sqrt(x*x + y*y + z*z + w*w);
+        double length = std::sqrt(x*x + y*y + z*z + w*w);
 
 		return length;
 	}
@@ -128,3 +132,5 @@ public:
 		return Vector4();
 	}
 };
+
+}

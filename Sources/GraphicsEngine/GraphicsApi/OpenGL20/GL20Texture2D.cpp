@@ -2,6 +2,7 @@
 #include "GraphicsEngine/Application.h"
 //#include "GraphicsEngine/GraphicsApi/OpenGL20/GL20GraphicsEngineContext.h"
 
+namespace graphics_engine {
 
 GL20Texture2D::GL20Texture2D(const char * filepath)
 {
@@ -72,4 +73,6 @@ void GL20Texture2D::SetTexture(int textureRegister) const
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, m_minFilterMode);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, m_magFilterMode);
+}
+
 }
