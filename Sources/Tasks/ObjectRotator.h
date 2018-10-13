@@ -31,7 +31,7 @@ public:
 			return;
 		}
 		
-		double deltaTime = Time::GetDeltaTime();
+        Vector3_T deltaTime = Time::GetDeltaTime();
 
         m_pObject->m_pTransform->Rotate(speed * deltaTime);
         //m_pObject->m_pTransform->RotateByOperator(m_pObject->m_pTransform->GetUp(),

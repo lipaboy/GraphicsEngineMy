@@ -202,7 +202,9 @@ void MeshCube::InitCubeSimple()
 void SetVertexOnPlane(int idx, int i, int iMax, int j, int jMax, const Vector3 & bottomLeft, const Vector3 & right, const Vector3 & up,
 						std::vector<Vector3> & v, std::vector<Vector3> & n, std::vector<Vector4> & c, const Vector4 & color)
 {
-	v[idx] = bottomLeft + right * (1.0f * i / iMax) + up * (1.0f * j / jMax);
+    v[idx] = bottomLeft
+            + right * static_cast<Vector3_T>(1.0 * i / iMax)
+            + up * static_cast<Vector3_T>(1.0 * j / jMax);
 	n[idx] = Vector3::Cross(right, up).Normalize();
 	c[idx] = color;
 }
@@ -337,10 +339,10 @@ void FillCubePlane2(const Vector3 & bottomLeft, const Vector3 & right, const Vec
 	}
 	
 	// Initialize indices
-	int indexShift = planeIndex * indexInRowCount * m_levelCount;
-	for (int j = 0, k = 0, m = 0; j < m_levelCount; ++j)
+    size_t indexShift = planeIndex * indexInRowCount * m_levelCount;
+    for (size_t j = 0, k = 0, m = 0; j < m_levelCount; ++j)
 	{
-		for (int i = 0; i < m_levelCount; ++i)
+        for (size_t i = 0; i < m_levelCount; ++i)
 		{
 			indices[indexShift + (k + 0)] = vertexShift + (m + 0);
 			indices[indexShift + (k + 1)] = vertexShift + (m + 1);

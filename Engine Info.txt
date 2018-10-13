@@ -4,3 +4,5 @@
 	Влияние: 
 		a) умножение вектора на матрицу: vec * 
 		b) произведение матриц Scale * Rotation * Translation
+
+2) Есть захардкорженная константа PATH_MAX = 1024 IN GL20Material.cpp

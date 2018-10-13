@@ -11,36 +11,38 @@
 
 namespace graphics_engine {
 
-class Vector3
+template <class T>
+class Vector3Base
 {
 public:
-	double x, y, z;
+    using value_type = T;
+public:
+    union {
+        struct {
+            T x, y, z;
+        };
+        struct {
+            T width, height, length;
+        };
+    };
 
 public:
 
-	Vector3()
-	: x(0), y(0), z(0)
-	{
+    Vector3Base()
+        : x(0), y(0), z(0)
+    {}
 
-	}
+    Vector3Base(T x_or_width, T y_or_height, T z_or_length)
+        : x(x_or_width), y(y_or_height), z(z_or_length)
+    {}
 
-	Vector3(double x, double y, double z)
-	: x(x), y(y), z(z)
-	{
+    Vector3Base(const Vector3Base & vec)
+        : x(vec.x), y(vec.y), z(vec.z)
+    {}
 
-	}
-
-	Vector3(const Vector3 & vec)
-	: x(vec.x), y(vec.y), z(vec.z)
-	{
-
-	}
-
-    Vector3(const lipaboy_lib::Vector3D & vec)
-    : x(vec.x()), y(vec.y()), z(vec.z())
-    {
-
-    }
+    Vector3Base(const lipaboy_lib::Vector3D & vec)
+        : x(vec.x()), y(vec.y()), z(vec.z())
+    {}
 
 #ifdef CAN_USE_OPEN_GL
     glm::vec3 toGlmVec3() const {
@@ -48,12 +50,12 @@ public:
     }
 #endif
 
-	Vector3 operator - () const
+    Vector3Base operator - () const
 	{
-		return Vector3(-x, -y, -z);
+        return Vector3Base(-x, -y, -z);
 	}
 
-	const Vector3 & operator += (const Vector3 & vec)
+    const Vector3Base & operator += (const Vector3Base & vec)
 	{
 		this->x += vec.x;
 		this->y += vec.y;
@@ -62,7 +64,7 @@ public:
 		return *this;
 	}
 
-	const Vector3 & operator -= (const Vector3 & vec)
+    const Vector3Base & operator -= (const Vector3Base & vec)
 	{
 		this->x -= vec.x;
 		this->y -= vec.y;
@@ -71,7 +73,7 @@ public:
 		return *this;
 	}
 
-	const Vector3 & operator *= (const double k)
+    const Vector3Base & operator *= (const T k)
 	{
 		this->x *= k;
 		this->y *= k;
@@ -80,26 +82,26 @@ public:
 		return *this;
 	}
 
-	double Length() const
+    T Length() const
 	{
 		return sqrt(x*x + y*y + z*z);
     }
 
-    Vector3 & Normalize()
+    Vector3Base & Normalize()
 	{
 		*this *= (1.0 / this->Length());
 
 		return *this;
 	}	
 
-    static double Dot(const Vector3 & a, const Vector3 & b)
+    static T Dot(const Vector3Base & a, const Vector3Base & b)
 	{
         return (a.x * b.x + a.y * b.y + a.z * b.z);
 	}
 
-	static Vector3 Cross(const Vector3 & a, const Vector3 & b)
+    static Vector3Base Cross(const Vector3Base & a, const Vector3Base & b)
 	{
-		return	Vector3
+        return	Vector3Base
 				(
 					  a.y * b.z - a.z * b.y,
 					-(a.x * b.z - a.z * b.x),
@@ -110,9 +112,9 @@ public:
 	/**
 	* @brief Clamps vector coordinates by interval [0,1].
 	*/
-	static Vector3 Clamp01(const Vector3 & a)
+    static Vector3Base Clamp01(const Vector3Base & a)
 	{
-		return	Vector3
+        return	Vector3Base
 				(
 					Math::Clamp(a.x, 0.0, 1.0),
 					Math::Clamp(a.y, 0.0, 1.0),
@@ -120,16 +122,56 @@ public:
 				);
 	}
 
-	static Vector3 Zero()
+    static Vector3Base Zero()
 	{
-		return Vector3(0, 0, 0);
+        return Vector3Base(0, 0, 0);
 	}
 };
 
-Vector3 operator + (const Vector3 & vec1, const Vector3 & vec2);
-Vector3 operator - (const Vector3 & vec1, const Vector3 & vec2);
-Vector3 operator * (const Vector3 & vec, const double k);
-Vector3 operator * (const double k, const Vector3 & vec);
+//-----------------------------Free functions---------------------------//
+
+template <class T>
+Vector3Base<T> operator + (const Vector3Base<T> & vec1, const Vector3Base<T> & vec2)
+{
+    Vector3Base<T> result(vec1);
+
+    result += vec2;
+
+    return result;
+}
+
+template <class T>
+Vector3Base<T> operator - (const Vector3Base<T> & vec1, const Vector3Base<T> & vec2)
+{
+    Vector3Base<T> result(vec1);
+
+    result -= vec2;
+
+    return result;
+}
+
+template <class T>
+Vector3Base<T> operator * (const Vector3Base<T> & vec, const T k)
+{
+    Vector3Base<T> result(vec);
+
+    result *= k;
+
+    return result;
+}
+
+template <class T>
+Vector3Base<T> operator * (const T k, const Vector3Base<T> & vec)
+{
+    Vector3Base<T> result(vec * k);
+
+    return result;
+}
+
+//--------------------------Vector3-------------------------//
+
+using Vector3 = Vector3Base<double>;
+using Vector3_T = typename Vector3::value_type;
 
 
 }

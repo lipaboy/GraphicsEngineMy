@@ -38,9 +38,9 @@ protected:
             Vector3 forward	= pObjectTransform->GetForward();
             Vector3 right	= pObjectTransform->GetRight();
             Vector3 up = pObjectTransform->GetUp();
-            double dt = Time::GetDeltaTime();
+            Vector3_T dt = Time::GetDeltaTime();
 
-            double speed = (isCamera) ? 1.0 * .5 * 2 * 10
+            Vector3_T speed = (isCamera) ? 1.0 * .5 * 2 * 10
                                       : 1.0 * 3;
             //* (1.0 / 20)
             Vector3 direction;
@@ -88,7 +88,8 @@ protected:
 
         // Rotation
         {
-            const double speedAngle = 0.3;
+            const Vector3_T speedAngle = Vector3_T(0.3);
+            const Vector3_T epsilon = Vector3_T(1e-6);
             if (Input::GetMouseButton(1))
             {
                 // TODO: Task08
@@ -97,11 +98,11 @@ protected:
                 Vector3 vec = (currPos - mousePos) * speedAngle;
                 //pObjectTransform->Rotate(Vector3(-vec.y, -vec.x, 0));
                // pObjectTransform->RotateByOperator(Vector3(-vec.y, -vec.x, 0), PI / 200.);
-                if (std::abs(vec.x) > 1e-6) {
+                if (std::abs(vec.x) > epsilon) {
                     pObjectTransform->Rotate(Vector3(0, vec.x, 0));
                     mousePos = currPos;
                 }
-                if (std::abs(vec.y) > 1e-6) {
+                if (std::abs(vec.y) > epsilon) {
                     pObjectTransform->Rotate(Vector3(vec.y, 0, 0));
                     mousePos = currPos;
                 }

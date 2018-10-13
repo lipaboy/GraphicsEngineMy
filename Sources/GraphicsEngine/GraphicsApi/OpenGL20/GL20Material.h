@@ -39,7 +39,7 @@ private:
 	void LogErrorInVertexShader();
 	void LogErrorInFragmentShader();
 	void LogErrorInProgram();
-	void LogError(const char * text, const char * filePath = NULL);
+    void LogError(const char * text, const char * filePath = nullptr);
 	
 	bool m_isInited;
 

@@ -10,6 +10,8 @@
 
 namespace graphics_engine {
 
+const size_t PATH_MAX = 1024;
+
 GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)
 {
 	m_isInited = false;
@@ -41,7 +43,7 @@ GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragm
 		const char * pStr = vsText.c_str();
 		
 		m_vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource (m_vertexShader, 1, &pStr, NULL);
+        glShaderSource (m_vertexShader, 1, &pStr, nullptr);
 		glCompileShader(m_vertexShader);
 
 		// Check for errors
@@ -66,7 +68,7 @@ GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragm
 		const char * pStr = fsText.c_str();
 
 		m_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource (m_fragmentShader, 1, &pStr, NULL);
+        glShaderSource (m_fragmentShader, 1, &pStr, nullptr);
 		glCompileShader(m_fragmentShader);
 
 		// Check for errors
