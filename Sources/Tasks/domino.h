@@ -97,7 +97,11 @@ public:
             //                       new MaterialDiffuseAttenuation()
             //                        new MaterialDiffuseSpecular(1,1,1)
                        );
-            //           pDomino->AddComponent(new DominoFalling(Vector3()));
+            double angularSpeed
+                    = 0;
+//                        = PI / 20 / 1; // (PI / 20) radian per 1 second
+            pDomino->AddComponent(new DominoFalling(dominoDirection, floorNormal,
+                                                    angularSpeed, dominoSize.y, dominoSize.x));
 
             scene.AddObject( pDomino );
         }
