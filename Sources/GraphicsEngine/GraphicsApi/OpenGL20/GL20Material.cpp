@@ -10,8 +10,6 @@
 
 namespace graphics_engine {
 
-const size_t PATH_MAX = 1024;
-
 GL20Material::GL20Material(const char * vertexShaderFilePath, const char * fragmentShaderFilePath)
 {
 	m_isInited = false;
@@ -253,7 +251,7 @@ void GL20Material::LogErrorInVertexShader()
 	const int MAX_INFO_LOG_SIZE = 4096;
 	GLchar text[MAX_INFO_LOG_SIZE];
 	
-	glGetShaderInfoLog(m_vertexShader, MAX_INFO_LOG_SIZE, NULL, text);
+    glGetShaderInfoLog(m_vertexShader, MAX_INFO_LOG_SIZE, nullptr, text);
 	
 	LogError(text, m_vsPath.c_str());
 }
@@ -263,7 +261,7 @@ void GL20Material::LogErrorInFragmentShader()
 	const int MAX_INFO_LOG_SIZE = 4096;
 	GLchar text[MAX_INFO_LOG_SIZE];
 	
-	glGetShaderInfoLog(m_fragmentShader, MAX_INFO_LOG_SIZE, NULL, text);
+    glGetShaderInfoLog(m_fragmentShader, MAX_INFO_LOG_SIZE, nullptr, text);
 	
 	LogError(text, m_fsPath.c_str());
 }
@@ -273,17 +271,17 @@ void GL20Material::LogErrorInProgram()
 	const int MAX_INFO_LOG_SIZE = 4096;
 	GLchar text[MAX_INFO_LOG_SIZE];
 
-	glGetProgramInfoLog(m_program, MAX_INFO_LOG_SIZE, NULL, text);
+    glGetProgramInfoLog(m_program, MAX_INFO_LOG_SIZE, nullptr, text);
 
 	LogError(text);
 }
 
 void GL20Material::LogError(const char * text, const char * filePath)
 {	
-	if (NULL != text)
+    if (nullptr != text)
 	{
 		std::string title = "Error";
-		if (NULL != filePath)
+        if (nullptr != filePath)
 		{
 			title += " in " + File::GetFileName(filePath);
 		}

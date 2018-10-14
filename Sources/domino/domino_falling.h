@@ -55,15 +55,16 @@ public:
         if (isFalling_) {
             double deltaTime = speed * Time::GetDeltaTime();
 
-            auto previousAngle = currAngle;
-            currAngle += currAngularSpeed * deltaTime;
-            currAngularSpeed += currAngularBoost * deltaTime;
-            currAngularBoost = calcBoost(currAngle);
+            double diffAngle = 0.;
+            for (size_t i = 0; i < FRAGMENTATION_COUNT; i++) {
+                auto previousAngle = currAngle;
+                currAngle += currAngularSpeed * deltaTime / FRAGMENTATION_COUNT;
+                currAngularSpeed += currAngularBoost * deltaTime / FRAGMENTATION_COUNT;
+                currAngularBoost = calcBoost(currAngle);
+                diffAngle += currAngle - previousAngle;
+            }
 
-            m_pObject->m_pTransform->RotateByOperator(rotationAxis,
-                                                      currAngle - previousAngle
-                                                      );
-
+            m_pObject->m_pTransform->RotateByOperator(rotationAxis, diffAngle);
 //            if (currAngle >= PI / 2)
 //                isFalling_ = false;
         }
@@ -84,6 +85,7 @@ private:
     double m_Width;
 
     Vector3 rotationAxis;
+    size_t FRAGMENTATION_COUNT = 1e3;
 
     double currAngle;
     double currAngularSpeed;

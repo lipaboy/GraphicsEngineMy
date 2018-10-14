@@ -50,7 +50,7 @@ public:
         Vector3 floorPosition(-3, -8, 0);
         Vector3 floorNormal(0, 1, 0);
         // width, height, length
-        Vector3 dominoSize(4, 4, 2);
+        Vector3 dominoSize(1, 4, 2);
         Vector3 dominoPosition = floorPosition + Vector3(0, dominoSize.y / 2., 0)
                 + Vector3(0, dominoSize.y, 0);
         Vector3 dominoDirection(2, 0, -2);
@@ -66,7 +66,7 @@ public:
         // Camera
         {
             Object * pCameraObj = new Object();
-            pCameraObj->m_pTransform = new Transform( Vector3(0.0f, 0, -20), Vector3(20, 0, 0));
+            pCameraObj->m_pTransform = new Transform( Vector3(0.0, 0, -20), Vector3(20, 0, 0));
             Camera * pCamera = new Camera();
             pCameraObj->AddComponent( pCamera );
             pCameraObj->AddComponent(new CameraController());

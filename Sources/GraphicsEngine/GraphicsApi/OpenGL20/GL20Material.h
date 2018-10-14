@@ -6,6 +6,8 @@
 
 namespace graphics_engine {
 
+static constexpr size_t PATH_MAX = 1024;
+
 class GL20Material : public MaterialImpl
 {
 public:
