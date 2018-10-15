@@ -6,6 +6,7 @@
 #include "GraphicsEngine/Input.h"
 #include "GraphicsEngine/Time.h"
 #include "GraphicsEngine/Transform.h"
+#include "GraphicsEngine/GUI.h"
 
 #include "lipaboyLibrary/src/maths/vector2d.h"
 #include "lipaboyLibrary/src/maths/rotateoperator.h"
@@ -65,8 +66,10 @@ public:
             }
 
             m_pObject->m_pTransform->RotateByOperator(rotationAxis, diffAngle);
-//            if (currAngle >= PI / 2)
-//                isFalling_ = false;
+            if (currAngle >= PI / 2) {
+                swingCounter++;
+                GUI::Label(5, 5, 100, 20, std::to_string(swingCounter));
+            }
         }
     }
 
@@ -96,6 +99,7 @@ private:
     bool isFalling_ = false;
     double startTime_;
     double speed = 1.;
+    size_t swingCounter = 0;
 };
 
 }
