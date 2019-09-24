@@ -25,6 +25,11 @@ void GL20Mesh::Render()
 	glEnableVertexAttribArray(2);
 	glEnableVertexAttribArray(3);
 		
+    // -- Drawing the geomitric primitives by the whole pack (not separately),
+    // -- as array
+
+    //m_indicesCount - defines the size of array
+
 	glBindBuffer(GL_ARRAY_BUFFER, m_bufferPosition);
 	glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, 0, 0);
 
@@ -37,6 +42,7 @@ void GL20Mesh::Render()
 	glBindBuffer(GL_ARRAY_BUFFER, m_bufferUV0);
 	glVertexAttribPointer(3, 3, GL_DOUBLE, GL_FALSE, 0, 0);
 
+    // INFO: indices used to traversal order of vertex for drawing
 	glDrawElements(m_primitiveType, m_indicesCount, GL_UNSIGNED_INT, &m_indices[0]);
 
 	glDisableVertexAttribArray(3);
@@ -63,6 +69,7 @@ void GL20Mesh::SetColors(const std::vector<Vector4> & colors)
 	m_colors = colors;
 }
 
+// INFO: indices used to traversal order of vertex for drawing
 void GL20Mesh::SetIndices(const std::vector<int> & indices, MeshTopology topology)
 {
 	m_indicesCount = indices.size();

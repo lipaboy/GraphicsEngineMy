@@ -122,7 +122,7 @@ void Transform::RotateAroundCenter(const Vector3 &euler)
 
 void Transform::RotateByOperator(Vector3 const & asixRotation, double angle)
 {
-    matRotOp = LipaboyLib::RotateOperator(LipaboyLib::Vector3D(asixRotation.x, asixRotation.y,
+    matRotOp = lipaboy_lib::RotateOperator(lipaboy_lib::Vector3D(asixRotation.x, asixRotation.y,
                                                         asixRotation.z), angle).getMatrix()
             * matRotOp;
     m_shouldRecalc = true;
