@@ -39,5 +39,5 @@ private:
 	GLuint	m_bufferNormal;
 	GLuint	m_bufferUV0;
 	GLenum	m_primitiveType;
-    GLsizei	m_indicesCount;         // define the size of array for drawing elements (geometric primitives)
+    GLsizei	m_indicesCount;         // defines the size of array for drawing elements (geometric primitives)
 };

@@ -13,7 +13,8 @@ class CameraController : public Component
     Transform * pTransform;
     Transform * pLightTransform;
     bool isCamera = true;
-    int _cameraSpeed = 10;
+    int _cameraSpeed = //10; //base
+            8;
 
 public:
     CameraController() {

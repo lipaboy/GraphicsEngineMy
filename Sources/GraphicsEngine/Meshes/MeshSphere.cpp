@@ -2,6 +2,7 @@
 #include "GraphicsEngine/MathConstants.h"
 #include <stdlib.h>
 
+#include <algorithm>
 
 void GetVertexOnSphere(int i, int iMax, int j, int jMax, Vector3 & v, Vector3 & n, Vector4 & c, Vector3 & uv0)
 {
@@ -84,7 +85,7 @@ void MeshSphere::Init()
 	}
 
 	int indexCount = (m_levelCount - 1) * vertexInRowCount * 2;
-	indices.resize(indexCount);
+    indices.resize(indexCount);
 	for (int j = 0; j < (m_levelCount - 1); ++j)
 	{
 		for (int i = 0; i < vertexInRowCount; ++i)
@@ -94,13 +95,20 @@ void MeshSphere::Init()
 		}
 	}
 
-	
+    //  dirty inserting (delete)
+    indices.resize(indexCount / 2);
+    for (int i = 0; i < normals.size(); i++) {
+        normals[i] = -normals[i];
+    }
+
+    std::reverse(indices.begin(), indices.end());
+
 	meshImpl->SetVertices(vertices);
 	meshImpl->SetColors(colors);
 	meshImpl->SetNormals(normals);
 	meshImpl->SetUV0(uv0);
 
-	meshImpl->SetIndices(indices, MESH_TOPOLOGY_TRIANGLE_STRIP);
+    meshImpl->SetIndices(indices, MESH_TOPOLOGY_TRIANGLE_STRIP);
 	
 	meshImpl->Apply();
 }

@@ -76,6 +76,8 @@ public:
                new MaterialDiffuseAttenuation());
                //new MaterialDiffuseSpecular();
 
+           pObject1->AddComponent(new ObjectRotator(0, 0, 100));
+
            scene.AddObject( pObject1 );
         }
         // Lights
@@ -114,50 +116,50 @@ public:
 
             scene.AddLight(pLight);
         }
-        {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(.2,.3,.8);
-            pLight->SetIntensity(1);
-            Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        180,0,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
+//        {
+//            AbstractLight * pLight = new LightDirectional();
+//            pLight->SetColor(.2,.3,.8);
+//            pLight->SetIntensity(1);
+//            Object * pLightObject   = new Object();
+//            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+//                                                        180,0,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
 
-            scene.AddLight(pLight);
-        }
-        {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(.3,.1,.7);
-            pLight->SetIntensity(1);
-            Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        -90,0,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
+//            scene.AddLight(pLight);
+//        }
+//        {
+//            AbstractLight * pLight = new LightDirectional();
+//            pLight->SetColor(.3,.1,.7);
+//            pLight->SetIntensity(1);
+//            Object * pLightObject   = new Object();
+//            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+//                                                        -90,0,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
 
-            scene.AddLight(pLight);
-        }
-        {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(.2,.3,.3);
-            pLight->SetIntensity(1);
-            Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        0,90,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
+//            scene.AddLight(pLight);
+//        }
+//        {
+//            AbstractLight * pLight = new LightDirectional();
+//            pLight->SetColor(.2,.3,.3);
+//            pLight->SetIntensity(1);
+//            Object * pLightObject   = new Object();
+//            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+//                                                        0,90,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
 
-            scene.AddLight(pLight);
-        }
-        {
-            AbstractLight * pLight = new LightDirectional();
-            pLight->SetColor(.1,.5,.2);
-            pLight->SetIntensity(1);
-            Object * pLightObject   = new Object();
-            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
-                                                        0,-90,0, 1,1,1);
-            pLightObject->AddComponent(pLight);
+//            scene.AddLight(pLight);
+//        }
+//        {
+//            AbstractLight * pLight = new LightDirectional();
+//            pLight->SetColor(.1,.5,.2);
+//            pLight->SetIntensity(1);
+//            Object * pLightObject   = new Object();
+//            pLightObject->m_pTransform	= new Transform(18,3,-5, //position - no mean for LIGHT_DIRECTIONAL (but it wrong in that case)
+//                                                        0,-90,0, 1,1,1);
+//            pLightObject->AddComponent(pLight);
 
-            scene.AddLight(pLight);
-        }
+//            scene.AddLight(pLight);
+//        }
 
         /////////////////////////////////////////////////////////////////////////////////////
 
