@@ -12,8 +12,8 @@ CONFIG += qtc_runnable
 
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -lglut -lGL -lGEW -lGLU -lfreeimageplus
-LIBS += -lglut -lGL -lGLEW -lGLU -lfreeimageplus
+QMAKE_CXXFLAGS += -std=c++11 -lglut -lGL -lGEW -lGLU -lfreeimage
+LIBS += -lglut -lGL -lGLEW -lGLU -lfreeimage
 
 INCLUDEPATH += "../Sources"
 

@@ -61,7 +61,7 @@ private:
 	Vector3 m_scale;
     // Rotate around center
     Vector3 m_eulerAnglesAroundCenter = Vector3(0, 0, 0);
-    LipaboyLib::Matrix4x4 matRotOp = LipaboyLib::Matrix4x4::getEye();
+    lipaboy_lib::Matrix4x4 matRotOp = lipaboy_lib::Matrix4x4::getEye();
 
 	// Вектор "вперёд" в глобальной с.к. (равен (0,0,1) в локальной с.к.)
 	Vector3 m_forward;

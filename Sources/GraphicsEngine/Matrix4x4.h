@@ -38,7 +38,7 @@ struct Matrix4x4
         return (*this);
     }
 #endif
-    Matrix4x4 & operator = (const LipaboyLib::Matrix4x4 & that)
+    Matrix4x4 & operator = (const lipaboy_lib::Matrix4x4 & that)
     {
         for (int i = 0; i < 4; i++)
         {
