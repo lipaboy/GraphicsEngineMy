@@ -13,6 +13,7 @@
 #include "GraphicsEngine/Materials/MaterialDiffuse.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseSpecular.h"
 #include "GraphicsEngine/Materials/MaterialDiffuseAttenuation.h"
+#include "GraphicsEngine/Materials/MaterialSand.h"
 
 #include "GraphicsEngine/Meshes/MeshTriangle.h"
 #include "GraphicsEngine/Meshes/MeshQuad.h"
@@ -74,10 +75,11 @@ public:
            pObject1->m_pMesh		= new MeshSphere(20);
                    //new MeshCube(3);      //why system coordinates is changing when I replace Sphere on Cube???
            pObject1->m_pMaterial = std::shared_ptr<Material>(//new MaterialDiffuse();
-               new MaterialDiffuseAttenuation());
+               //new MaterialDiffuseAttenuation());
+                new MaterialTexture("Earth_Albedo.jpg", TEXTURE_FILTER_MODE_POINT));
                //new MaterialDiffuseSpecular();
 
-           pObject1->AddComponent(new ObjectRotator(0, 0, 100));
+           pObject1->AddComponent(new ObjectRotator(0, 10, 100));
 
            scene.AddObject( pObject1 );
         }

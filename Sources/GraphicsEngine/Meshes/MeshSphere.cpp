@@ -2,6 +2,8 @@
 #include "GraphicsEngine/MathConstants.h"
 #include <stdlib.h>
 
+#include <algorithm>
+
 namespace graphics_engine {
 
 void GetVertexOnSphere(int i, int iMax, int j, int jMax, Vector3 & v, Vector3 & n, Vector4 & c, Vector3 & uv0)
@@ -9,7 +11,7 @@ void GetVertexOnSphere(int i, int iMax, int j, int jMax, Vector3 & v, Vector3 & 
 	const double radius = 0.5f;
 
 	double theta	= (180.0 - 180.0 * j / (jMax - 1)) * DEG2RAD;
-	double phi		= (360.0 * (i % iMax) / iMax) * DEG2RAD;
+    double phi		= (360.0 * (i % iMax) / iMax) * DEG2RAD;
 
 	v.x		= radius * sin(theta) * cos(phi);
 	v.y		= radius * cos(theta);
@@ -19,7 +21,7 @@ void GetVertexOnSphere(int i, int iMax, int j, int jMax, Vector3 & v, Vector3 & 
 	normal.Normalize();
 	n.x	= normal.x;
 	n.y	= normal.y;
-	n.z	= normal.z;
+    n.z	= normal.z;
 
 	double r = (rand() % 255) / 255.0f;
 	double g = (rand() % 255) / 255.0f;
@@ -46,7 +48,7 @@ void MeshSphere::Init()
 	std::vector<Vector3> normals;
 	std::vector<Vector3> uv0;
 	std::vector<int> indices;
-	
+
 	int vertexInRowCount = m_levelCount + 1 + 2;
 	int vertexCount = vertexInRowCount * m_levelCount;
     
@@ -55,12 +57,12 @@ void MeshSphere::Init()
 	colors.resize(vertexCount);
 	uv0.resize(vertexCount);
 
-	for (int j = 0; j < m_levelCount; ++j)
+    for (int j = 0; j < m_levelCount; ++j)
 	{
-		for (int i = 0; i < m_levelCount + 1; ++i)
+        for (int i = 0; i < m_levelCount + 1; ++i)
 		{
 			int k = vertexInRowCount * j + i;
-			GetVertexOnSphere(i, m_levelCount, j, m_levelCount, vertices[k], normals[k], colors[k], uv0[k]);
+            GetVertexOnSphere(i, m_levelCount, j, m_levelCount, vertices[k], normals[k], colors[k], uv0[k]);
 		}
 
 		// Добавляем вершины для вырожденных треугольников
@@ -95,6 +97,14 @@ void MeshSphere::Init()
 		}
 	}
 
+
+    indices.resize(indices.size() / 2);
+
+    std::reverse(indices.begin(), indices.end());
+
+    for (int i = 0; i < normals.size(); i++) {
+        normals[i] = -normals[i];
+    }
 	
 	meshImpl->SetVertices(vertices);
 	meshImpl->SetColors(colors);
