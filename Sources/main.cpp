@@ -4,7 +4,7 @@
 #include "Tasks/Task04.h"
 #include "Tasks/Task05_01.h"
 #include "Tasks/Task08.h"
-#include "Tasks/domino.h"
+#include "pylos_game/pylos_game.h"
 
 using namespace graphics_engine;
 
@@ -20,7 +20,7 @@ int main(int argc, char ** argv)
 
 //    Task * pTask = new Task01();
 //    Task * pTask = new Task04();
-    Task * pTask = new Domino();
+    Task * pTask = new pylos_game_space::PylosTask();
     //Task * pTask = new Task05_01();
     //Task * pTask = new Task08();
 	{

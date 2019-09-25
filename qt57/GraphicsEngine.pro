@@ -118,6 +118,9 @@ DISTFILES += \
 #    ../Sources/GraphicsEngine/Shaders/GL20/ShadowMap.fs
 
 HEADERS += \
+\   # Pylos game headers
+    ../Sources/pylos_game/pylos_game.h \
+\
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11.h \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11ConstantBuffer.h \
     ../Sources/GraphicsEngine/GraphicsApi/DirectX11/DX11GraphicsEngine.h \
