@@ -1,1 +1,18 @@
+--------	Motivation of developing Pylos game	----------
+
+I write this game not only for game it or try to push in production but therefore know smth new about and upgrade the GraphicsEngine engine.
+
+--------------------	TODO	--------------------------
+
+-----	GraphicsEngine	-----
+
+1) move all the special headers (like Application and etc.) to one folder.
+
+Question:
+
+1) What purpose of make Vector3Base as template for?
+
+
+-----	Pylos game	------
+
 1) 
