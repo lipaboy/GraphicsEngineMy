@@ -1,6 +1,6 @@
 **/*.autosave
 **/build*
-**/*.pro.user
+**/*.pro.user*
 **/*.sdf
 **/*.suo
 **/*.filters
